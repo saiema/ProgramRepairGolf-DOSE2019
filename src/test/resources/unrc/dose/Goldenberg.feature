@@ -1,10 +1,11 @@
 #Authors: Borda, Celi, de Prada, Goldenberg.
 
+Feature: create challenge
 Scenario: Admin user wants to create a new valid test based challenge
-  Given the user “root” is already logged on
+  Given the user "root" is already logged on
   And the user has admin permission
   And the text of the challenge is
-  “
+```
     public class Module{
       public static int module(int a){
         if(a >= 0){
@@ -15,10 +16,10 @@ Scenario: Admin user wants to create a new valid test based challenge
         }
       }
     }
-  ”
-  And the text of the tests is:
-    “
-    @Test
+```
+  And the text of the tests is
+```
+
     public void test1(){
       Int value =5;
       Int result = Module.module(value);
@@ -30,7 +31,7 @@ Scenario: Admin user wants to create a new valid test based challenge
       Int result = Module.module(value);
       assertEquals(value,result);
     }
-    ”
+```
   And the at least one of the tests fails
   And the user sets the challenge score on 5
   When the user submits the challenge
@@ -41,18 +42,18 @@ Scenario: Admin user wants to create a new valid test based challenge
 
 
 Scenario: Admin user wants to create a new invalid test based challenge
-  Given the user “root” is already logged on
+  Given the user "root" is already logged on
   And the user is a content creator user
   And the text of the challenge is
-  "
+```
     Public class ParImpar {
       public boolean isPar (int x) {
           return x % 2 == 0 ;
       }
     }
-  "
+```
   And the text of the tests is:
-  “
+```
     @Test
     Public void test1(){
       Int value= 4;
@@ -65,14 +66,14 @@ Scenario: Admin user wants to create a new invalid test based challenge
       Int result= ParImpar.isPar(value);
       assertFalse(result);
     }
-  “
+```
   And all tests pass
   When the user submits the challenge
   Then the system should not save the challenge
 
 
 Scenario: Admin user wants to create a challenge that already has been submitted
-  Given the user “JohnyMeLavo” is already logged on
+  Given the user "JohnyMeLavo" is already logged on
   And he has admin permission
   And the challenge is already charged in the system
   When he submits the challenge
@@ -82,10 +83,10 @@ Scenario: Admin user wants to create a challenge that already has been submitted
 
 
 Scenario: Admin user wants to create a new incomplete test based challenge
-  Given  the user “Roberta” is already logged on
+  Given  the user "Roberta" is already logged on
   And the user is a content creator user
   And the text of the challenge is:
-    “
+```
     Public class Max{
       Public static int maxi(int n, int m){
         if(n>=m){
@@ -96,7 +97,7 @@ Scenario: Admin user wants to create a new incomplete test based challenge
         }
       }
     }
-  “
-  And the text of the tests is: “”
+```
+  And the text of the tests is: ""
   When the user submits the challenge
   Then the system should not save the challenge
