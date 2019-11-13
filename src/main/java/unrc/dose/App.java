@@ -17,9 +17,9 @@ public class App
 {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-	
+
     public static Service spark = Service.ignite().port(55555);
-    
+
     public static void main( String[] args ) {
 
       try {
@@ -38,7 +38,8 @@ public class App
                   new ChallengeEndPoint(),
                   new CompilationChallengeEndPoint(),
                   new TestChallengeEndPoint(),
-                  new PropositionEndpoint()))
+                  new PropositionEndpoint(),
+				          new ChallengeStatEndpoint()))
           .generateDoc();
       }
       catch(IOException e) {
@@ -56,5 +57,7 @@ public class App
 
         return users.toJson(true, "username", "password");
       });
+
+
     }
 }
