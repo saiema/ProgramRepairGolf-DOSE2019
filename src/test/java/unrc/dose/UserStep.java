@@ -35,7 +35,7 @@ public class UserStep extends StepUtils{
     }
 
     @AfterClass
-    public static void tearDown() {
+    public static void afterAll() {
         Base.rollbackTransaction();
         Base.close();
     }
@@ -82,9 +82,7 @@ public class UserStep extends StepUtils{
 
     @Then( "^the system should create the account$")
     public void the_system_should_create_the_account() {
-        passw = new Password();
-        Password u = Password.findFirst("username = ?", name); 
-        u.delete();
+        
         user = User.set(name, email, pass, false);
     }
 

@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.beerboy.ss.SparkSwagger;
+import com.beerboy.ss.rest.Endpoint;
+
 import spark.Service;
 
 public class App
@@ -19,8 +21,6 @@ public class App
     public static Service spark = Service.ignite().port(55555);
     
     public static void main( String[] args ) {
-
-      
 
       try {
         SparkSwagger
@@ -33,7 +33,12 @@ public class App
                       Base.close();
                     }
               })
-          .endpoints(() -> Arrays.asList(new BellyEndpoint(), new UserStatEndpoint()))
+          .endpoints(() -> Arrays.asList(new BellyEndpoint(),
+                  new UserStatEndpoint(),
+                  new ChallengeEndPoint(),
+                  new CompilationChallengeEndPoint(),
+                  new TestChallengeEndPoint(),
+                  new PropositionEndpoint()))
           .generateDoc();
       }
       catch(IOException e) {
