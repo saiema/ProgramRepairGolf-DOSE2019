@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
 import Navbar from './components/Navbar'
+import CommentContainer from './components/comments/CommentContainer'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route exact path='/' component={Home}/>
             <Route path='/about' component={About} />
             <Route path='/hackers' component={HackersContainer} />
+            <Route path='/comments' component={CommentContainer} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
           </Switch>
         </div>

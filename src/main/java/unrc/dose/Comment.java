@@ -1,6 +1,7 @@
 package unrc.dose;
 
-import org.javalite.activejdbc.LazyList;
+import java.util.List;
+import java.util.ArrayList;
 import org.javalite.activejdbc.Model;
 
 
@@ -84,8 +85,8 @@ public class Comment extends Model {
   *@param obj can be a User, Comment or Challenge
   *@return a list of comments
   */
-  public static LazyList<Comment> viewComment(final int id, final Object obj) {
-    LazyList<Comment> list = null;
+  public static List<Comment> viewComment(final int id, final Object obj) {
+    List<Comment> list = new ArrayList();
     if (obj instanceof User) {
       list = Comment.where("user_id=?", id);
     } else if (obj instanceof Challenge) {
@@ -113,10 +114,10 @@ public class Comment extends Model {
    */
   public String toString() {
     return "[id: " + this.getId() + ", title: "
-      + this.getString("title") + "description: "
-      + this.getString("description") + "user_id: "
-      + this.getInteger("user_id") + "challenge_id: "
-      + this.getInteger("challenge_id") + "father_id:"
+      + this.getString("title") + ", description: "
+      + this.getString("description") + ", user_id: "
+      + this.getInteger("user_id") + ", challenge_id: "
+      + this.getInteger("challenge_id") + ", father_id:"
       + this.getInteger("comment_id") + "]";
   }
 

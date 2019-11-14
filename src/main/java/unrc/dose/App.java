@@ -15,25 +15,27 @@ public class App
 {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-	
-    public static Service spark = Service.ignite().port(55555);
-    
-    public static void main( String[] args ) {
 
-      
+    public static Service spark = Service.ignite().port(55555);
+
+    public static void main( String[] args ) {
 
       try {
         SparkSwagger
           .of(spark).before((request, response) -> {
               if (!Base.hasConnection()) {
                   Base.open();
+									response.header("Access-Control-Allow-Origin", "*");
+									response.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+									response.header("Access-Control-Allow-Headers","Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
+
                 }
               }).after((request, response) -> {
                   if (Base.hasConnection()) {
                       Base.close();
-                    }
-              })
-          .endpoints(() -> Arrays.asList(new BellyEndpoint(), new UserStatEndpoint()))
+                  }
+								})
+          .endpoints(() -> Arrays.asList(new BellyEndpoint(), new UserStatEndpoint(), new CommentEndpoint()))
           .generateDoc();
       }
       catch(IOException e) {
@@ -44,12 +46,20 @@ public class App
         return "hello" + req.params(":name");
       });
 
+			spark.options("/*",
+					(req, response) -> {
+						return "OK";
+					}
+			);
+
       spark.get("/users", (req, res) -> {
         res.type("application/json");
 
         LazyList<User> users = User.findAll();
 
         return users.toJson(true, "username", "password");
+
+
       });
     }
 }
