@@ -51,11 +51,8 @@ public final class CommentService {
   *@return a comment transformed to json
   **/
   public String view(final int id, final Object obj) {
-    Gson g = new Gson();
     List<Comment> c = Comment.viewComment(id, obj);
-    Type listType = new TypeToken<List<Comment>>() {}.getType();
-    return g.toJson(c, listType);
-
+    return Comment.toJson(c);
   }
 
 }

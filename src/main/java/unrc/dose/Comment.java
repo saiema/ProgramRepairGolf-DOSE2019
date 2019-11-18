@@ -113,12 +113,27 @@ public class Comment extends Model {
    * @return comment as a string
    */
   public String toString() {
-    return "[id: " + this.getId() + ", title: "
+    return "{id: " + this.getId() + ", title: "
       + this.getString("title") + ", description: "
       + this.getString("description") + ", user_id: "
       + this.getInteger("user_id") + ", challenge_id: "
       + this.getInteger("challenge_id") + ", father_id:"
-      + this.getInteger("comment_id") + "]";
+      + this.getInteger("comment_id") + "}";
   }
+
+  /**
+  *
+  */
+  public static String toJson(List<Comment> list){
+    String aux="[";
+    for(int i=0;i<list.size();i++){
+      aux=aux+list.get(i).toString();
+      if(i<list.size()-1){
+        aux=aux+",";
+      }
+    }
+    aux=aux+"]";
+    return aux;
+  } 
 
 }

@@ -34,8 +34,8 @@ export const fetchComments = () => {
        h.append('Content-Type','application/json;charset=utf-8');
     //   h.set('Content-Type';charset=utf-8');
   //     h.set('Access-Control-Allow-Origin', "*");
-      const id=3;
-       await fetch('http://192.168.0.208:55555/comments/users/'+id, {
+      const id=348;
+       await fetch('http://192.168.0.128:55555/comments/users/'+id, {
         method : 'GET',
          headers: h,
          mode:'no-cors'
