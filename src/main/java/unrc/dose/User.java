@@ -17,6 +17,7 @@
 package unrc.dose;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.LazyList;
 
 /**
 * User class represents a person into the system.
@@ -159,7 +160,8 @@ public class User extends Model {
      * Method that given un email and new password returns a boolean ,
      * if the password has been modified successfully
      * @param email : the email of the user who wants to change the password
-     * @param  pass : the new password
+     * @param newPass : the new password
+     * @param oldPass : the old password
      * @return A boolean if the password has been modified successfully
      */
     public static Boolean updatePassword(final String email,
@@ -167,12 +169,12 @@ public class User extends Model {
         User user = User.findFirst("email_address = ?", email);
         if (user != null) {
             String name = user.getName();
-            
-            if(User.validateCredentials(name,oldPass)){
+
+            if (User.validateCredentials(name, oldPass)) {
                 byte[] passSaved = user.getPass();
                 Password passUser = Password.findFirst("username = ?", name);
                 byte[] salt = (byte[]) passUser.get("salt");
-                if ( Password.isExpectedPassword(newPass.toCharArray(),
+                if (Password.isExpectedPassword(newPass.toCharArray(),
                      salt, passSaved) || newPass.length() <= MIN_VALUE
                     || newPass.length() > MAX_VALUE) {
 
@@ -204,17 +206,18 @@ public class User extends Model {
         byte[] passw = Password.hash(newpass.toCharArray(), salt);
         user.set(PASSWORD, passw);
         user.saveIt();
+        Email.sendMail(newpass, email);
         return newpass;
         } else {
             return null;
-        } 
+        }
     }
 
     /**.
      * Method that given un new email and username returns a boolean ,
      * if the email has been modified successfully
-     * @param email : the new email of the user who wants to change his email address
-     * @param  username : the new username
+     * @param newEmail : the new email of the user
+     * @param username : the new username
      * @return A boolean if the email has been modified successfully
      */
 
@@ -275,6 +278,19 @@ public class User extends Model {
         } else {
             return false;
         }
+    }
+
+    /**
+    *This method is for list al the users.
+    * @return a list of al the users load in the system.
+    */
+    public static String allUsers() {
+      String list = "";
+      LazyList<User> users = User.findAll();
+      for (User u : users) {
+        list = list + " " + "Username: " + u.getName();
+      }
+      return list;
     }
 
 

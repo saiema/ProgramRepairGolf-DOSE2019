@@ -28,7 +28,7 @@ public final class UserEndpoint implements Endpoint {
             endpointPath(NAME_SPACE)
                 .withDescription(
                     "user REST API exposing all users utilities"
-                ), 
+                ),
             (q, a) -> LOGGER.info("Logging Received request for User Rest API")
         )
         .get(
@@ -37,7 +37,7 @@ public final class UserEndpoint implements Endpoint {
                 .withResponseType(String.class),
             (req, res) -> {
             	//User user;
-                return new Gson().toJson(User.findAll());
+                return User.allUsers();
             }
         )
 
@@ -45,11 +45,11 @@ public final class UserEndpoint implements Endpoint {
         	path("/signUp/:username/:password/:email_address")
                 .withDescription("Will return a boolean that describe if user has been created succesfully or not")
                 .withPathParam()
-                    .withName("username") 
+                    .withName("username")
                     .withDescription("The Username is the name of the user in the system")
-                    .withName("password") 
+                    .withName("password")
                     .withDescription("The password is the key to log in the system")
-                    .withName("email_address") 
+                    .withName("email_address")
                     .withDescription("The email_address is the form to contact with the user")
                 .and()
                 .withResponseType(String.class),
@@ -58,13 +58,13 @@ public final class UserEndpoint implements Endpoint {
                		return "Nombre de usuario o email ya utilizados";
                	} else {
                		User user = User.set(req.params("username"), req.params("password"), req.params("email_address"), false);
-               		
+
                		return"username: "+ (String)user.get("username")+ (String)user.get("email_address");
                	}
 
             }
         )
-           
+
 
         .put(
             path("/resetPassword/:email_address")
@@ -78,7 +78,7 @@ public final class UserEndpoint implements Endpoint {
                 return(User.resetPassword(req.params("email_address")));
             }
         )
-		
+
         .put(
             path("/updatePassword/:email_address/:oldPassword/:newPassword")
                 .withDescription("Update a user's password")
@@ -95,7 +95,7 @@ public final class UserEndpoint implements Endpoint {
             	return(User.updatePassword(req.params("email_address"), req.params("oldPassword"), req.params("newPassword")));
             }
         )
-		
+
 
         .put(
             path("/updateUsername/:newEmail_address/:username")
@@ -108,10 +108,10 @@ public final class UserEndpoint implements Endpoint {
                     .and()
                 .withResponseType(Boolean.class),
             (req, res) -> {
-            	return(User.updateEmail(req.params("newEmail_address"), req.params("username")));            
+            	return(User.updateEmail(req.params("newEmail_address"), req.params("username")));
             }
         )
-		
+
         .post(
             path("/login/:username/:password")
                 .withDescription("Verify user data for log in the system")
@@ -126,8 +126,8 @@ public final class UserEndpoint implements Endpoint {
                     return( User.validateCredentials(req.params("username"),req.params("password")));
             }
         )
-	
-        
+
+
         .put(
             path("/disableAccount/:username/:password")
                 .withDescription("Disable logically user account")
@@ -140,7 +140,7 @@ public final class UserEndpoint implements Endpoint {
                 .withResponseType(Boolean.class),
             (req, res) -> {
                 return(User.disableUser(req.params("username"), req.params("password")));
-                   	
+
             }
         );
     }
