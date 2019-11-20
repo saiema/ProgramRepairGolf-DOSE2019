@@ -484,10 +484,10 @@ public class Proposition extends Model {
     */
     public Map<String, Object> getMapProposition() {
         Map<String, Object> m = new HashMap<String, Object>();
-        m.put("propo_id", this.getId());
+        m.put("id", this.getId());
         m.put("user_Id", this.getUserId());
         m.put("challenge_id", this.getChallengeId());
-        m.put("source_id", this.getSource());
+        m.put("source", this.getSource());
         m.put("isSolution", this.getIsSolution());
         m.put("distance", this.getDistance());
         m.put("cantTestPassed", this.getCantTestPassed());

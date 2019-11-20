@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
+import propositionReducer from './proposition/propositionReducer'
 
 // STATE
 //
@@ -21,6 +22,7 @@ import hackerReducer from './hackerReducer'
 const rootReducer = combineReducers({
     hackers: hackersReducer,
     hacker: hackerReducer,
+    propositions: propositionReducer,
 })
 
 export default rootReducer
