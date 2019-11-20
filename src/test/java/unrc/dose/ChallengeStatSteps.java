@@ -16,9 +16,10 @@ public class ChallengeStatSteps extends StepUtils{
     private static double statistics;
     private static int resolved;
 
-    @Given("^the user \"([^\"]*)\" with id (\\d+) has already logged in$")
-    public boolean the_user_with_id_has_already_logged_in(String arg1, int arg2) {
-        u = User.findFirst("id = ?", arg2);
+
+    @Given("^the user with id (\\d+) has already logged in$")
+    public boolean the_user_with_id_has_already_logged_in(int arg1) {
+        u = User.findFirst("id = ?", arg1);
         return u != null;
     }
 
@@ -30,19 +31,19 @@ public class ChallengeStatSteps extends StepUtils{
 
     @Given("^it was solved by a least one user$")
     public boolean it_was_solved_by_a_least_one_user() {
-        cSt = ChallengeStat.findFirst("id = ?", ch.getId());
+        cSt = ChallengeStat.findFirst("challenge_id = ?", ch.getId());
         return (cSt.getInteger("solved_count") > 0);
     }
 
-    @When("^the user inputs the challenge's id (\\d+) to the system$")
-    public void the_user_inputs_the_challenge_s_id_to_the_system(int arg1) {
+    @When("^the user inputs the challenge's id (\\d+) into the system$")
+    public void the_user_inputs_the_challenge_s_id_into_the_system(int arg1) {
         cSt = ChallengeStat.getChallengeStat(arg1);
         statistics = cSt.getDouble("average_score");
         resolved = cSt.getInteger("solved_count");
     }
 
     @Then("^the system will show the corresponding stats$")
-    public void the_system_will_show_the_corresponding_stats() throws Exception {
+    public void the_system_will_show_the_corresponding_stats() {
         System.out.println("%" + statistics);
         System.out.println(resolved);
     }
