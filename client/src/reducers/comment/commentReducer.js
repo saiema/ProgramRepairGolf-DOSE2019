@@ -12,6 +12,8 @@ const initCommentsState = {
 }
 
 const commentsReducer = (state = initCommentsState, action) => {
+  console.log(action.payload);
+  //console.log(action.payload[0]);
     switch(action.type) {
         case FETCH_COMMENTS_REQUEST:
             return {
@@ -20,15 +22,23 @@ const commentsReducer = (state = initCommentsState, action) => {
             }
 
         case FETCH_COMMENTS_SUCCESS:
-            // aumentating hackers adding 'id'
-            const comments = action.payload.map(comment => ({
-                ...comment,
-                id: comment.id
-            }))
+          console.log(action.payload);
+          console.log(action.payload[0]);
+         /*   const comments = action.payload.map(comment => ({
+              ...comment,
+              id: comment.id
+          }))
+          
+          return {
+              loading: false,
+              data: comments,
+              count: comments.length,
+              error: ''
+          }*/
             return {
                 loading: false,
-                data: comments,
-                count: comments.length,
+                data: action.payload,
+                count: action.payload.length,
                 error: ''
             }
 

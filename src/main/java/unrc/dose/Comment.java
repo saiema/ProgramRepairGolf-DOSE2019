@@ -127,7 +127,7 @@ public class Comment extends Model {
   public static String toJson(List<Comment> list){
     String aux="[";
     for(int i=0;i<list.size();i++){
-      aux=aux+list.get(i).toString();
+      aux=aux+list.get(i).toJson(true);
       if(i<list.size()-1){
         aux=aux+",";
       }

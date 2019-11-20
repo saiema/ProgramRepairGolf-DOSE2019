@@ -10,7 +10,7 @@ class CommentContainer extends Component {
 	}
 
 	render(){
-    console.log(this.props.loading);
+    console.log(this.props.comments);
   
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
@@ -23,6 +23,7 @@ class CommentContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.comments.data[0]);
   return {
     comments: state.comments.data,
     loading: state.comments.loading

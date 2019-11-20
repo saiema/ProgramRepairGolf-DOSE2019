@@ -38,8 +38,13 @@ export const fetchComments = () => {
          headers: h,
       })
         .then( res =>{
-          console.log(res.data);
-          dispatch(fetchCommentsSucess(res.data))
+          let result = [];
+
+          Object.values(res.data).forEach(item => {
+              result = result.concat(item);
+          });
+          console.log(result);
+          dispatch(fetchCommentsSucess(result))
         })
         .catch(error => {
           console.log(error)
