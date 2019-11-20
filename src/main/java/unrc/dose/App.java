@@ -25,15 +25,12 @@ public class App
           .of(spark).before((request, response) -> {
               if (!Base.hasConnection()) {
                   Base.open();
-									response.header("Access-Control-Allow-Origin", "*");
-									response.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-									response.header("Access-Control-Allow-Headers","Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
-
                 }
               }).after((request, response) -> {
                   if (Base.hasConnection()) {
                       Base.close();
                   }
+
 								})
           .endpoints(() -> Arrays.asList(new BellyEndpoint(), new UserStatEndpoint(), new CommentEndpoint()))
           .generateDoc();

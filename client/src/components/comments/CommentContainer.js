@@ -9,7 +9,9 @@ class CommentContainer extends Component {
 		this.props.fetchComments()
 	}
 
-	render() {
+	render(){
+    console.log(this.props.loading);
+  
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (

@@ -27,25 +27,23 @@ const fetchCommentsFailure = error => {
 }
 
 export const fetchComments = () => {
-  return async function(dispatch, getState) {
+  return function(dispatch, getState) {
     if (getState().comments.data.length === 0) {
       dispatch(fetchCommentsRequest())
       const h = new Headers();
        h.append('Content-Type','application/json;charset=utf-8');
-    //   h.set('Content-Type';charset=utf-8');
-  //     h.set('Access-Control-Allow-Origin', "*");
+       h.set('Access-Control-Allow-Origin', "*");
       const id=348;
-       await fetch('http://192.168.0.128:55555/comments/users/'+id, {
-        method : 'GET',
+       axios.get('http://192.168.0.176:55555/comments/users/'+id, {
          headers: h,
-         mode:'no-cors'
       })
         .then( res =>{
-          dispatch(fetchCommentsSucess(res.data.results))
+          console.log(res.data);
+          dispatch(fetchCommentsSucess(res.data))
         })
         .catch(error => {
           console.log(error)
-          dispatch(fetchCommentsFailure(error.message))
+          dispatch(fetchCommentsFailure(error))
         })
     }
   }

@@ -8,8 +8,7 @@ const Comments = ({ comments }) => {
       return (
         <div className="comment card" key={id}>
           <div className="card-content">
-            <span className="card-title">
-            </span>
+
             <p>title: { comment.title } </p>
             <p>description: { comment.description }</p>
           </div>
