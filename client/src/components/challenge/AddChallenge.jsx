@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Select from 'react-select'
 
 export default class AddChallenge extends Component {
   state = {
@@ -8,13 +9,13 @@ export default class AddChallenge extends Component {
     description: null,
     source: null,
     point: null,
-    owner_solution_id: null,
+    owner_solution_id: 1,
     test: null,
-    option: 1
+    typeChallenge: 2
   }
 
   handleChange = (e) => {
-    // console.log(e.target.id, e.target.value);
+    console.log(e.target.id, e.target.value);
     this.setState({
       [e.target.id]: e.target.value
     });
@@ -25,11 +26,11 @@ export default class AddChallenge extends Component {
     this.props.addHacker(this.state);
   }
 
-  formTest = (e) => {
-    if (e === 2) {
+  formTest = () => {
+    if (this.state.typeChallenge === 2) {
       return (
         <div>
-            <label htmlFor="test">owner solution id:</label>
+            <label htmlFor="test">test:</label>
             <input type="text" id="test" onChange={this.handleChange} />
         </div>
       )
@@ -37,19 +38,26 @@ export default class AddChallenge extends Component {
   }
 
   render() {
+    const { typeChallenge } = this.state;
+    const options = [
+      { value: 1, label: 'Compilation Challenge' },
+      { value: 2, label: 'Test Challenge' }
+    ]
     return (
       <div>
 
-        <h1> load the challenge </h1>
+        <h1> Load the challenge </h1>
         
-        <p> select of the type challenge </p>
+        <p> Select of the type challenge </p>
 
-        <select value={this.state.option} onChange={this.handleChange} >
-          {/*<option value={1}>Compilation Challenge</option>
-          <option value={2}>Test Challenge</option>*/}
-        </select>
+        <Select
+          id = "typeChallenge"
+          value={typeChallenge}
+          onChange={this.handleChange}
+          options={options}
+        />
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} >
 
           <label htmlFor="title">title:</label>
           <input type="text" id="title" onChange={this.handleChange} />
@@ -61,9 +69,7 @@ export default class AddChallenge extends Component {
           <input type="text" id="source" onChange={this.handleChange} />
           <label htmlFor="point">points:</label>
           <input type="text" id="point" onChange={this.handleChange} />
-          <label htmlFor="owner_solution_id">owner solution id:</label>
-          <input type="text" id="owner_solution_id" onChange={this.handleChange} />
-          
+          {this.formTest()}
           <button>Submit</button>
 
         </form>
