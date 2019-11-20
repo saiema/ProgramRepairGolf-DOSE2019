@@ -1,19 +1,39 @@
 import React from 'react'
 import styles from './style.css'
+import { connect } from 'react-redux';
+import Ranking from './Ranking';
+import logo from '../logo.svg';
+import { fetchRanking } from '../../actions/UserStatActions';
 
-const Ranking = (props) => {
-    return (
-        <div>
-        <div className="left">
-            <h4 className="left">My statistic</h4>
-            <p>Lorem ipsum dolor ...</p>
-        </div>
-        <div className="right">
-            <h4 className="right">Ranking</h4>
-            <p>Lorem ipsum dolor ...</p>
-        </div>
-        </div>
-    )
+class HackersContainer extends Component {
+	componentDidMount() {
+		this.props.fetchRanking()
+	}
+
+	render() {
+		return this.props.loading ? (
+      <img src={logo} className="App-logo" alt="logo" />
+		) : (
+			<Ranking
+				ranking={this.props.ranking}
+			/>
+		)
+	}
 }
 
-export default Ranking
+const mapStateToProps = (state) => {
+  return {
+    ranking: state.ranking.data,
+    loading: state.ranking.loading
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchRanking: () => {
+      dispatch(fetchRanking())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RankingContainer)
