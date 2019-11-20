@@ -1,19 +1,20 @@
 import React from 'react'
-import styles from './style.css'
 
-const Ranking = (props) => {
+const Ranking = ({ rankingList, loadMore }) => {
+    const statsList = rankingList.map(stat => {
+      return (
+        <div className="stat">
+          <h1> Usuario: { stat.name } </h1>
+          <p> Score: { stat.score }</p>
+        </div>
+      )
+    });
+
     return (
-        <div>
-        <div className="left">
-            <h4 className="left">My statistic</h4>
-            <p>Lorem ipsum dolor ...</p>
-        </div>
-        <div className="right">
-            <h4 className="right">Ranking</h4>
-            <p>Lorem ipsum dolor ...</p>
-        </div>
-        </div>
-    )
-}
+      <div className="stat-list">
+        { statsList }
+      </div>
+    );
+  }
 
-export default Ranking
+  export default Ranking
