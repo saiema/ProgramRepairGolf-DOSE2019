@@ -26,7 +26,7 @@ const fetchCommentsFailure = error => {
     }
 }
 
-export const fetchComments = () => {
+export const fetchCommentsUsers = () => {
   return function(dispatch, getState) {
     if (getState().comments.data.length === 0) {
       dispatch(fetchCommentsRequest())

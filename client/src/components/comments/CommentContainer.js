@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comments from './Comments';
 import logo from '../../logo.svg';
-import { fetchComments } from '../../actions/comment/commentsActions';
+import { fetchCommentsUsers } from '../../actions/comment/commentsActions';
 
 class CommentContainer extends Component {
 	componentDidMount() {
-		this.props.fetchComments()
+		this.props.fetchCommentsUsers()
 	}
 
 	render(){
@@ -32,8 +32,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchComments: () => {
-      dispatch(fetchComments())
+    fetchCommentsUsers: () => {
+      dispatch(fetchCommentsUsers())
     }
   }
 }
