@@ -3,7 +3,7 @@ import {
   FETCH_RANKING_REQUEST,
   FETCH_RANKING_SUCCESS,
   FETCH_RANKING_FAILURE,
-} from '../constants/ActionTypes'
+} from '../constants/UserStatConstants'
 
 
 const fetchRankingRequest = () => {
