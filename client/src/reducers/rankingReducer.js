@@ -20,7 +20,8 @@ const rankingReducer = (state = initRankingState, action) => {
 
         case FETCH_RANKING_SUCCESS:
             const ranking = {
-                ...action.payload
+                ...action.payload,
+                id: action.payload.url.slice(0, -1).split('/').pop()
             }
             return {
                 ...state,
