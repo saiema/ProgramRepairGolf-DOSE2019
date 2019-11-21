@@ -20,6 +20,8 @@ public class App
 
     public static Service spark = Service.ignite().port(55555);
 
+ 		public static void main(String[] args) {
+
       try {
         SparkSwagger
           .of(spark).before((request, response) -> {
@@ -36,6 +38,7 @@ public class App
                   new ChallengeEndPoint(),
                   new CompilationChallengeEndPoint(),
                   new TestChallengeEndPoint(),
+									new CommentEndpoint(),
                   new PropositionEndpoint()))
           .generateDoc();
       }

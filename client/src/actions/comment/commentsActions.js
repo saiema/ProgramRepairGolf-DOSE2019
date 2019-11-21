@@ -34,7 +34,7 @@ export const fetchCommentsUsers = () => {
        h.append('Content-Type','application/json;charset=utf-8');
        h.set('Access-Control-Allow-Origin', "*");
       const id=3;
-       axios.get('http://192.168.0.186:55555/comments/users/'+id, {
+       axios.get(process.env.REACT_APP_API_HOST+'/comments/users/'+id, {
          headers: h,
       })
         .then( res =>{
