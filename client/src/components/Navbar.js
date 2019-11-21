@@ -10,10 +10,10 @@ const Navbar = (props) => {
         <li><NavLink exact to="/">Home</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
         <li><NavLink to='/hackers'>Hackers</NavLink></li>
-        <li><NavLink to='/ranking'>Ranking</NavLink></li>
+        <li><NavLink to='/userstats'>Statistics</NavLink></li>
       </ul>
     </div>
-  </nav> 
+  </nav>
   )
 }
 

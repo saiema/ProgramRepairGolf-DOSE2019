@@ -28,16 +28,14 @@ const fetchRankingFailure = error => {
 
 export const fetchRanking = () => {
   return function(dispatch, getState) {
-    if (getState().ranking.data.length === 0) {
-      dispatch(fetchHackersRequest())
+      dispatch(fetchRankingRequest())
 
       axios.get('http://localhost:55555/userstats/ranking?number=20')
         .then( res =>{
-          dispatch(fetchHackersSucess(res.data.results))
+          dispatch(fetchRankingSucess(res.data.results))
         })
         .catch(error => {
-          dispatch(fetchHackersFailure(error.message))
+          dispatch(fetchRankingFailure(error.message))
         })
-    }
   }
 }

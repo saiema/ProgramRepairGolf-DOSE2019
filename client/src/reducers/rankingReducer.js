@@ -4,13 +4,13 @@ import {
   FETCH_RANKING_FAILURE,
 } from '../constants/UserStatConstants'
 
-const initHackerState = {
+const initRankingState = {
     data: {},
     loading: false,
     error: ''
 }
 
-const hackerReducer = (state = initHackerState, action) => {
+const rankingReducer = (state = initRankingState, action) => {
     switch(action.type) {
         case   FETCH_RANKING_REQUEST:
             return {
@@ -19,14 +19,13 @@ const hackerReducer = (state = initHackerState, action) => {
             }
 
         case FETCH_RANKING_SUCCESS:
-            const hacker = {
-                ...action.payload,
-                id: action.payload.url.slice(0, -1).split('/').pop()
+            const ranking = {
+                ...action.payload
             }
             return {
                 ...state,
                 loading: false,
-                data: hacker,
+                data: ranking,
                 error: ''
             }
 

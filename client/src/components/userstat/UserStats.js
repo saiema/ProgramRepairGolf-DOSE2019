@@ -1,16 +1,16 @@
 import React from 'react'
+import RankingContainer from './RankingContainer'
 
-const Ranking = (props) => {
+const UserStat = (props) => {
     return (
         <div>
         <div className="left">
-            <IndividualStats user='30'/>
         </div>
         <div className="right">
-            <Ranking />
+            <RankingContainer />
         </div>
         </div>
     )
 }
 
-export default Ranking
+export default UserStat

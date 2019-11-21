@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HackersContainer from './components/HackersContainer';
 import Hacker from './components/Hacker';
-import Ranking from './components/userstat/Ranking'
+import UserStats from './components/userstat/UserStats'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
@@ -18,7 +18,7 @@ class App extends Component {
             <Route exact path='/' component={Home}/>
             <Route path='/about' component={About} />
             <Route path='/hackers' component={HackersContainer} />
-            <Route path='/ranking' component={Ranking} />
+            <Route path='/userstats' component={UserStats} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
           </Switch>
         </div>

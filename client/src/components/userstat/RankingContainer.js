@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styles from './style.css'
 import { connect } from 'react-redux';
 import Ranking from './Ranking';
-import logo from '../logo.svg';
+import logo from '../../logo.svg';
 import { fetchRanking } from '../../actions/UserStatActions';
 
-class HackersContainer extends Component {
+class RankingContainer extends Component {
 	componentDidMount() {
 		this.props.fetchRanking()
 	}
@@ -15,7 +15,7 @@ class HackersContainer extends Component {
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
 			<Ranking
-				ranking={this.props.ranking}
+				rankingList={this.props.ranking}
 			/>
 		)
 	}
