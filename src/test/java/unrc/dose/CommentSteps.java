@@ -4,7 +4,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import org.javalite.activejdbc.LazyList;
+import org.javalite.activejdbc.List;
 
 import unrc.dose.Comment;
 import unrc.dose.StepUtils;
@@ -82,7 +82,7 @@ public class CommentSteps extends StepUtils {
 
   @Then("^the system will return a list of comments of the user \"([^\"]*)\"$")
   public boolean the_system_will_return_a_list_of_comments_of_the_user(String arg1) throws Exception {
-    LazyList<Comment> list = Comment.viewComment(userAux.getId(), new User());
+    List<Comment> list = Comment.viewComment(userAux.getId(), new User());
     return list != null;
   }
 
@@ -93,7 +93,7 @@ public class CommentSteps extends StepUtils {
 
   @Then("^the system will return a list of comments of the challenge$")
   public boolean the_system_will_return_a_list_of_comments_of_the_challenge() throws Exception {
-    LazyList<Comment> list = Comment.viewComment(ch.getInteger("id"), new Challenge());
+    List<Comment> list = Comment.viewComment(ch.getInteger("id"), new Challenge());
     return list != null;
   }
 
@@ -104,7 +104,7 @@ public class CommentSteps extends StepUtils {
 
   @Then("^the system will return a list of responses to the comment$")
   public boolean the_system_will_return_a_list_of_responses_to_the_comment() throws Exception {
-    LazyList<Comment> list = Comment.viewComment(c.getInteger("id"), new Comment());
+    List<Comment> list = Comment.viewComment(c.getInteger("id"), new Comment());
     return list != null;
   }
 }

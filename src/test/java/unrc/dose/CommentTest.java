@@ -3,7 +3,7 @@ package unrc.dose;
 import static org.junit.Assert.assertNotNull;
 
 import org.javalite.activejdbc.Base;
-import org.javalite.activejdbc.LazyList;
+import org.javalite.activejdbc.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -28,7 +28,7 @@ public class CommentTest {
       Base.openTransaction();
       user = User.set("Pepe", "root", "pepe@gmail.com", false);
       admin = User.set("Juana", "root", "juana@gmail.com", true);
-      ch = Challenge.addChallenge(admin.getInteger("id"), "Test", 
+      ch = Challenge.addChallenge(admin.getInteger("id"), "Test",
         "challenge1", "descripcion de prueba", "codigo", 20, user.getInteger("id"));
     }
   }
@@ -65,12 +65,12 @@ public class CommentTest {
   @Test (expected = IllegalArgumentException.class)
   public void testViewComment() {
     Belly b = new Belly(2, "Erika");
-    LazyList<Comment> list = Comment.viewComment(4, b);
+    List<Comment> list = Comment.viewComment(4, b);
   }
 
   @Test (expected = IllegalArgumentException.class)
   public void negativeTestViewComment() {
-    LazyList<Comment> list = Comment.viewComment(2, null);
+    List<Comment> list = Comment.viewComment(2, null);
   }
 
 }
