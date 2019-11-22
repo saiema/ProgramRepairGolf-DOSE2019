@@ -25,8 +25,7 @@ export default class Login extends Component{
     //console.log(this.state.username);
     this.props.login(this.state.username, this.state.password);
     e.preventDefault();
-  }
-    
+  }   
     render() {
 
       return (
