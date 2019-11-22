@@ -100,6 +100,21 @@ public class Comment extends Model {
   }
 
   /**
+*return the comment with de id passed as parameter.
+*@param id the comment's id
+*@return the comment with the id passed as parameter
+*@throws IllegalArgumentException when does not exits the comment with that id
+**/
+
+public static Comment findComment(final int id) {
+  Comment c = Comment.findById(id);
+  if (c == null) {
+    throw new IllegalArgumentException("Comment does not exists");
+  }
+  return c;
+}
+
+  /**
   *creation of equal method.
   *@param aux the object to compare
   *@return true if two comments are equals
@@ -134,6 +149,6 @@ public class Comment extends Model {
     }
     aux=aux+"]";
     return aux;
-  } 
+  }
 
 }

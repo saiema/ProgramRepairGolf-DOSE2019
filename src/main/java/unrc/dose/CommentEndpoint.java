@@ -70,6 +70,19 @@ public final class CommentEndpoint implements Endpoint {
               Integer.parseInt(req.params(":id")), new Comment());
           }
       )
+        .get(
+          path("/comment/:id")
+            .withDescription(
+              "Will return the comment with the id passed as a parameter")
+            .withPathParam()
+              .withName("id")
+              .withDescription("comment's id").and()
+            .withResponseType(String.class),
+          (req, res) -> {
+            return commentService.find(
+              Integer.parseInt(req.params(":id")));
+          }
+      )
         .post(
           path("/createComment")
               .withDescription("Creates a new Comment")

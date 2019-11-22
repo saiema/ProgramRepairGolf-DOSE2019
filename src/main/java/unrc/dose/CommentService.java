@@ -2,9 +2,6 @@ package unrc.dose;
 
 import com.google.gson.Gson;
 import java.util.List;
-import java.util.ArrayList;
-import java.lang.reflect.Type;
-import com.google.gson.reflect.TypeToken;
 
 /**
 * Class which calls comment's methods and transforms they to json.
@@ -54,4 +51,13 @@ public final class CommentService {
     return Comment.toJson(c);
   }
 
+  /**
+  *Invokes the method which return the comment with the id passed by parameter.
+  *@param id the comment's id
+  *@return a comment transformed to toJson
+  **/
+
+  public String find(final int id) {
+    return Comment.findComment(id).toJson(true);
+  }
 }
