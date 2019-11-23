@@ -2,6 +2,9 @@ import { combineReducers } from 'redux'
 import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
 import allCompilationChallengeReducer from './challenge/allCompilationChallengeReducer'
+import resolvedCompilationChallengeReducer from './challenge/resolvedCompilationChallengeReducer'
+import unsolvedCompilationChallengeReducer from './challenge/unsolvedCompilationChallengeReducer'
+import allTestChallengeReducer from './challenge/allTestChallengeReducer'
 
 // STATE
 //
@@ -20,9 +23,14 @@ import allCompilationChallengeReducer from './challenge/allCompilationChallengeR
 // }
 
 const rootReducer = combineReducers({
+
     hackers: hackersReducer,
     hacker: hackerReducer,
-    allCompilationChallenge: allCompilationChallengeReducer
+    allCompilationChallenge: allCompilationChallengeReducer,
+    resolvedCompilationChallenge: resolvedCompilationChallengeReducer,
+    unsolvedCompilationChallenge: unsolvedCompilationChallengeReducer,
+    allTestChallenge: allTestChallengeReducer
+
 })
 
 export default rootReducer

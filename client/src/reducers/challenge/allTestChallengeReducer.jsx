@@ -1,27 +1,27 @@
 import {
-    FETCH_ALL_COMPILATION_CHALLENGE_REQUEST,
-    FETCH_ALL_COMPILATION_CHALLENGE_SUCCESS,
-    FETCH_ALL_COMPILATION_CHALLENGE_FAILURE
+    FETCH_ALL_TEST_CHALLENGE_REQUEST,
+    FETCH_ALL_TEST_CHALLENGE_SUCCESS,
+    FETCH_ALL_TEST_CHALLENGE_FAILURE
 } from '../../constants/ActionTypesChallenges'
 
-const initCompilationChallengeState = {
+const initTestChallengeState = {
     data: [],
     loading: false,
     error: ''
 }
 
 
-const allCompilationChallengeReducer = (state = initCompilationChallengeState, action) => {
+const allTestChallengeReducer = (state = initTestChallengeState, action) => {
     
     switch(action.type) {
         
-        case FETCH_ALL_COMPILATION_CHALLENGE_REQUEST:
+        case FETCH_ALL_TEST_CHALLENGE_REQUEST:
             return {
                 ...state,
                 loading: true
             }
 
-        case FETCH_ALL_COMPILATION_CHALLENGE_SUCCESS:
+        case FETCH_ALL_TEST_CHALLENGE_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -30,7 +30,7 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
             }
 
 
-        case FETCH_ALL_COMPILATION_CHALLENGE_FAILURE:
+        case FETCH_ALL_TEST_CHALLENGE_FAILURE:
             return {
                 ...state,
                 loading: false,
@@ -43,4 +43,4 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
     }
 }
 
-export default allCompilationChallengeReducer;
+export default allTestChallengeReducer;

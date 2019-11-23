@@ -1,7 +1,7 @@
 import {
-    FETCH_ALL_COMPILATION_CHALLENGE_REQUEST,
-    FETCH_ALL_COMPILATION_CHALLENGE_SUCCESS,
-    FETCH_ALL_COMPILATION_CHALLENGE_FAILURE
+    FETCH_RESOLVED_COMPILATION_CHALLENGE_REQUEST,
+    FETCH_RESOLVED_COMPILATION_CHALLENGE_SUCCESS,
+    FETCH_RESOLVED_COMPILATION_CHALLENGE_FAILURE
 } from '../../constants/ActionTypesChallenges'
 
 const initCompilationChallengeState = {
@@ -10,18 +10,17 @@ const initCompilationChallengeState = {
     error: ''
 }
 
-
-const allCompilationChallengeReducer = (state = initCompilationChallengeState, action) => {
+const resolvedCompilationChallengeReducer = (state = initCompilationChallengeState, action) => {
     
     switch(action.type) {
         
-        case FETCH_ALL_COMPILATION_CHALLENGE_REQUEST:
+        case FETCH_RESOLVED_COMPILATION_CHALLENGE_REQUEST:
             return {
                 ...state,
                 loading: true
             }
 
-        case FETCH_ALL_COMPILATION_CHALLENGE_SUCCESS:
+        case FETCH_RESOLVED_COMPILATION_CHALLENGE_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -30,7 +29,7 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
             }
 
 
-        case FETCH_ALL_COMPILATION_CHALLENGE_FAILURE:
+        case FETCH_RESOLVED_COMPILATION_CHALLENGE_FAILURE:
             return {
                 ...state,
                 loading: false,
@@ -43,4 +42,4 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
     }
 }
 
-export default allCompilationChallengeReducer;
+export default resolvedCompilationChallengeReducer;
