@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS profile_users (
+CREATE TABLE IF NOT EXISTS user_profiles (
   id 	       integer NOT NULL AUTO_INCREMENT,
   user_id      integer (),
   displayName  varchar(50),
