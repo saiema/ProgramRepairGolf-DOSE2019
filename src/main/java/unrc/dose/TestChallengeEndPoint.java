@@ -6,6 +6,7 @@ import com.beerboy.ss.rest.Endpoint;
 import java.util.List;
 import java.util.Map;
 
+import org.javalite.common.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -136,7 +137,7 @@ public final class TestChallengeEndPoint implements Endpoint {
             (req, res) -> {
                 List<Map<String, String>> all =
                 TestChallenge.viewAllTestChallange();
-                return all;
+                return JsonHelper.toJsonString(all);
             }
         )
         .get(
@@ -146,7 +147,7 @@ public final class TestChallengeEndPoint implements Endpoint {
             (req, res) -> {
                 List<Map<String, String>> resolved =
                 TestChallenge.viewResolvedTestChallange();
-                return resolved;
+                return JsonHelper.toJsonString(resolved);
             }
         )
         .get(
@@ -156,7 +157,7 @@ public final class TestChallengeEndPoint implements Endpoint {
             (req, res) -> {
                 List<Map<String, String>> unsolved =
                 TestChallenge.viewUnsolvedTestChallange();
-                return unsolved;
+                return JsonHelper.toJsonString(unsolved);
             }
         );
     }
