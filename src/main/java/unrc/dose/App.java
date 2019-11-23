@@ -57,7 +57,5 @@ public class App
 
         return users.toJson(true, "username", "password");
       });
-
-
     }
 }
