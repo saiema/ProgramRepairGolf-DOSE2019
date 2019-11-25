@@ -14,7 +14,7 @@ const fetchChallengeStatsRequest = () => {
   }
 }
 
-const fetchChallengeStatsSucess = users => {
+const fetchChallengeStatsSucess = challengeStats => {
     return {
         type: FETCH_CHALLENGESTATS_SUCCESS,
         payload: challengeStats
@@ -66,12 +66,12 @@ const fetchChallengeStatFailure = error => {
     }
 }
 
-export const fetchChallengeStat = (challengeId) => {
+export const fetchChallengeStat = (challenge_id) => {
   return function(dispatch) {
     if (getState().challengeStat.data.length === 0) {
       dispatch(fetchChallengeStatRequest())
 
-      axios.get('https://localhost:55555/challengestat/get/' + challengeId)
+      axios.get('https://localhost:55555/challengestat/get/' + challenge_id)
         .then( res =>{
           dispatch(fetchChallengeStatSucess(res.data.results))
         })

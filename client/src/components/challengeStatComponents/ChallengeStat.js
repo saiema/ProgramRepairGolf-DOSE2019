@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { fetchChallengeStat } from '../actions/challengeStActions'
+import { fetchChallengeStat }  from '../../actions/challengeStatActions/challengeStatActions';
 
 class ChallengeStat extends Component {
   componentDidMount() {
-    this.props.fetchChallengeStat(this.props.match.params.challengeId)
+    this.props.fetchChallengeStat(this.props.match.params.challenge_id)
   }
 
   render() {
-    const { hacker } = this.props
+    const { challengeStat } = this.props
     return (
-      hacker ? (
+      challengeStat ? (
         <div className="container">
-          <h1>You're the hacker</h1>
-          <h2>#{this.props.hacker.id}</h2>
-          <h4>{this.props.hacker.name}</h4>
+          <h2>#{this.props.challengeStat.id}</h2>
+          <h4>{this.props.challengeStat.name}</h4>
         </div>
       ) : (
-        <div>There is no hacker in the store... refetching</div>
+        <div>There is no challenge stat in the store... refetching</div>
       )
     )
   }
@@ -25,16 +24,16 @@ class ChallengeStat extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    hacker: state.hacker.data
+    challengeStat: state.challengeStat.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchHacker: (id) => {
-      dispatch(fetchHacker(id))
+    fetchChallengeStat: (id) => {
+      dispatch(fetchChallengeStat(id))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Hacker)
+export default connect(mapStateToProps, mapDispatchToProps)(ChallengeStat)
