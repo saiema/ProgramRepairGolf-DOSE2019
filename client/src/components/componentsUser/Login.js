@@ -1,6 +1,8 @@
-import React,{Component} from "react";
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
+import {Link} from 'react-router-dom';
 
-export default class CreateAccount extends Component{
+export default class Login extends Component{
   state = {
     username: null,
     password: null
@@ -23,24 +25,30 @@ export default class CreateAccount extends Component{
     //console.log(this.state.username);
     this.props.login(this.state.username, this.state.password);
     e.preventDefault();
-  }
+  }   
+    render() {
 
-  render () {
-    return (
-         <div>
+      return (
+        <div >
+          <div>
+            <h2>Login</h2>
             <form onSubmit={this.handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input type="text" id="username" onChange={this.handleChange} />
-              <label htmlFor="password">Password:</label>
-              <input type="text" id="password" onChange={this.handleChange} /> 
-              <button type="submit"> Crear Cuenta </button>
+            <br/>
+              <div>
+              <label>
+                <input placeholder="Usuario" type="text" id="username" onChange={this.handleChange}/>
+              </label>
+              </div>
+              <div>
+              <label>
+                <input placeholder="Contraseña" type="password" id="username" onChange={this.handleChange}/>
+              </label>
+              </div>
+              <button type="submit">Iniciar sesión</button>
             </form>
-         </div>
- 		
-     );
+          </div>
+          <Link to="/resetPassword">Forgot password?</Link>
+        </div>
+      );
+    }
   }
-}
-
-
- 
-
