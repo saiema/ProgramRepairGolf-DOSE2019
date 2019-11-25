@@ -9,7 +9,9 @@ import {
   fetchUnsolvedCompilationChallenge
 } from '../../actions/compilationChallengeActions'
 import { 
-  fetchAllTestChallenge
+  fetchAllTestChallenge,
+  fetchResolvedTestChallenge,
+  fetchUnsolvedTestChallenge
 } from '../../actions/testChallengeActions'
 
 class Challenge extends Component {
@@ -19,6 +21,8 @@ class Challenge extends Component {
     this.props.fetchResolvedCompilationChallenge();
     this.props.fetchUnsolvedCompilationChallenge();
     this.props.fetchAllTestChallenge();
+    this.props.fetchResolvedTestChallenge();
+    this.props.fetchUnsolvedTestChallenge();
   }
 
 
@@ -46,6 +50,16 @@ class Challenge extends Component {
             listTestChallenge={this.props.allTestChallenge}
           />
 
+          <p>unsolved test challenge</p>
+          <TableTestChallenge
+            listTestChallenge={this.props.unsolvedTestChallenge}
+          />
+
+          <p>resolved test challenge</p>
+          <TableTestChallenge
+            listTestChallenge={this.props.resolvedTestChallenge}
+          />
+
           {/* <AddChallenge/> */}
 
         </div>
@@ -59,7 +73,9 @@ const mapStateToProps = (state) => {
     allCompilationChallenge: state.allCompilationChallenge.data,
     resolvedCompilationChallenge: state.resolvedCompilationChallenge.data,
     unsolvedCompilationChallenge: state.unsolvedCompilationChallenge.data,
-    allTestChallenge: state.allTestChallenge.data
+    allTestChallenge: state.allTestChallenge.data,
+    resolvedTestChallenge: state.resolvedTestChallenge.data,
+    unsolvedTestChallenge: state.unsolvedTestChallenge.data,
   }
 }
 
@@ -76,6 +92,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchAllTestChallenge: () => {
       dispatch(fetchAllTestChallenge())
+    },
+    fetchResolvedTestChallenge: () => {
+      dispatch(fetchResolvedTestChallenge())
+    },
+    fetchUnsolvedTestChallenge: () => {
+      dispatch(fetchUnsolvedTestChallenge())
     }
   }
 }
