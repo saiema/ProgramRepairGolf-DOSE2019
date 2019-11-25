@@ -3,14 +3,10 @@ package unrc.dose;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
-import org.javalite.activejdbc.List;
-
+import java.util.*;
 import unrc.dose.Comment;
-import unrc.dose.StepUtils;
 import unrc.dose.User;
-
-public class CommentSteps extends StepUtils {
+public class CommentSteps {
   private static User user = new User();
   private static User userAux = new User();
   private static Challenge ch = new Challenge();

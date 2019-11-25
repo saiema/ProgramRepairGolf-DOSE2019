@@ -1,7 +1,8 @@
 package unrc.dose;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.javalite.activejdbc.Model;
 
 
@@ -37,7 +38,14 @@ public class Comment extends Model {
     c.set("description", description);
     c.set("challenge_id", challengeId);
     c.set("user_id", userId);
+    System.out.println("Eltitulo " + title);
+    System.out.println("ladescription " + description);
+    System.out.println("ElIdChallenge" + challengeId);
+    System.out.println("ElUserID " + userId);
+    System.out.println("antes de guardar "+c);
     c.saveIt();
+    System.out.println("comentario Guardado "+c);
+    System.out.println(c!=null);
     return c;
   }
 
