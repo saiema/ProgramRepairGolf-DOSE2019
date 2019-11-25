@@ -113,6 +113,21 @@ public class ChallengeStat extends Model {
         cs.delete();
     }
 
+    public static List<Map<String, Object>> allChallengeStats() {
+        LazyList<ChallengeStat> allcs = ChallengeStat.findAll();
+        LinkedList<Map<String, Object>> allChallengeStats =
+        new LinkedList<Map<String, Object>>();
+        if (!allcs.isEmpty()) {
+            for (ChallengeStat currentCS : allcs) {
+                ChallengeStat cs = ChallengeStat.findFirst(
+                    "id = ?",
+                    currentCS.get("challenge_id"));
+                allChallengeStats.add(cs.toJson());
+            }
+        }
+        return allChallengeStats;
+    }
+
     public Float getAverageScore() {
         return this.getFloat("average_score");
     }

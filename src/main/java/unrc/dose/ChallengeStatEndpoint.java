@@ -71,6 +71,17 @@ public final class ChallengeStatEndpoint implements Endpoint {
         )
 
         .post(
+            path("/all")
+                .withDescription("Will return all challenge stats in the store")
+                .withResponseType(String.class),
+            (req, res) -> {
+                List<Map<String, Object>> allCS =
+                ChallengeStat.allChallengeStats();
+                return JsonHelper.toJsonString(allCS);
+            }
+        )
+
+        .post(
             path("/get/:challengeId")
                 .withDescription("Will fetch challenge stat data")
                 .withPathParam()
