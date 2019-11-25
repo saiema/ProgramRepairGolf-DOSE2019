@@ -35,8 +35,7 @@ public final class CommentService {
   public String response(final String description,
       final int userId,
       final int commentId) {
-    Gson g = new Gson();
-    return g.toJson(Comment.createResponse(description, userId, commentId));
+    return Comment.createResponse(description, userId, commentId).toJson(true);
 
   }
 

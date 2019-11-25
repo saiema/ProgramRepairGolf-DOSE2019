@@ -1,29 +1,57 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import AddResponse from './AddResponse';
+import { connect } from 'react-redux';
+import {fetchAddResponse} from '../../actions/comment/commentsActions';
 
+class Comments extends Component{
+    state={
+      press:false
+    }
 
-const Comments = ({ comments }) => {
-  console.log(comments);
- // console.log(comments[0]);
-    const commentList = comments.map(comment => {
-      const id = comment.id;
-      return (
-        <div className="comment card" key={id}>
-          <div className="card-content">
-            <p>title: { comment.title } </p>
-            <p>description: { comment.description }</p>
+    handleClick = (e) => {
+      this.setState({press:true});
+    }
+
+    commentList(){
+      const press= this.state.press;
+      const comments= this.props.comments;
+      return comments.map(comment => 
+          <div className="comment card" key={comment.id}>
+            <div className="card-content">
+              <p>title: { comment.title } </p>
+              <p>description: { comment.description }</p>
+              <button onClick={()=>this.handleClick(press)}> Reply</button>
+              {press ?(
+                <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id}/>
+              ):(
+                <div>
+                  </div>
+              )}
+            </div>
           </div>
-        </div>
-      )
-    });
+        )
+    }
+
+    render(){
 
     return (
       <div className="post">
         <div className="comment-list">
-          { commentList }
+          { this.commentList() }
         </div>
       </div>
     );
   }
+}
 
-  export default Comments
+
+const mapDispatchToProps = (dispatch) => {
+  console.log();
+  return {
+    addResponse: (res) => {
+      dispatch(fetchAddResponse(res))
+    },
+  }
+}
+
+export default  connect(null,mapDispatchToProps)(Comments)

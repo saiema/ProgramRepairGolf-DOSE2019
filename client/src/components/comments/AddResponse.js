@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-class AddComment extends Component {
+class AddResponse extends Component {
 
 state = {
-  title: null,
   description: null,
   user_id: "348",
-  challenge_id:this.props.challenge_id,
+  challenge_id:this.props.challenge_id.toString(),
+  comment_id:this.props.comment_id.toString(),
 }
 
 handleChange = (e) => {
@@ -17,7 +17,7 @@ handleChange = (e) => {
 
 handleSubmit = (e) => {
   e.preventDefault();
-  this.props.addComment(this.state);
+  this.props.addResponse(this.state);
 }
 
 render() {
@@ -26,12 +26,9 @@ render() {
     <div>
         <form onSubmit={this.handleSubmit}>
         <label>
-          <input type="text" placeholder="Title" id="title" onChange={this.handleChange} />
-        </label>
-        <label>
           <input type="text" placeholder="Description" id="description"  onChange={this.handleChange} />
         </label>
-          <button>Comentar</button>
+          <button>Reply</button>
         </form>
     </div>
   );
@@ -39,4 +36,4 @@ render() {
 
 }
 
-export default AddComment
+export default AddResponse

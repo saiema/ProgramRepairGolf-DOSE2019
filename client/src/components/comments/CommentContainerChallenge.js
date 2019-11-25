@@ -32,7 +32,7 @@ class CommentContainerChallenge extends Component {
       </div>
     {press ? (
       <div>
-        <AddComment addComment={this.props.addComment}/>
+        <AddComment challenge_id={this.props.challenge} addComment={this.props.addComment}/>
         </div>
       ):(
         <div></div>

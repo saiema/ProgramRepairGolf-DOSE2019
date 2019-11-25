@@ -4,7 +4,9 @@ import {
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_FAILURE,
   ADD_COMMENT,
-  FETCH_ADD_COMMENT_FAILURE
+  FETCH_ADD_COMMENT_FAILURE,
+  ADD_RESPONSE,
+  FETCH_ADD_RESPONSE_FAILURE,
 } from '../../constants/ActionTypes'
 
 
@@ -27,6 +29,7 @@ const fetchAddCommentsSucess = comments => {
   }
 }
 
+
 const fetchCommentsFailure = error => {
     return {
         type: FETCH_COMMENTS_FAILURE,
@@ -37,6 +40,20 @@ const fetchCommentsFailure = error => {
 const fetchAddCommentFailure = error => {
   return {
       type: FETCH_ADD_COMMENT_FAILURE,
+      payload: error
+  }
+}
+
+const fetchAddResponseSucess = responses => {
+  return {
+      type: ADD_RESPONSE,
+      payload: responses
+  }
+}
+
+const fetchAddResponseFailure = error => {
+  return {
+      type: FETCH_ADD_RESPONSE_FAILURE,
       payload: error
   }
 }
@@ -121,4 +138,28 @@ export const fetchCommentsChallenge = (id) => {
         })
     }
   }
+}
+//
+export const fetchAddResponse = (state) => {
+  return function(dispatch, getState) {
+      dispatch(fetchCommentsRequest())
+      const h = new Headers();
+       h.append('Content-Type','application/json;charset=utf-8');
+       h.set('Access-Control-Allow-Origin', "*");
+       axios.post(process.env.REACT_APP_API_HOST+'/comments/createResponse', null,{params:{
+         description: state.description,
+         userId: state.user_id,
+         challengeId: state.challenge_id,
+         commentId: state.comment_id}},{
+         headers: h,
+      })
+        .then( res =>{
+          console.log(res.data);
+          dispatch(fetchAddResponseSucess(res.data))
+        })
+        .catch(error => {
+          console.log(error)
+          dispatch(fetchAddResponseFailure(error))
+        })
+    }
 }

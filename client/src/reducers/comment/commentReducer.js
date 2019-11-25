@@ -3,6 +3,7 @@ import {
     FETCH_COMMENTS_SUCCESS,
     FETCH_COMMENTS_FAILURE,
     ADD_COMMENT,
+    ADD_RESPONSE,
     FETCH_ADD_COMMENT_FAILURE
 } from '../../constants/ActionTypes'
 
@@ -46,14 +47,21 @@ const commentsReducer = (state = initCommentsState, action) => {
                 error: action.payload,
             }
 
-            case FETCH_ADD_COMMENT_FAILURE:
-              return {
+        case FETCH_ADD_COMMENT_FAILURE:
+            return {
                   ...state,
                   loading: false,
                   data: state.data,
                   count: state.count,
                   error: action.payload,
               }
+        case ADD_RESPONSE:
+            return{
+                  ...state,
+                  loading:false,
+                  data: [...state.data, action.payload],
+                  count: state.count + 1
+                }
 
         default:
             return state
