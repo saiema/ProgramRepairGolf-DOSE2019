@@ -135,7 +135,7 @@ public final class TestChallengeEndPoint implements Endpoint {
                 .withDescription("Will return all test challenge")
                 .withResponseType(String.class),
             (req, res) -> {
-                List<Map<String, String>> all =
+                List<Map<String, Object>> all =
                 TestChallenge.viewAllTestChallange();
                 return JsonHelper.toJsonString(all);
             }
@@ -145,7 +145,7 @@ public final class TestChallengeEndPoint implements Endpoint {
                 .withDescription("Will return all test challenge solved")
                 .withResponseType(String.class),
             (req, res) -> {
-                List<Map<String, String>> resolved =
+                List<Map<String, Object>> resolved =
                 TestChallenge.viewResolvedTestChallange();
                 return JsonHelper.toJsonString(resolved);
             }
@@ -155,7 +155,7 @@ public final class TestChallengeEndPoint implements Endpoint {
                 .withDescription("Will return all test challenge solved")
                 .withResponseType(String.class),
             (req, res) -> {
-                List<Map<String, String>> unsolved =
+                List<Map<String, Object>> unsolved =
                 TestChallenge.viewUnsolvedTestChallange();
                 return JsonHelper.toJsonString(unsolved);
             }
