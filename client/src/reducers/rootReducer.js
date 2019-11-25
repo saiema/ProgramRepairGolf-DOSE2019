@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
-import commentReducer from './comment/commentReducer'
+import commentsReducer from './comment/commentsReducer'
 import userReducer from './reducersUser/userReducer'
 import usersReducer from './reducersUser/usersReducer'
 
@@ -30,7 +30,7 @@ import usersReducer from './reducersUser/usersReducer'
 const rootReducer = combineReducers({
     hackers: hackersReducer,
     hacker: hackerReducer,
-    comments: commentReducer,
+    comments: commentsReducer,
     users: usersReducer,
     user: userReducer,
 })
