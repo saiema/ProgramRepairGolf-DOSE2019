@@ -50,7 +50,7 @@ class Challenge extends Component {
             listTestChallenge={this.props.allTestChallenge}
           />
 
-          <p>unsolved test challenge</p>
+          {/* <p>unsolved test challenge</p>
           <TableTestChallenge
             listTestChallenge={this.props.unsolvedTestChallenge}
           />
@@ -58,7 +58,7 @@ class Challenge extends Component {
           <p>resolved test challenge</p>
           <TableTestChallenge
             listTestChallenge={this.props.resolvedTestChallenge}
-          />
+          /> */}
 
           {/* <AddChallenge/> */}
 
