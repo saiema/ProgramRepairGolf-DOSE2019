@@ -2,7 +2,7 @@ import React , {Component} from 'react'
 import { connect } from 'react-redux'
 //import AddChallenge from './AddChallenge'
 import TableCompilationChallenge from './TableCompilationChallenge'
-//import TableTestChallenge from './TableTestChallenge'
+import TableTestChallenge from './TableTestChallenge'
 import { 
   fetchAllCompilationChallenge,
   fetchResolvedCompilationChallenge,
@@ -41,10 +41,10 @@ class Challenge extends Component {
             listCompilationChallenge={this.props.resolvedCompilationChallenge}
           />  */}
 
-          {/* <p>all test challenge</p>
+          <p>all test challenge</p>
           <TableTestChallenge
             listTestChallenge={this.props.allTestChallenge}
-          /> */}
+          />
 
           {/* <AddChallenge/> */}
 
