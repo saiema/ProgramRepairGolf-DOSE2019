@@ -45,9 +45,8 @@ public class Email {
 
 			message.addRecipient(Message.RecipientType.TO, toAddress);
 
-			message.setSubject("Recuperar contrasena "); // poner la enie
+			message.setSubject("Recuperar contraseña "); // poner la enie
 			message.setContent("<h3>Buen dia</h3> \n Su nueva password temporal es la siguiente:  [<b>" + code + "</b>]", "text/html");
-			// no funciona el <h3> asi pelado pero le podemos mandar bootstrap
 			Transport transport = session.getTransport("smtp");
 			transport.connect(HOST, DIREMAIL, PASSWORD);
 			transport.sendMessage(message, message.getAllRecipients());

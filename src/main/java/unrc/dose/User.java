@@ -18,6 +18,7 @@ package unrc.dose;
 
 import org.javalite.activejdbc.Model;
 import org.javalite.activejdbc.LazyList;
+import java.util.ArrayList;
 
 /**
 * User class represents a person into the system.
@@ -284,11 +285,11 @@ public class User extends Model {
     *This method is for list al the users.
     * @return a list of al the users load in the system.
     */
-    public static String allUsers() {
-      String list = "";
+    public static ArrayList<User> allUsers() {
+      ArrayList<User> list = new ArrayList<User>();
       LazyList<User> users = User.findAll();
       for (User u : users) {
-        list = list + " " + "Username: " + u.getName();
+        list.add(u);
       }
       return list;
     }
