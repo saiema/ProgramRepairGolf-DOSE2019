@@ -3,7 +3,7 @@ package unrc.dose;
 import static org.junit.Assert.assertNotNull;
 
 import org.javalite.activejdbc.Base;
-import org.javalite.activejdbc.List;
+import java.util.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
