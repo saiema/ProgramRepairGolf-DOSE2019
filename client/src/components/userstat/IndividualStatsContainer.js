@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styles from './style.css'
 import { connect } from 'react-redux';
 import IndividualStats from './IndividualStats';
 import logo from '../../logo.svg';
