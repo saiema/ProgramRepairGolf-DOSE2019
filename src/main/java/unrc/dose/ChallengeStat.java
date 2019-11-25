@@ -1,5 +1,10 @@
 package unrc.dose;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import org.javalite.activejdbc.LazyList;
 import org.javalite.activejdbc.Model;
 
 /**
@@ -113,19 +118,10 @@ public class ChallengeStat extends Model {
         cs.delete();
     }
 
-    public static List<Map<String, Object>> allChallengeStats() {
+    public static List<ChallengeStat> allChallengeStats() {
         LazyList<ChallengeStat> allcs = ChallengeStat.findAll();
-        LinkedList<Map<String, Object>> allChallengeStats =
-        new LinkedList<Map<String, Object>>();
-        if (!allcs.isEmpty()) {
-            for (ChallengeStat currentCS : allcs) {
-                ChallengeStat cs = ChallengeStat.findFirst(
-                    "id = ?",
-                    currentCS.get("challenge_id"));
-                allChallengeStats.add(cs.toJson());
-            }
-        }
-        return allChallengeStats;
+
+        return allcs;
     }
 
     public Float getAverageScore() {

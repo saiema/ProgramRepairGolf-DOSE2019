@@ -11,8 +11,9 @@ class ChallengeStat extends Component {
     const { challengeStat } = this.props
     return (
       challengeStat ? (
+          //renderizado de la info del challenge stat, mostrar average score y solved count
         <div className="container">
-          <h2>#{this.props.challengeStat.id}</h2>
+          <h2>#{this.props.challengeStat.challenge_id}</h2>
           <h4>{this.props.challengeStat.name}</h4>
         </div>
       ) : (

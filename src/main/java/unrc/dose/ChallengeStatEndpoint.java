@@ -7,6 +7,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+
+
 import static com.beerboy.ss.descriptor.EndpointDescriptor.endpointPath;
 import static com.beerboy.ss.descriptor.MethodDescriptor.path;
 
@@ -73,11 +76,15 @@ public final class ChallengeStatEndpoint implements Endpoint {
         .post(
             path("/all")
                 .withDescription("Will return all challenge stats in the store")
-                .withResponseType(String.class),
+                .withResponseType(List.class),
             (req, res) -> {
-                List<Map<String, Object>> allCS =
+                List<ChallengeStat> allCS =
                 ChallengeStat.allChallengeStats();
-                return JsonHelper.toJsonString(allCS);
+                List<String> jsonList = new ArrayList<String>();
+                for (ChallengeStat cs: allCS) {
+                    jsonList.add(cs.toJson(true, "id", "challenge_id", "solved_count", "average_score"));
+                }
+                return jsonList;
             }
         )
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChallengeStats from './ChallengeStats';
+import logo from '../../logo.svg';
 import { fetchChallengeStats }  from '../../actions/challengeStatActions/challengeStatActions';
 
 class ChallengeStatsContainer extends Component {
@@ -13,9 +14,7 @@ class ChallengeStatsContainer extends Component {
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
 			<ChallengeStats
-				challengeStats={this.props.hackers}
-				addHacker={this.props.addHacker}
-				deleteHacker={this.props.deleteHacker}
+				challengeStats={this.props.challengeStats}
 			/>
 		)
 	}
@@ -23,7 +22,7 @@ class ChallengeStatsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    hackers: state.challengeStats.data,
+    challengeStats: state.challengeStats.data,
     loading: state.challengeStats.loading
   }
 }
