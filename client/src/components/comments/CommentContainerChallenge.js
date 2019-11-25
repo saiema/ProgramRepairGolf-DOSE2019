@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comments from './Comments';
 import logo from '../../logo.svg';
-import { fetchCommentsUsers } from '../../actions/comment/commentsActions';
+import { fetchCommentsChallenge } from '../../actions/comment/commentsActions';
 import { fetchAddComment } from '../../actions/comment/commentsActions';
 import AddComment from './AddComment';
 
-class CommentContainer extends Component {
+class CommentContainerChallenge extends Component {
 
   state = {
     press:false
   }
 	componentDidMount() {
-		this.props.fetchCommentsUsers()
+		this.props.fetchCommentsChallenge(this.props.challenge)
   }
   
   handleClick=(e)=>{
@@ -57,8 +57,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log();
   return {
-    fetchCommentsUsers: () => {
-      dispatch(fetchCommentsUsers())
+    fetchCommentsChallenge: (id) => {
+      dispatch(fetchCommentsChallenge(id))
     },
     addComment: (comment) => {
       dispatch(fetchAddComment(comment))
@@ -66,4 +66,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CommentContainerChallenge)

@@ -41,14 +41,14 @@ const fetchAddCommentFailure = error => {
   }
 }
 
-export const fetchCommentsUsers = () => {
+//
+export const fetchCommentsUsers = (id) => {
   return function(dispatch, getState) {
     if (getState().comments.data.length === 0) {
       dispatch(fetchCommentsRequest())
       const h = new Headers();
        h.append('Content-Type','application/json;charset=utf-8');
        h.set('Access-Control-Allow-Origin', "*");
-      const id=348;
        axios.get(process.env.REACT_APP_API_HOST+'/comments/users/'+id, {
          headers: h,
       })
@@ -68,6 +68,7 @@ export const fetchCommentsUsers = () => {
     }
   }
 }
+//
 export const fetchAddComment = (state) => {
   return function(dispatch, getState) {
       console.log(state.challenge_id);
@@ -93,4 +94,31 @@ export const fetchAddComment = (state) => {
           dispatch(fetchAddCommentFailure(error))
         })
     }
+}
+//
+export const fetchCommentsChallenge = (id) => {
+  return function(dispatch, getState) {
+    if (getState().comments.data.length === 0) {
+      dispatch(fetchCommentsRequest())
+      const h = new Headers();
+       h.append('Content-Type','application/json;charset=utf-8');
+       h.set('Access-Control-Allow-Origin', "*");
+       axios.get(process.env.REACT_APP_API_HOST+'/comments/challenges/'+id, {
+         headers: h,
+      })
+        .then( res =>{
+          let result = [];
+
+          Object.values(res.data).forEach(item => {
+              result = result.concat(item);
+          });
+          console.log(result);
+          dispatch(fetchCommentsSucess(result))
+        })
+        .catch(error => {
+          console.log(error)
+          dispatch(fetchCommentsFailure(error))
+        })
+    }
+  }
 }
