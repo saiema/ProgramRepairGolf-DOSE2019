@@ -4,7 +4,7 @@ class AddResponse extends Component {
 
 state = {
   description: null,
-  user_id: "348",
+  user_id: "3",
   challenge_id:this.props.challenge_id.toString(),
   comment_id:this.props.comment_id.toString(),
 }
