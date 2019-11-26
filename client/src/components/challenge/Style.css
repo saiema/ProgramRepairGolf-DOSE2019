@@ -1,0 +1,57 @@
+.button-submit {
+    padding: 14px 80px;
+    background-color: #C62828;
+    color: white;
+    border: 1px solid #000000;
+    background-color: 250ms;
+    border-radius: 2px;
+    margin: 10px;
+    font-size: 16px;
+}
+.button-submit:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #C62828;
+}
+.block-button {
+    text-align: center;
+    margin: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+.input-text2 {
+    background-color:white;
+    border-radius: 2px;
+    border: 1px solid black;
+    color: black;
+    font-size: 15px;
+    height: 20em;
+    width: 1250px;
+}
+.input-text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.block-margin{
+    margin: 15px;
+}
+.Block-buttonGroup{
+    text-align: center;
+    margin: 8px;
+}
+.button-group {
+    background-color: #C62828;
+    color: white;
+    border: 1px solid #000000;
+    background-color: 250ms;
+    border-radius: 2px;
+    margin: 5px;
+    font-size: 15px;
+}
+.button-group:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #C62828;
+}
