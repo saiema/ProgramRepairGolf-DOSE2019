@@ -1,6 +1,6 @@
 package unrc.dose;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.javalite.activejdbc.Base;
 import java.util.*;
@@ -60,6 +60,22 @@ public class CommentTest {
         "respuesta prueba",admin.getInteger("id"),c.getInteger("id"));
     Comment aux = Comment.findById(rta.getInteger("id"));
     assertNotNull(aux);
+  }
+
+  @Test
+  public void deleteAComment(){
+    Comment c = new Comment();
+    c.set("title", "Titulo");
+    c.set("description", "Descripcion");
+    c.set("challenge_id", ch.getInteger("id"));
+    c.set("user_id", user.getInteger("id"));
+    c.saveIt();
+    Comment resp = Comment.createResponse(
+        "respuesta test",admin.getInteger("id"),c.getInteger("id"));
+    Comment resp2 = Comment.createResponse(
+        "respuesta test2",admin.getInteger("id"),c.getInteger("id"));
+    Comment.deleteComment(c.getInteger("id"));
+    assertNull(Comment.findFirst("id = ?", c.getInteger("id")));
   }
 
   @Test (expected = IllegalArgumentException.class)

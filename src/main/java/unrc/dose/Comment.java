@@ -38,14 +38,7 @@ public class Comment extends Model {
     c.set("description", description);
     c.set("challenge_id", challengeId);
     c.set("user_id", userId);
-    System.out.println("Eltitulo " + title);
-    System.out.println("ladescription " + description);
-    System.out.println("ElIdChallenge" + challengeId);
-    System.out.println("ElUserID " + userId);
-    System.out.println("antes de guardar "+c);
     c.saveIt();
-    System.out.println("comentario Guardado "+c);
-    System.out.println(c!=null);
     return c;
   }
 
@@ -94,7 +87,7 @@ public class Comment extends Model {
   *@return a list of comments
   */
   public static List<Comment> viewComment(final int id, final Object obj) {
-    List<Comment> list = new ArrayList();
+    List<Comment> list = new ArrayList<Comment>();
     if (obj instanceof User) {
       list = Comment.where("user_id=?", id);
     } else if (obj instanceof Challenge) {
@@ -158,5 +151,21 @@ public static Comment findComment(final int id) {
     aux=aux+"]";
     return aux;
   }
-
+  //Borrar un comentario
+  public static void deleteComment(final int id) {
+    Comment c = new Comment();
+    c = Comment.findById(id);
+    if (c==null){
+      throw new IllegalArgumentException("Comment does not exists");
+    }
+    else{
+      List<Comment> listresp = Comment.where("comment_id = ?", id);
+      if (listresp!=null){
+        for (Comment r: listresp){
+          r.delete();
+        }
+      }
+      c.delete();
+    }
+  }
 }

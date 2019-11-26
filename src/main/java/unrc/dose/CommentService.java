@@ -59,4 +59,15 @@ public final class CommentService {
   public String find(final int id) {
     return Comment.findComment(id).toJson(true);
   }
+  
+  /**
+  *Invokes the method which deletes the comment by the id passed by parameter.
+  *@param id the comment's id
+  *@return void
+  **/
+  public String delete(final int id) {
+    Comment.deleteComment(id);
+    String aux = "ok";
+    return aux;
+  }
 }

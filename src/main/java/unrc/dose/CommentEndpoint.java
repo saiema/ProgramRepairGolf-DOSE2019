@@ -126,7 +126,19 @@ public final class CommentEndpoint implements Endpoint {
                     "description"), Integer.parseInt(req.queryParams("userId")),
                       Integer.parseInt(req.queryParams("commentId")));
           }
-      );
+      )
+      .post(
+        path("/deleteComment")
+            .withDescription("Deletes a Comment with it's Responses")
+            .withQueryParam()
+                .withName("id")
+                .withDescription("Response's body").and()
+            .withResponseType(String.class),
+             "application/json",
+        (req, res) -> {
+            return commentService.delete(Integer.parseInt(req.queryParams("commentId")));
+        }
+    );
   }
 
 }
