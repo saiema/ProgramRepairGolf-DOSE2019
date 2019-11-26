@@ -6,7 +6,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
-import ResetPass from './components/componentsUser/ResetPassword';
+import ResetPass from './components/componentsUser/EmailContainer';
 
 
 class App extends Component {
