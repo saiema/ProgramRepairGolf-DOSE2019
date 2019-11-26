@@ -15,7 +15,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
-console.log(fakeAuth.isAuthenticated);
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //     fetchHackers: () => {

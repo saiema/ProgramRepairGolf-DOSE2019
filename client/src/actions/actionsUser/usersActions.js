@@ -101,21 +101,22 @@ export const newAccount = (user, pass, email) =>{
 }
 export const login = (user, pass) =>{
   return function(dispatch) {
-  //  console.log(user);
     dispatch(fetchUserRequest())
+    let base64 = require('base-64');
+    const h = new Headers();
+    h.append('Accept', 'application/json');
+    h.set('Authorization', 'Basic '+ base64.encode(user+":"+pass));
      fetch('http://localhost:55555/user/login', {
       method: 'POST',
-      body:JSON.stringify({'username': user, 'password':pass})
+      headers:h ,
+      body:JSON.stringify({'username': user, 'password':pass}),
+      mode:'cors',
+      cache:'default',
       })
-     .then(function(response) {
-       if(false) {
-         dispatch(fetchUserFailure("fail"));
-         console.log(response.payload);
-       } else {
-          dispatch(fetchUserSucess(response.data));
-       }
+     .then( res => {
+        dispatch(fetchUserSucess(res.data));
      })
-     .catch(function(error) {
+     .catch( error => {
        dispatch(fetchUserFailure(error.message))
      })
    }
@@ -124,7 +125,6 @@ export const login = (user, pass) =>{
 
  export const resPass = (email) =>{
    return function(dispatch) {
-   //  console.log(user);
      dispatch(fetchUserRequest())
       fetch('http://localhost:55555/user/resetPassword', {
        method: 'PUT',

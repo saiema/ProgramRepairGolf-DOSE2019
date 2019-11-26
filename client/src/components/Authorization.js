@@ -4,20 +4,24 @@ import axios from 'axios';
 
 const Authorization = {
   isAuthenticated: false,
-  authenticate(cb) {
-    fetch('http://localhost:55555/user/login', {
+  authenticate(user, pass) {
+    let base64 = require('base-64');
+    const h = new Headers();
+    h.append('Accept', 'application/json');
+    h.set('Authorization', 'Basic '+ base64.encode(user+ ":"+ pass));
+     fetch('http://localhost:55555/user/login', {
       method: 'POST',
-      body:JSON.stringify({'username':localStorage.getItem('username') , 'password':localStorage.getItem('password')})
+      headers:h ,
+      body:JSON.stringify({'username': user, 'password':pass}),
+      mode:'cors',
+      cache:'default',
+      })
+    .then( res => {
+      Authorization.isAuthenticated = true;
+      localStorage.setItem('username', user);
+      localStorage.setItem('password', pass);
     })
-    .then(function(response) {
-      if(false) {
-        console.log("////////////");
-      Authorization.isAuthenticated = false
-    } else {
-      Authorization.isAuthenticated = true
-      }
-    })
-    .catch(function(error) {
+    .catch( error => {
       Authorization.isAuthenticated = false
     })
   },
@@ -27,6 +31,5 @@ const Authorization = {
     localStorage.removeItem('password');
   }
 }
-//console.log(Authorization.isAuthenticated);
 
 export default Authorization

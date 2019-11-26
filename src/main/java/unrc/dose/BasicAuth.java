@@ -7,17 +7,21 @@ import java.util.Base64;
 public class BasicAuth {
   static Boolean authorize(String headerAuth) {
     final String[] creds = getCredentials(headerAuth);
+    String pass = creds[1];
+    Password passUser = Password.findFirst("username = ?", creds[0]);
+    byte[] salt = (byte[]) passUser.get("salt");
+
+    byte[] passSaved = Password.hash(pass.toCharArray(), salt);
 
     return User.findFirst(
       "username = ? AND password = ?",
       creds[0],
-      creds[1]
+      passSaved
     ) != null;
   }
 
   static User getUser(String headerAuth) {
     final String[] creds = getCredentials(headerAuth);
-
     return User.findFirst("username = ?", creds[0]);
   }
 

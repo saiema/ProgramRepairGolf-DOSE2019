@@ -25,8 +25,6 @@ export default class Login extends Component{
   handleSubmit = (e) => {
     //console.log( this.state.username);
     this.props.login(this.state.username, this.state.password);
-    localStorage.setItem('username', this.state.username);
-    localStorage.setItem('password', this.state.password);
     e.preventDefault();
   }
 
@@ -35,9 +33,7 @@ export default class Login extends Component{
         f.signout()
       }
       let ingresa = () => {
-        localStorage.setItem('username', this.state.username);
-        localStorage.setItem('password', this.state.password);
-        f.authenticate()
+        f.authenticate(this.state.username, this.state.password)
       }
       return (
         <div >

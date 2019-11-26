@@ -66,7 +66,8 @@ public final class UserEndpoint implements Endpoint {
             .withDescription("Will return a boolean that describe if user has been created succesfully or not")
             .withParams(
                 list
-                // new ParameterDescriptor()
+                // new ParameterDescriptor() Esta comentado por que aun no
+                //                           encontramos como hacer para especificar que los parametros vienen en el body
             )
                 // .withName("username")
                 // .withName("password")
@@ -101,17 +102,16 @@ public final class UserEndpoint implements Endpoint {
                 .withResponseType(String.class),
             (req, res) -> {
                     Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
-                    res.type("application/json");
-                    if(User.validateCredentials((String)bodyParams.get("username"),(String)bodyParams.get("password"))){
-                      User user = User.findFirst("username = ?",(String)bodyParams.get("username"));
-                      System.out.println(user);
-                      return user.toJson(true);
+                    String username = (String) bodyParams.get("username");
+                    String pass = (String) bodyParams.get("password");
+                    if(User.validateCredentials(username, pass)) {
+                      res.status(200);
+                    } else {
+                      res.status(401);
                     }
-                    //User user = null;
-                    return "user";
-            }
+                    return "";
+                }
         )
-
 
         .put(
             path("/resetPassword")

@@ -19,8 +19,8 @@ public class App
 	static User currentUser;
 	static String urlCreate;
 	static String urlReset;
-	static final String RUTACREATE = "/user/signUp";
-	static final String RUTARESET = "/user/resetPassword";
+	static final String CREATE_ACCOUNT_ROUTE = "/user/signUp";
+	static final String RESET_ROUTE = "/user/resetPassword";
 
 	static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
@@ -45,9 +45,11 @@ public class App
 										urlReset = "";
 									}
 								}
-		            if(!(urlCreate.equals(RUTACREATE))){
-									if(!(urlReset.equals(RUTARESET))){
+								if(!(urlCreate.equals(CREATE_ACCOUNT_ROUTE))){
+									if(!(urlReset.equals(RESET_ROUTE))){
+										if (request.requestMethod() != "OPTIONS"){
 								String headerToken = (String) request.headers("Authorization");
+
 									if (
 										headerToken == null ||
 										headerToken.isEmpty() ||
@@ -58,6 +60,7 @@ public class App
 										currentUser = BasicAuth.getUser(headerToken);
 									}
 								}
+							}
               }).after((request, response) -> {
                   if (Base.hasConnection()) {
                       Base.close();
