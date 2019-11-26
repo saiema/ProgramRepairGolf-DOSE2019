@@ -75,8 +75,9 @@ class FormProposition extends Component {
                     <TextField
                         defaultValue={this.state.code}
                         onChange={this.handleChange}
-                        style={{backgroundColor:"#CADAD5"}}
                         fullWidth={true}
+                        rows="30"
+                        variant="filled"
                         multiline={true}
                     />
                 </form>
