@@ -93,7 +93,8 @@ export const fetchAddComment = (state) => {
       const h = new Headers();
        h.append('Content-Type','application/json;charset=utf-8');
        h.set('Access-Control-Allow-Origin', "*");
-      const id=3;
+       //Current user
+      const id=348;
        axios.post(process.env.REACT_APP_API_HOST+'/comments/createComment', null,{params:{
          title: state.title,
          description: state.description,

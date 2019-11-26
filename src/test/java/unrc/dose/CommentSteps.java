@@ -6,8 +6,10 @@ import cucumber.api.java.en.When;
 import java.util.*;
 import unrc.dose.Comment;
 import unrc.dose.User;
+
 public class CommentSteps {
   private static User user = new User();
+  private static User admin = new User();
   private static User userAux = new User();
   private static Challenge ch = new Challenge();
   private static Comment c = new Comment();

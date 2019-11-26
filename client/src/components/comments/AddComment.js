@@ -5,6 +5,7 @@ class AddComment extends Component {
 state = {
   title: null,
   description: null,
+  //CurrentUser
   user_id: "348",
   challenge_id:this.props.challenge_id,
 }
