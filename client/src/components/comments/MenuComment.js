@@ -60,7 +60,7 @@ class MenuComment extends Component{
         <div>
           <button onClick= {this.handleClick}>Go back</button>
           {this.state.responses ? (
-            <ResponsesContainer comment="13"/>
+            <ResponsesContainer comment="80"/>
           ):(
             <div>
             {this.state.user ? (
