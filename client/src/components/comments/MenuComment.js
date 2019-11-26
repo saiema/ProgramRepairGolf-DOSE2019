@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CommentContainerChallenge from './CommentContainerChallenge';
 import CommentContainerUser from './CommentContainerUser';
-import ResponsesContainer from './ResponsesContainer';
 
 class MenuComment extends Component{
 
@@ -10,7 +9,6 @@ class MenuComment extends Component{
     user_id: null,
     challenge_id: null,
     user:null,
-    responses: false,
   }
 
   handleChange = (e) => {
@@ -31,12 +29,7 @@ class MenuComment extends Component{
 
   handleClick = (e) => {
     e.preventDefault();
-    this.setState({notChoose:true, user:null, responses:false});
-  }
-
-  handleResponses = (e) => {
-    e.preventDefault();
-    this.setState ({notChoose:false, responses:true});
+    this.setState({notChoose:true});
   }
 
   render(){
@@ -54,25 +47,17 @@ class MenuComment extends Component{
        </label>
        <button>Ver</button>
       </form>
-        <button onClick= {this.handleResponses}> VER RESPUESTAS </button>
       </div>
       ): (
         <div>
           <button onClick= {this.handleClick}>Go back</button>
-          {this.state.responses ? (
-            <ResponsesContainer comment="13"/>
-          ):(
-            <div>
-            {this.state.user ? (
-              <CommentContainerUser user={this.state.user_id}/>
-            ):(
-              <CommentContainerChallenge challenge={this.state.challenge_id}/>
-            )}
-            </div>
-          )}
+        {this.state.user ? (
+          <CommentContainerUser user={this.state.user_id}/>
+        ):(
+          <CommentContainerChallenge challenge={this.state.challenge_id}/>
+        )}
         </div>
     )
   }
-
 }
 export default MenuComment

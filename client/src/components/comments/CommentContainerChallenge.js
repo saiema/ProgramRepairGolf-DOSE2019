@@ -14,14 +14,12 @@ class CommentContainerChallenge extends Component {
 	componentDidMount() {
 		this.props.fetchCommentsChallenge(this.props.challenge)
   }
-  
+
   handleClick=(e)=>{
     this.setState({press:true});
   }
 
 	render(){
-    console.log(this.props.comments);
-    console.log();
     const press= this.state.press;
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
@@ -55,7 +53,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log();
   return {
     fetchCommentsChallenge: (id) => {
       dispatch(fetchCommentsChallenge(id))

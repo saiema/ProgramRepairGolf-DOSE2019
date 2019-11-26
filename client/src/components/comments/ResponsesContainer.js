@@ -7,7 +7,7 @@ import { fetchResponses } from '../../actions/comment/responsesActions';
 class ResponsesContainer extends Component {
 
 	componentDidMount() {
-		this.props.fetchResponses(this.props.comment)
+		this.props.fetchResponses(this.props.match.params.id)
   }
 
 

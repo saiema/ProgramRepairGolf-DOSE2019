@@ -13,6 +13,7 @@ import org.javalite.activejdbc.Model;
 * description     :varchar(300)    not null
 * challenge_id    :integer     not null
 * user_id         :integer    not null
+* responses       :boolean
 * comment_id      :integer
 */
 public class Comment extends Model {
@@ -74,6 +75,8 @@ public class Comment extends Model {
       comment.set("comment_id", commentId);
       comment.set("challenge_id", c.getInteger("challenge_id"));
       comment.saveIt();
+      c.set("responses",true );
+      c.saveIt();
     } else {
       throw new IllegalArgumentException("Can't respond to a response comment");
     }
