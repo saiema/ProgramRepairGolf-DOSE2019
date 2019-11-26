@@ -21,11 +21,11 @@ const propositionsReducer = (state = initPropositionsState, action) => {
 
         case FETCH_PROPOSITIONS_SUCCESS:
             // aumentating propositions adding 'id'
-            console.log(action.payload);
-            const propositions = action.payload.map((proposition) => ({
-                ...proposition,
+            const propositions = action.payload
+            //const propositions = action.payload.map((proposition) => ({
+                //...proposition,
                 //id: proposition.id
-            }))
+            //}))
             return {
                 loading: false,
                 data: propositions,

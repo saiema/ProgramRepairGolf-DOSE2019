@@ -125,7 +125,7 @@ public class PropositionEndpoint implements Endpoint {
                                     currentCode, className));
                 }
                 )
-        .put(
+        .get(
                 path("/proposition/:id/submit")
                 .withDescription(
                         "Will return true if the"

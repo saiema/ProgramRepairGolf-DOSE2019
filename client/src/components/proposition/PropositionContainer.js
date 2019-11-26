@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Propositions from './Propositions';
 import logo from '../../logo.svg';
-import { fetchPropositions } from '../../actions/proposition/propositionsActions';
+import { fetchPropositions, fetchPropositionsGame } from '../../actions/proposition/propositionsActions';
 
 class PropositionContainer extends Component {
+
 	componentDidMount() {
-		this.props.fetchPropositions()
+		this.props.fetchPropositionsGame()
 	}
 
 	render() {
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
-			<Propositions
-				propositions={this.props.propositions}
-			/>
-		)
+			<Propositions propositions={this.props.propositions}/>
+    )
 	}
 }
 
@@ -29,8 +28,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPropositions: () => {
-      dispatch(fetchPropositions())
+    fetchPropositionsGame: () => {
+      dispatch(fetchPropositionsGame())
     }
   }
 }
