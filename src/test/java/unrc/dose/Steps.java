@@ -37,6 +37,13 @@ public class Steps extends StepUtils {
           Base.open();
       }
       Base.openTransaction();
+      User user = User.set("Pablo", "root", "pablo@gmail.com", false);
+      User admin = User.set("admin", "root", "admin@gmail.com", true);
+      Challenge ch = Challenge.addChallenge(admin.getInteger("id"), "challenge",
+         "Test", "descripcion", "codigoooooo", 10, user.getInteger("id"));
+     
+      user = User.set("Pedro","root","pedrito@gmail.com",false);
+      Comment c = Comment.createComment("comment","this is a description", ch.getInteger("id"),user.getInteger("id"));
   }
 
   
