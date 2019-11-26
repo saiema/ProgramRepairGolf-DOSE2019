@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import logo from '../../logo.svg';
-import { fetchUsers, newAccount, login}  from '../../actions/actionsUser/usersActions';
+import { fetchUsers, newAccount, login, resPass}  from '../../actions/actionsUser/usersActions';
 
 
 class UsersContainer extends Component {
 	componentDidMount() {
-		this.props.fetchUsers()  
+		this.props.fetchUsers()
 	}
 
 	render() {
@@ -19,6 +19,7 @@ class UsersContainer extends Component {
 				newAccount={this.props.newAccount}
 				deleteUser={this.props.deleteUser}
         login={this.props.login}
+				resPass={this.props.resPass}
 			/>
 		)
 	}
@@ -44,6 +45,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     login: (user, pass) => {
       dispatch(login(user, pass))
+    },
+		resPass: (email) => {
+      dispatch(resPass(email))
     }
   }
 }

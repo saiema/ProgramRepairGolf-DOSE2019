@@ -98,11 +98,17 @@ public final class UserEndpoint implements Endpoint {
                     .withName("password")
                     .withDescription("This is pass with which will user try log in")
                     .and()
-                .withResponseType(Boolean.class),
+                .withResponseType(String.class),
             (req, res) -> {
                     Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
-
-                    return( User.validateCredentials((String)bodyParams.get("username"),(String)bodyParams.get("password")));
+                    res.type("application/json");
+                    if(User.validateCredentials((String)bodyParams.get("username"),(String)bodyParams.get("password"))){
+                      User user = User.findFirst("username = ?",(String)bodyParams.get("username"));
+                      System.out.println(user);
+                      return user.toJson(true);
+                    }
+                    //User user = null;
+                    return "user";
             }
         )
 

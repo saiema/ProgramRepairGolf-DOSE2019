@@ -5,6 +5,9 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
 import Navbar from './components/Navbar'
+import PrivateRoute from './components/PrivateRoute';
+import ResetPass from './components/componentsUser/ResetPassword';
+
 
 class App extends Component {
   render() {
@@ -15,8 +18,8 @@ class App extends Component {
 
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Route path='/about' component={About} />
-            <Route path='/hackers' component={HackersContainer} />
+            <Route exact path='/resetPassword' component={ResetPass}/>
+            <PrivateRoute path='/hackers' component={HackersContainer} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
           </Switch>
         </div>

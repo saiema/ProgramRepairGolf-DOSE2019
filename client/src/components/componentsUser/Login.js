@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Link} from 'react-router-dom';
+import f  from '../Authorization';
 
 export default class Login extends Component{
   state = {
     username: null,
     password: null
-  
+
   }
 
   constructor(){
@@ -15,19 +16,29 @@ export default class Login extends Component{
   }
 
   handleChange = (e) => {
-    // console.log(e.target.id, e.target.value);
+
     this.setState({
       [e.target.id]: e.target.value
     });
   }
 
   handleSubmit = (e) => {
-    //console.log(this.state.username);
+    //console.log( this.state.username);
     this.props.login(this.state.username, this.state.password);
+    localStorage.setItem('username', this.state.username);
+    localStorage.setItem('password', this.state.password);
     e.preventDefault();
-  }   
-    render() {
+  }
 
+    render() {
+      let logout = () => {
+        f.signout()
+      }
+      let ingresa = () => {
+        localStorage.setItem('username', this.state.username);
+        localStorage.setItem('password', this.state.password);
+        f.authenticate()
+      }
       return (
         <div >
           <div>
@@ -41,13 +52,14 @@ export default class Login extends Component{
               </div>
               <div>
               <label>
-                <input placeholder="Contraseña" type="password" id="username" onChange={this.handleChange}/>
+                <input placeholder="Contraseña" type="password" id="password" onChange={this.handleChange}/>
               </label>
               </div>
-              <button type="submit">Iniciar sesión</button>
+              <button onClick={ingresa} >Iniciar sesión</button>
             </form>
           </div>
           <Link to="/resetPassword">Forgot password?</Link>
+          <button onClick={logout} >Cerrar Sesion</button>
         </div>
       );
     }
