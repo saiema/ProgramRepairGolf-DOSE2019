@@ -153,18 +153,25 @@ public class TestChallengeTest {
 	 */
 	@Test
 	public void viewAllTestChallangeTest() {
-		List<Map<String, String>> all =
+		List<Map<String, Object>> all =
 		TestChallenge.viewAllTestChallange();
-		assertEquals(4, all.size());	}
+		assertEquals(4, all.size());
+		assertEquals("Test", all.get(0).get("title"));
+		assertEquals("Test1", all.get(1).get("title"));
+		assertEquals("Test2", all.get(2).get("title"));
+		assertEquals("Test3", all.get(3).get("title"));
+	}
 
 	/**
 	 * Test method for viewResolvedTestChallange.
 	 */
 	@Test
 	public void viewResolvedTestChallangeTest() {
-		List<Map<String, String>> resolved =
+		List<Map<String, Object>> resolved =
 		TestChallenge.viewResolvedTestChallange();
 		assertEquals(2, resolved.size());
+		assertEquals("Test1", resolved.get(0).get("title"));
+		assertEquals("Test2", resolved.get(1).get("title"));
 	}
 
 	/**
@@ -172,9 +179,11 @@ public class TestChallengeTest {
 	 */
 	@Test
 	public void viewUnsolvedTestChallangeTest() {
-		List<Map<String, String>> unsolved =
+		List<Map<String, Object>> unsolved =
 		TestChallenge.viewUnsolvedTestChallange();
 		assertEquals(2, unsolved.size());
+		assertEquals("Test", unsolved.get(0).get("title"));
+		assertEquals("Test3", unsolved.get(1).get("title"));
 	}
 
 	/**
