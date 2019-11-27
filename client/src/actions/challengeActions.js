@@ -4,7 +4,7 @@ import {
     MODIFY_COMPILATION_CHALLENGE,
     ADD_TEST_CHALLENGE,
     MODIFY_TEST_CHALLENGE,
-    DELETE_CHALLENGE,
+    //DELETE_CHALLENGE,
     FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAILURE
@@ -38,12 +38,12 @@ export const modifyTestChallenge = (challenge) => {
     }
 }
 
-export const deleteChallenge = (id) => {
-  return {
-    type: DELETE_CHALLENGE,
-    id
-  }
-}
+// export const deleteChallenge = (id) => {
+//   return {
+//     type: DELETE_CHALLENGE,
+//     id
+//   }
+// }
 
 
 const fetchDataRequest = () => {
@@ -66,7 +66,7 @@ const fetchDataFailure = error => {
     }
 }
 
-export const addCompilationChallenge = (state) =>{
+export const addCompilationChallenge = (state) => {
     console.log("param addCompilationChallenge");
     console.log(state.user_id);
     console.log(state.title);
@@ -87,6 +87,9 @@ export const addCompilationChallenge = (state) =>{
                 source: state.source,
                 point: state.point,
                 ownerSolutionId: state.owner_solution_id
+            },
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
             }
         })
         .then( res => {
@@ -100,7 +103,7 @@ export const addCompilationChallenge = (state) =>{
     }
 }
 
-export const addTestChallenge = (state) =>{
+export const addTestChallenge = (state) => {
     return function(dispatch) {
         dispatch(fetchDataRequest())
         axios.post('http://localhost:55555/testChallenge/create', null, {
@@ -113,6 +116,9 @@ export const addTestChallenge = (state) =>{
                 point: state.point,
                 ownerSolutionId: state.owner_solution_id,
                 test: state.test
+            },
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
             }
         })
         .then( res => {
@@ -125,6 +131,23 @@ export const addTestChallenge = (state) =>{
         })
     }
 }
+
+// export const deleteChallenge = (id) => {
+//     console.log("param delete");
+//     console.log(id);
+//     return function(dispatch) {
+//         dispatch(fetchDataRequest())
+//         axios.delete('http://localhost:55555//challenge/' + id )
+//         .then( res => {
+//         console.log("res.data-DELETE");
+//         console.log(res.data);
+//             dispatch(fetchDataSucess(id))
+//         })
+//         .catch( error => {
+//             dispatch(fetchDataFailure(error.message))
+//         })
+//     }
+// }
 
 // export const modifyCompilationChallenge = (state) =>{
 //     return function(dispatch) {
