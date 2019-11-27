@@ -3,6 +3,8 @@ import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
 import rankingReducer from './rankingReducer'
 import individualStatsReducer from './individualStatsReducer'
+import userReducer from './reducersUser/userReducer'
+import usersReducer from './reducersUser/usersReducer'
 
 // STATE
 //
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
     hacker: hackerReducer,
     ranking: rankingReducer,
     individual_stats: individualStatsReducer,
+    users: usersReducer,
+    user: userReducer,
 })
 
 export default rootReducer
