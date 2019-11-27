@@ -1,10 +1,13 @@
-import React,{Component} from "react";
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
+import {Link} from 'react-router-dom';
+import f  from '../Authorization';
 
-export default class CreateAccount extends Component{
+export default class Login extends Component{
   state = {
     username: null,
     password: null
-  
+
   }
 
   constructor(){
@@ -13,34 +16,47 @@ export default class CreateAccount extends Component{
   }
 
   handleChange = (e) => {
-    // console.log(e.target.id, e.target.value);
+
     this.setState({
       [e.target.id]: e.target.value
     });
   }
 
   handleSubmit = (e) => {
-    //console.log(this.state.username);
+    //console.log( this.state.username);
     this.props.login(this.state.username, this.state.password);
     e.preventDefault();
   }
 
-  render () {
-    return (
-         <div>
+    render() {
+      let logout = () => {
+        f.signout()
+      }
+      let ingresa = () => {
+        f.authenticate(this.state.username, this.state.password)
+      }
+      return (
+        <div >
+          <div>
+            <h2>Login</h2>
             <form onSubmit={this.handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input type="text" id="username" onChange={this.handleChange} />
-              <label htmlFor="password">Password:</label>
-              <input type="text" id="password" onChange={this.handleChange} /> 
-              <button type="submit"> Crear Cuenta </button>
+            <br/>
+              <div>
+              <label>
+                <input placeholder="Usuario" type="text" id="username" onChange={this.handleChange}/>
+              </label>
+              </div>
+              <div>
+              <label>
+                <input placeholder="Contraseña" type="password" id="password" onChange={this.handleChange}/>
+              </label>
+              </div>
+              <button onClick={ingresa} >Iniciar sesión</button>
             </form>
-         </div>
- 		
-     );
+          </div>
+          <Link to="/resetPassword">Forgot password?</Link>
+          <button onClick={logout} >Cerrar Sesion</button>
+        </div>
+      );
+    }
   }
-}
-
-
- 
-
