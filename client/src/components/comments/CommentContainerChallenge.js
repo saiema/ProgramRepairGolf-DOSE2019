@@ -12,6 +12,9 @@ class CommentContainerChallenge extends Component {
     press:false
   }
 	componentDidMount() {
+    console.log("componentDidMount");
+    console.log(this.props.challenge);
+    console.log("end");
 		this.props.fetchCommentsChallenge(this.props.challenge)
   }
 
@@ -19,8 +22,11 @@ class CommentContainerChallenge extends Component {
     this.setState({press:true});
   }
 
+ 
+
 	render(){
     const press= this.state.press;
+    console.log(press);
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (

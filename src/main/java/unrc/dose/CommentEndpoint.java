@@ -3,6 +3,9 @@ package unrc.dose;
 import static com.beerboy.ss.descriptor.EndpointDescriptor.endpointPath;
 import static com.beerboy.ss.descriptor.MethodDescriptor.path;
 
+import java.util.Map;
+import com.google.gson.Gson;
+
 import com.beerboy.ss.SparkSwagger;
 import com.beerboy.ss.rest.Endpoint;
 
@@ -100,10 +103,11 @@ public final class CommentEndpoint implements Endpoint {
                   .withDescription(" user's id who commented").and()
               .withResponseType(String.class),
           (req, res) -> {
-              return commentService.comment(req.queryParams("title"),
-                     req.queryParams("description"),
-                     Integer.parseInt(req.queryParams("challengeId")),
-                     Integer.parseInt(req.queryParams("userId")));
+            Map<String, Object> bodyParams = new Gson().fromJson(req.body(), Map.class);
+              return commentService.comment(bodyParams.get("title").toString(),
+                     bodyParams.get("description").toString(),
+                     Integer.parseInt(bodyParams.get("challengeId").toString()),
+                     Integer.parseInt(bodyParams.get("userId").toString()));
 
           }
       )
@@ -122,9 +126,11 @@ public final class CommentEndpoint implements Endpoint {
               .withResponseType(String.class),
                "application/json",
           (req, res) -> {
-              return commentService.response(req.queryParams(
-                    "description"), Integer.parseInt(req.queryParams("userId")),
-                      Integer.parseInt(req.queryParams("commentId")));
+    
+             Map<String, Object> bodyParams = new Gson().fromJson(req.body(), Map.class);
+              return commentService.response(bodyParams.get(
+                    "description").toString(), Integer.parseInt(bodyParams.get("userId").toString()),
+                      Integer.parseInt(bodyParams.get("commentId").toString()));
           }
       )
       .post(

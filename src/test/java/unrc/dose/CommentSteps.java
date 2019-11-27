@@ -18,6 +18,13 @@ public class CommentSteps {
 
   @Given("^the user \"([^\"]*)\" is already logged on$")
   public boolean the_user_is_already_logged_on(String arg1) throws Exception {
+          User userr = User.set("Pablo", "root", "pablo@gmail.com", false);
+      User adminn = User.set("admin", "root", "admin@gmail.com", true);
+      Challenge cha = Challenge.addChallenge(adminn.getInteger("id"), "challenge",
+         "Test", "descripcion", "codigoooooo", 10, userr.getInteger("id"));
+     
+      userr = User.set("Pedro","root","pedrito@gmail.com",false);
+      Comment co = Comment.createComment("comment","this is a description", cha.getInteger("id"),userr.getInteger("id"));
     user = User.findFirst("username = ?", arg1);
     return user != null;
   }

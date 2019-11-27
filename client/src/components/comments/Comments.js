@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import AddResponse from './AddResponse';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {fetchAddResponse} from '../../actions/comment/commentsActions';
+import {fetchAddResponse} from '../../actions/comment/responsesActions';
 
 class Comments extends Component{
     state={
+      comment_id: null,
       press:false
     }
 
-    handleClick = (e) => {
-      this.setState({press:true});
+    handleClick = id => (e) => {
+      this.setState({press:true, comment_id: id});
     }
 
     commentList(){
       const press= this.state.press;
+      const id = this.state.comment_id;
       const comments= this.props.comments;
+      console.log(id);
+      console.log(press);
       return comments.map(comment =>
           <div className="comment card" key={comment.id}>
             <div className="card-content">
@@ -29,13 +33,13 @@ class Comments extends Component{
                <div>
                </div>
               )}
-              {press ?(
+              {id === comment.id & press ?(
                 <div>
                 <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id}/>
                 </div>
               ):(
                 <div>
-                  <button onClick={this.handleClick}> Reply</button>
+                  <button onClick={this.handleClick(comment.id)}> Reply</button>
                 </div>
               )}
 
@@ -70,4 +74,11 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default  connect(null,mapDispatchToProps)(Comments)
+const mapStateToProps = (state) => {
+  return {
+    comments: state.comments.data,
+    loading: state.comments.loading,
+  }
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps)(Comments)

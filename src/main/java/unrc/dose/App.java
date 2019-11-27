@@ -72,7 +72,6 @@ public class App
                   new ChallengeEndPoint(),
                   new CompilationChallengeEndPoint(),
                   new TestChallengeEndPoint(),
-									new CommentEndpoint(),
                   new PropositionEndpoint()))
           .generateDoc();
       }

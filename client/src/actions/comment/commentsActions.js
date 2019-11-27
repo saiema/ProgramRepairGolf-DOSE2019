@@ -5,8 +5,6 @@ import {
   FETCH_COMMENTS_FAILURE,
   ADD_COMMENT,
   FETCH_ADD_COMMENT_FAILURE,
-  ADD_RESPONSE,
-  FETCH_ADD_RESPONSE_FAILURE,
 } from '../../constants/ActionTypes'
 
 
@@ -44,24 +42,11 @@ const fetchAddCommentFailure = error => {
   }
 }
 
-const fetchAddResponseSucess = responses => {
-  return {
-      type: ADD_RESPONSE,
-      payload: responses
-  }
-}
 
-const fetchAddResponseFailure = error => {
-  return {
-      type: FETCH_ADD_RESPONSE_FAILURE,
-      payload: error
-  }
-}
 
 //
 export const fetchCommentsUsers = (id) => {
   return function(dispatch, getState) {
-    if (getState().comments.data.length === 0) {
       dispatch(fetchCommentsRequest())
       let base64 = require('base-64');
       const user = localStorage.getItem('username');
@@ -83,7 +68,6 @@ export const fetchCommentsUsers = (id) => {
           dispatch(fetchCommentsFailure(error))
         })
     }
-  }
 }
 //
 export const fetchAddComment = (state) => {
@@ -93,11 +77,11 @@ export const fetchAddComment = (state) => {
       let base64 = require('base-64');
       const user = localStorage.getItem('username');
       const pass = localStorage.getItem('password');
-       axios.post(process.env.REACT_APP_API_HOST+'/comments/createComment', null,{params:{
+       axios.post(process.env.REACT_APP_API_HOST+'/comments/createComment',{
          title: state.title,
          description: state.description,
          userId: state.user_id,
-         challengeId: state.challenge_id}},{
+         challengeId: state.challenge_id},{
         headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
       })
         .then( res =>{
@@ -114,7 +98,7 @@ export const fetchAddComment = (state) => {
 //
 export const fetchCommentsChallenge = (id) => {
   return function(dispatch, getState) {
-    if (getState().comments.data.length === 0) {
+   
       dispatch(fetchCommentsRequest())
       let base64 = require('base-64');
       const user = localStorage.getItem('username');
@@ -136,29 +120,6 @@ export const fetchCommentsChallenge = (id) => {
           dispatch(fetchCommentsFailure(error))
         })
     }
-  }
+  
 }
-//
-export const fetchAddResponse = (state) => {
-  return function(dispatch, getState) {
-      dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
-      const user = localStorage.getItem('username');
-      const pass = localStorage.getItem('password');
-       axios.post(process.env.REACT_APP_API_HOST+'/comments/createResponse', null,{params:{
-         description: state.description,
-         userId: state.user_id,
-         challengeId: state.challenge_id,
-         commentId: state.comment_id}},{
-        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
-      })
-        .then( res =>{
-          console.log(res.data);
-          dispatch(fetchAddResponseSucess(res.data))
-        })
-        .catch(error => {
-          console.log(error)
-          dispatch(fetchAddResponseFailure(error))
-        })
-    }
-}
+

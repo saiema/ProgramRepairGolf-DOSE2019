@@ -7,7 +7,7 @@ state = {
   description: null,
   //CurrentUser
   user_id: "1",
-  challenge_id:this.props.challenge_id,
+  challenge_id:this.props.challenge_id.toString(),
 }
 
 handleChange = (e) => {
