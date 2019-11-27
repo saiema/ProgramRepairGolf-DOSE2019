@@ -1,6 +1,7 @@
 target
 src/main/resources/database.properties
 .classpath
+.factorypath
 .project
 .settings/
 .vscode

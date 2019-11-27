@@ -5,7 +5,7 @@
 } from '../../constants/constantsUser/ActionTypes'
 
 const initUserState = {
-    data: {},
+    currentUser: {},
     loading: false,
     error: ''
 }
@@ -20,14 +20,10 @@ const userReducer = (state = initUserState, action) => {
 
         case FETCH_USER_SUCCESS:
             // aumentating USER adding 'id'
-            /*const user = {
-               ...action.payload,
-                id: action.payload.username.slice(0, -1).split('/').pop()
-            }*/
             return {
                 ...state,
                 loading: false,
-                data: action.payload,
+                currentUser: action.payload,
                 error: ''
             }
 
@@ -35,7 +31,7 @@ const userReducer = (state = initUserState, action) => {
             return {
                 ...state,
                 loading: false,
-                data: {},
+                currentUser: {},
                 error: action.payload,
             }
 
