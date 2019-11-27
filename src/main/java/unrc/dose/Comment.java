@@ -92,9 +92,11 @@ public class Comment extends Model {
   public static List<Comment> viewComment(final int id, final Object obj) {
     List<Comment> list = new ArrayList<Comment>();
     if (obj instanceof User) {
-      list = Comment.where("user_id=?", id);
+      String query="SELECT * from repair_game.comments as c1 inner join repair_game.comments as c2 on c1.user_id=? and c1.id=c2.id and c2.comment_id is null;";
+      list = Comment.findBySQL(query, id);
     } else if (obj instanceof Challenge) {
-      list = Comment.where("challenge_id=?", id);
+      String query="SELECT * from repair_game.comments as c1 inner join repair_game.comments as c2 on c1.challenge_id=? and c1.id=c2.id and c2.comment_id is null;";
+      list = Comment.findBySQL(query, id);
     } else if (obj instanceof Comment) {
       list = Comment.where("comment_id=?", id);
     } else {

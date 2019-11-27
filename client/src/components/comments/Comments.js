@@ -29,11 +29,13 @@ class Comments extends Component{
                <div>
                </div>
               )}
-              <button onClick={()=>this.handleClick(press)}> Reply</button>
               {press ?(
+                <div>
                 <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id}/>
+                </div>
               ):(
                 <div>
+                  <button onClick={this.handleClick}> Reply</button>
                 </div>
               )}
 
