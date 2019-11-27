@@ -66,30 +66,28 @@ const fetchDataFailure = error => {
     }
 }
 
-export const addCompilationChallenge = (user_id, title, class_name, description,
-    source, point, owner_solution_id) =>{
+export const addCompilationChallenge = (state) =>{
     console.log("param addCompilationChallenge");
-    console.log(user_id);
-    console.log(title);
-    console.log(class_name);
-    console.log(description);
-    console.log(source);
-    console.log(point);
-    console.log(owner_solution_id);
+    console.log(state.user_id);
+    console.log(state.title);
+    console.log(state.class_name);
+    console.log(state.description);
+    console.log(state.source);
+    console.log(state.point);
+    console.log(state.owner_solution_id);
     console.log("....................");
     return function(dispatch) {
         dispatch(fetchDataRequest())
-        fetch('http://localhost:55555/compilationChallenge/create', {
-            method: 'POST',
-            body: JSON.stringify({
-                userId: user_id,
-                title: title,
-                className: class_name,
-                description: description,
-                source: source,
-                point: point,
-                ownerSolutionId: owner_solution_id
-            })
+        axios.post('http://localhost:55555/compilationChallenge/create', {
+            params:{
+                userId: state.user_id,
+                title: state.title,
+                className: state.class_name,
+                description: state.description,
+                source: state.source,
+                point: state.point,
+                ownerSolutionId: state.owner_solution_id
+            }
         })
         .then( res => {
         console.log("res.data-ADD_COMPILATION");
@@ -102,29 +100,30 @@ export const addCompilationChallenge = (user_id, title, class_name, description,
     }
 }
 
-export const addTestChallenge = (user_id, title, class_name, description,
-    source, point, owner_solution_id, test) =>{
+export const addTestChallenge = (state) =>{
     console.log("param addTestChallenge");
-    console.log(user_id);
-    console.log(title);
-    console.log(class_name);
-    console.log(description);
-    console.log(source);
-    console.log(point);
-    console.log(owner_solution_id);
-    console.log(test);
+    console.log(state.user_id);
+    console.log(state.title);
+    console.log(state.class_name);
+    console.log(state.description);
+    console.log(state.source);
+    console.log(state.point);
+    console.log(state.owner_solution_id);
+    console.log(state.test);
     console.log("....................");
     return function(dispatch) {
         dispatch(fetchDataRequest())
         axios.post('http://localhost:55555/testChallenge/create', {
-            userId: user_id,
-            title: title,
-            className: class_name,
-            description: description,
-            source: source,
-            point: point,
-            ownerSolutionId: owner_solution_id,
-            test: test
+            params:{
+                userId: state.user_id,
+                title: state.title,
+                className: state.class_name,
+                description: state.description,
+                source: state.source,
+                point: state.point,
+                ownerSolutionId: state.owner_solution_id,
+                test: state.test
+            }
         })
         .then( res => {
         console.log("res.data-ADD_TEST");
@@ -137,17 +136,16 @@ export const addTestChallenge = (user_id, title, class_name, description,
     }
 }
 
-// export const modifyCompilationChallenge = (id, title, class_name, description,
-//     source, point) =>{
+// export const modifyCompilationChallenge = (state) =>{
 //     return function(dispatch) {
 //         dispatch(fetchDataRequest())
 //         axios.put('http://localhost:55555/compilationChallenge/modify', {
-//             id: id,
-//             title: title,
-//             className: class_name,
-//             description: description,
-//             source: source,
-//             point: point
+//             id: state.id,
+//             title: state.title,
+//             className: state.class_name,
+//             description: state.description,
+//             source: state.source,
+//             point: state.point
 //         })
 //         .then( res => {
 //         console.log("res.data-MODIFY_COMPILATION");
@@ -160,18 +158,17 @@ export const addTestChallenge = (user_id, title, class_name, description,
 //     }
 // }
 
-// export const modifyTestChallenge = (id, title, class_name, description,
-//     source, point, test) =>{
+// export const modifyTestChallenge = (state) =>{
 //     return function(dispatch) {
 //         dispatch(fetchDataRequest())
 //         axios.put('http://localhost:55555/testChallenge/modify', {
-//             id: id,
-//             title: title,
-//             className: class_name,
-//             description: description,
-//             source: source,
-//             point: point,
-//             test: test
+//             id: state.id,
+//             title: state.title,
+//             className: state.class_name,
+//             description: state.description,
+//             source: state.source,
+//             point: state.point,
+//             test: state.test
 //         })
 //         .then( res => {
 //         console.log("res.data-MODIFY_TEST");

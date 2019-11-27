@@ -35,18 +35,12 @@ export default class AddChallenge extends Component {
 
   handleSubmit1 = (e) => {
     e.preventDefault();
-    const { user_id, title, class_name, description, source,
-    point, owner_solution_id} = this.state;
-    this.props.addCompilationChallenge(user_id, title, class_name, description,
-      source, point, owner_solution_id);
+    this.props.addCompilationChallenge(this.state);
   }
   
   handleSubmit2 = (e) => {
     e.preventDefault();
-    const { user_id, title, class_name, description, source,
-      point, owner_solution_id, test} = this.state;
-      this.props.addTestChallenge(user_id, title, class_name, description,
-        source, point, owner_solution_id, test);
+    this.props.addTestChallenge(this.state);
   }
 
   formTest(){

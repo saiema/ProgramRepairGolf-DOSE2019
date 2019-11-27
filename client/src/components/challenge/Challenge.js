@@ -66,13 +66,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCompilationChallenge: (user_id, title, class_name, description, source, point, owner_solution_id) => {
-      dispatch(addCompilationChallenge(user_id, title, class_name, description,
-        source, point, owner_solution_id))
+    addCompilationChallenge: (state) => {
+      dispatch(addCompilationChallenge(state))
     },
-    addTestChallenge: (user_id, title, class_name, description, source, point, owner_solution_id, test) => {
-      dispatch(addTestChallenge(user_id, title, class_name, description,
-        source, point, owner_solution_id, test))
+    addTestChallenge: (state) => {
+      dispatch(addTestChallenge(state))
     }
   }
 }

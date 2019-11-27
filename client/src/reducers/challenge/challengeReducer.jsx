@@ -10,7 +10,7 @@ import {
 } from '../../constants/ActionTypesChallenges'
 
 const initChallengeState = {
-    data: {},
+    data: null,
     loading: false,
     error: ''
 }
