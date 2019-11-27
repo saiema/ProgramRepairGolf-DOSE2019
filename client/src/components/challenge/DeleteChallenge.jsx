@@ -88,8 +88,8 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button>View </button>
-          <button>delete</button>
+          <button className="button-table"> VIEW SOURCE </button>
+          <button className="button-table"> DELETE </button>
         </td>
       </tr>
     )
@@ -111,7 +111,6 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
     </div>
   )
 }
-
 const TableTestChallenge = ({ listTestChallenge }) => {
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
@@ -121,8 +120,8 @@ const TableTestChallenge = ({ listTestChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button> View</button>
-          <button>delete</button>
+          <button className="button-table"> VIEW SOURCE AND TEST</button>
+          <button className="button-table"> DELETE </button>
         </td>
       </tr>
     )
