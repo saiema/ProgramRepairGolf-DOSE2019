@@ -13,8 +13,10 @@ class ChallengeStat extends Component {
       challengeStat ? (
           //renderizado de la info del challenge stat, mostrar average score y solved count
         <div className="container">
-          <h2>#{this.props.challengeStat.challenge_id}</h2>
-          <h4>{this.props.challengeStat.name}</h4>
+          <h2>Challenge: {this.props.challengeStat.challenge_id}</h2>
+          <h4>Stats</h4>
+          <h4>Solved count: {this.props.challengeStat.solved_count}</h4>
+          <h4>Average Score: {this.props.challengeStat.average_score}</h4>
         </div>
       ) : (
         <div>There is no challenge stat in the store... refetching</div>

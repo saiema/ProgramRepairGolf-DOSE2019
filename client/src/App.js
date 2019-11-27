@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HackersContainer from './components/HackersContainer';
 import Hacker from './components/Hacker';
+import ChallengeStat from './components/challengeStatComponents/ChallengeStat'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
@@ -21,6 +22,7 @@ class App extends Component {
             <Route exact path='/resetPassword' component={ResetPass}/>
             <PrivateRoute path='/hackers' component={HackersContainer} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
+            <Route path="stats/:challenge_id" component={ChallengeStat} ></Route>
           </Switch>
         </div>
       </BrowserRouter>
