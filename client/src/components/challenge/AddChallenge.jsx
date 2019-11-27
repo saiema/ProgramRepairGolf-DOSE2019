@@ -13,10 +13,16 @@ export default class AddChallenge extends Component {
       point: null,
       owner_solution_id: 1,
       test: null,
-      typeChallenge: "0"
+      typeChallenge: null
   }
 
   handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
+
+  handleChange2 = (e) => {
     this.setState({
       typeChallenge: e.value
     });
@@ -63,7 +69,7 @@ export default class AddChallenge extends Component {
   }
 
   show(){
-    if (this.state.typeChallenge === "1"){
+    if (this.state.typeChallenge === "Compilation Challenge"){
       return (
         <div>
           {this.formCompilation()}
@@ -73,7 +79,7 @@ export default class AddChallenge extends Component {
         </div>
       );
     }
-    else if (this.state.typeChallenge === "2"){
+    else if (this.state.typeChallenge === "Test Challenge"){
       return (
         <div>
           {this.formCompilation()}
@@ -92,19 +98,20 @@ export default class AddChallenge extends Component {
   }
 
   render() {  
-    const { typeChallenge } = this.state;
+   
     const options = [
-      { value: "1", label: 'Compilation Challenge' },
-      { value: "2", label: 'Test Challenge' }
+      { value: 'Compilation Challenge', label: 'Compilation Challenge' },
+      { value: 'Test Challenge', label: 'Test Challenge' }
     ]
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} >
           <div className="block-button"> <h1> Load the challenge </h1> </div>
           <p> Select of the type challenge </p>
-          <Select         
-            value={typeChallenge}
-            onChange={this.handleChange}
+          <Select 
+            placeholder = {this.state.typeChallenge}        
+            value={this.state.typeChallenge}
+            onChange={this.handleChange2}
             options={options}
           />
           {this.show()}
