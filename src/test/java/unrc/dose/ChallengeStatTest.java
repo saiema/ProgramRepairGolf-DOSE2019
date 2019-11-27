@@ -59,7 +59,7 @@ public class ChallengeStatTest {
 
         assertNotNull(c);
         assertEquals(15, c.get("challenge_id"));
-        assertEquals((float) 0.0, c.get("average_score"));
+        assertEquals(0.0, c.get("average_score"));
         assertEquals(0, c.get("solved_count"));
     }
 
@@ -75,14 +75,14 @@ public class ChallengeStatTest {
         ChallengeStat cs = ChallengeStat.getChallengeStat(challengeId);
         Proposition p = Proposition.findFirst("challenge_id = ?", challengeId);
 
-        assertEquals((float) 0, cs.get("average_score"));
-        assertEquals((int) 0, cs.get("solved_count"));
+        assertEquals(0.0, cs.get("average_score"));
+        assertEquals(0, cs.get("solved_count"));
 
         ChallengeStat.updateAverageScore(p.getInteger("id"));
 
         ChallengeStat cs1 = ChallengeStat.findFirst("challenge_id = ?", challengeId);
 
-        assertEquals((float) 15.0, cs1.get("average_score"));
+        assertEquals(15.0, cs1.get("average_score"));
         assertEquals(1, cs1.get("solved_count"));
 
     }

@@ -18,8 +18,7 @@ const Authorization = {
       })
     .then( res => {
       Authorization.isAuthenticated = true;
-      localStorage.setItem('username', user);
-      localStorage.setItem('password', pass);
+      localStorage.setItem('token', base64.encode(user+ ":"+ pass));
     })
     .catch( error => {
       Authorization.isAuthenticated = false
@@ -27,8 +26,7 @@ const Authorization = {
   },
   signout(cb) {
     Authorization.isAuthenticated = false;
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
+    localStorage.removeItem('token');
   }
 }
 
