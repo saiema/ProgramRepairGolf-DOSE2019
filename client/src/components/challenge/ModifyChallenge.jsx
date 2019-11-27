@@ -49,8 +49,8 @@ class ModifyChallenge extends Component {
       <div className="block-button"> <h1> Modify challenge </h1>
       <div className="Block-buttonGroup">
           <ButtonGroup>
-            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedCompilation"})}>unsolved compilation challenge</Button>
-            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedTest"})}>unsolved test challenge</Button>
+            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedCompilation"})}>compilation challenge</Button>
+            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedTest"})}>test challenge</Button>
           </ButtonGroup>
         </div>
         <div>

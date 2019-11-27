@@ -49,8 +49,8 @@ class DeleteChallenge extends Component {
       <div className="block-button"> <h1> Delete challenge </h1>
       <div className="Block-buttonGroup">
            <ButtonGroup>
-                <Button className="button-group" onClick={() => this.setState({opc:"allCompilation"})}>all compilation challenge</Button>
-                <Button className="button-group" onClick={() => this.setState({opc:"allTest"})}>all test challenge</Button> 
+                <Button className="button-group" onClick={() => this.setState({opc:"allCompilation"})}>compilation challenge</Button>
+                <Button className="button-group" onClick={() => this.setState({opc:"allTest"})}>test challenge</Button> 
             </ButtonGroup>
         </div>
         <div>
