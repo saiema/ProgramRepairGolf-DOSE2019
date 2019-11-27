@@ -111,6 +111,7 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
     </div>
   )
 }
+
 const TableTestChallenge = ({ listTestChallenge }) => {
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
