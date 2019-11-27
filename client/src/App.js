@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HackersContainer from './components/HackersContainer';
 import Hacker from './components/Hacker';
+import UserStats from './components/userstat/UserStats'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
@@ -16,10 +17,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-
           <Switch>
             <Route exact path='/' component={Home}/>
             <Route path='/about' component={About} />
+            <Route path='/userstats' component={UserStats} />
             <Route path='/hackers' component={HackersContainer} />
             <Route path="/challenge" component={Challenge} />
             <Route exact path='/resetPassword' component={ResetPass}/>
