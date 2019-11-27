@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import './Style.css';
+import { connect } from 'react-redux';
+import {
+  addCompilationChallenge,
+  addTestChallenge
+}  from '../../actions/challengeActions';
 
-
-export default class AddChallenge extends Component {
+class AddChallenge extends Component {
   
  state = {
       user_id: 1,
@@ -139,3 +143,22 @@ export default class AddChallenge extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    challenge: state.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCompilationChallenge: (state) => {
+      dispatch(addCompilationChallenge(state))
+    },
+    addTestChallenge: (state) => {
+      dispatch(addTestChallenge(state))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddChallenge)
