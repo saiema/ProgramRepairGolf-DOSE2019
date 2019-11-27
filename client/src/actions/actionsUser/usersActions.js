@@ -90,11 +90,9 @@ export const newAccount = (user, pass, email) =>{
        body:JSON.stringify({'username': user, 'password':pass, 'email_address':email})
       })
      .then( res => {
-      console.log(res);
         dispatch(fetchUserSucess(res.data))
      })
      .catch( error => {
-      console.log(error);
         dispatch(fetchUserFailure(error.message))
      })
   }
@@ -113,11 +111,16 @@ export const login = (user, pass) =>{
       mode:'cors',
       cache:'default',
       })
-     .then( res => {
-        dispatch(fetchUserSucess(res.data));
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        dispatch(fetchUserSucess(myJson));
+        alert('Usuario logueado correctamente');
      })
      .catch( error => {
-       dispatch(fetchUserFailure(error.message))
+       dispatch(fetchUserFailure(error.message));
+       alert('Nombre de usuario o password incorrecto');
      })
    }
  }
