@@ -8,6 +8,8 @@ import allTestChallengeReducer from './challenge/allTestChallengeReducer'
 import resolvedTestChallengeReducer from './challenge/resolvedTestChallengeReducer'
 import unsolvedTestChallengeReducer from './challenge/unsolvedTestChallengeReducer'
 import challengeReducer from './challenge/challengeReducer'
+import userReducer from './reducersUser/userReducer'
+import usersReducer from './reducersUser/usersReducer'
 
 // STATE
 //
@@ -35,8 +37,9 @@ const rootReducer = combineReducers({
     allTestChallenge: allTestChallengeReducer,
     resolvedTestChallenge: resolvedTestChallengeReducer,
     unsolvedTestChallenge: unsolvedTestChallengeReducer,
-    challenge: challengeReducer
-
+    challenge: challengeReducer,
+    users: usersReducer,
+    user: userReducer
 })
 
 export default rootReducer
