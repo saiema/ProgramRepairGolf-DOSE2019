@@ -78,7 +78,7 @@ export const addCompilationChallenge = (state) =>{
     console.log("....................");
     return function(dispatch) {
         dispatch(fetchDataRequest())
-        axios.post('http://localhost:55555/compilationChallenge/create', {
+        axios.post('http://localhost:55555/compilationChallenge/create', null, {
             params:{
                 userId: state.user_id,
                 title: state.title,
@@ -101,19 +101,9 @@ export const addCompilationChallenge = (state) =>{
 }
 
 export const addTestChallenge = (state) =>{
-    console.log("param addTestChallenge");
-    console.log(state.user_id);
-    console.log(state.title);
-    console.log(state.class_name);
-    console.log(state.description);
-    console.log(state.source);
-    console.log(state.point);
-    console.log(state.owner_solution_id);
-    console.log(state.test);
-    console.log("....................");
     return function(dispatch) {
         dispatch(fetchDataRequest())
-        axios.post('http://localhost:55555/testChallenge/create', {
+        axios.post('http://localhost:55555/testChallenge/create', null, {
             params:{
                 userId: state.user_id,
                 title: state.title,
