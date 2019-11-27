@@ -1,8 +1,6 @@
 package unrc.dose;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.javalite.activejdbc.LazyList;
 import org.javalite.activejdbc.Model;
@@ -118,6 +116,10 @@ public class ChallengeStat extends Model {
         cs.delete();
     }
 
+    /**
+     * It returns a list with all ChallengeStats.
+     * @return List<ChallengeStat>
+     */
     public static List<ChallengeStat> allChallengeStats() {
         LazyList<ChallengeStat> allcs = ChallengeStat.findAll();
 

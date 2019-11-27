@@ -2,7 +2,6 @@ package unrc.dose;
 
 import com.beerboy.ss.SparkSwagger;
 import com.beerboy.ss.rest.Endpoint;
-import com.google.gson.Gson;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
