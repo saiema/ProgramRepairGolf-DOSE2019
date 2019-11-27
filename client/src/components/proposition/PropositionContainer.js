@@ -21,7 +21,9 @@ class PropositionContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
+  
     propositions: state.propositions.data,
+    //currentUser: state.current,
     loading: state.propositions.loading
   }
 }

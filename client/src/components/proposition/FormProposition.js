@@ -30,6 +30,9 @@ class FormProposition extends Component {
         axios.get('http://localhost:55555/proposition/'+idProp+'/compile', {
             params: {
                 source: source
+            },
+            headers: {
+                Authorization: "Basic " + localStorage.getItem("token")
             }
         })
          .then((res) => {
@@ -52,6 +55,9 @@ class FormProposition extends Component {
         axios.get('http://localhost:55555/proposition/'+idProp+'/submit', {
             params: {
                 source: source2
+            },
+            headers: {
+                Authorization: "Basic " + localStorage.getItem("token")
             }
         })
         .then((res) => {

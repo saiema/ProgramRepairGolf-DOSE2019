@@ -106,6 +106,9 @@ public final class UserEndpoint implements Endpoint {
                     String pass = (String) bodyParams.get("password");
                     if(User.validateCredentials(username, pass)) {
                       res.status(200);
+                      User u = User.findFirst("username = ?", username);
+                      String us = u.toJson(true);
+                      res.body(us);
                     } else {
                       res.status(401);
                     }

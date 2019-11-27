@@ -33,7 +33,11 @@ export const fetchPropositions = () => {
       //const head = new Headers();
       //head.append('Content-Type','application/json;charset=utf-8');
       const idUsr=139;
-      axios.post('http://localhost:55555/user/'+idUsr+'/proposition')
+      axios.post('http://localhost:55555/user/'+idUsr+'/proposition', {
+        headers: {
+          Authorization: "Basic " + localStorage.getItem("token")
+        }
+      })
         .then( res =>{
           dispatch(fetchPropositionsSucess(res))
         })
@@ -51,7 +55,11 @@ export const fetchPropositionsGame = () => {
       dispatch(fetchPropositionsRequest())
       const idUsr=139;
       const idChallenge=22;
-      axios.post('http://localhost:55555/users/'+idUsr+'/challenge/'+idChallenge+'/propsitions')
+      axios.post('http://localhost:55555/users/'+idUsr+'/challenge/'+idChallenge+'/propsitions', null, {
+        headers: {
+          Authorization: "Basic " + localStorage.getItem("token")
+        }
+      })
         .then(res => {
           dispatch(fetchPropositionsSucess(res))
         })
@@ -62,3 +70,12 @@ export const fetchPropositionsGame = () => {
     }
   }
 }
+
+
+/*fetch(
+  url:'',
+  method:'GET'
+  headers {
+    Authorization "Basic " + localStorage.getItem("token")
+  }
+)*/
