@@ -24,6 +24,7 @@ public class RunCucumberTest {
     Base.open();
     Base.openTransaction();
     //
+    User user2 = User.set("fulano2", "jejeuj", "hackinsa@gmail.com", true);
     User user = User.set("Pablo", "root", "pablo@gmail.com", false);
     User admin = User.set("admin", "root", "admin@gmail.com", true);
     Challenge ch = Challenge.addChallenge(admin.getInteger("id"), "challenge",

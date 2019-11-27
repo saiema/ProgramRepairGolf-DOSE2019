@@ -6,8 +6,10 @@ Scenario: A content creator user creates a new test challenge
     And the type of the challenge is “test challenge”
     And the text of the challenge is 
     """
+    package src.main;
+
     public class Min {
-	    Static Int min(int a, int b) {
+	    static int min(int a, int b) {
 	    	return a;
 	    }
     }
@@ -15,16 +17,22 @@ Scenario: A content creator user creates a new test challenge
     And the text of the challenge compiles
     And the text of the tests is:
     """
-		@Test
-		public void test1(){
-			Int result = Min.min(1, 5);
-			assertEquals(5,result);
-		}
-		@Test
-		public void test2(){
-			Int result = Min.min(5, -5);
-			assertEquals(-5,result);
-		}
+    package src.test;
+    import src.main.MultOnes;
+    import org.junit.*;
+    
+    public class MinTest {
+		  @Test
+		  public void test1(){
+			  Int result = Min.min(1, 5);
+			  Assert.assertEquals(5,result);
+		  }
+		  @Test
+		  public void test2(){
+			  Int result = Min.min(5, -5);
+			  Assert.assertEquals(-5,result);
+		  }
+    }
     """
     And the at least one of the tests fails
     And the user sets the challenge score on 80
