@@ -6,9 +6,6 @@ import { fetchUsers, newAccount, login}  from '../../actions/actionsUser/usersAc
 
 
 class UsersContainer extends Component {
-	componentDidMount() {
-		this.props.fetchUsers()  
-	}
 
 	render() {
 		return this.props.loading ? (

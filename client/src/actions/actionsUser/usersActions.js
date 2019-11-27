@@ -80,11 +80,11 @@ const fetchUserFailure = error => {
         payload: error
     }
 }
+
 export const newAccount = (user, pass, email) =>{
   return function(dispatch) {
     dispatch(fetchUserRequest())
-    console.log(user);
-    console.log(pass);
+
      fetch('http://localhost:55555/user/signUp', {
       method: 'POST',
        body:JSON.stringify({'username': user, 'password':pass, 'email_address':email})
@@ -102,22 +102,44 @@ export const newAccount = (user, pass, email) =>{
 export const login = (user, pass) =>{
   return function(dispatch) {
     dispatch(fetchUserRequest())
-    console.log(user);
-    console.log(pass);
+    let base64 = require('base-64');
+    const h = new Headers();
+    h.append('Accept', 'application/json');
+    h.set('Authorization', 'Basic '+ base64.encode(user+":"+pass));
      fetch('http://localhost:55555/user/login', {
       method: 'POST',
-      body:JSON.stringify({'username': user, 'password':pass})
+      headers:h ,
+      body:JSON.stringify({'username': user, 'password':pass}),
+      mode:'cors',
+      cache:'default',
       })
      .then( res => {
-      console.log(res);
-      dispatch(fetchUserSucess(res.data))
+        dispatch(fetchUserSucess(res.data));
      })
      .catch( error => {
-      console.log(error);
-      dispatch(fetchUserFailure(error.message))
+       dispatch(fetchUserFailure(error.message))
      })
+   }
+ }
+
+
+ export const resPass = (email) =>{
+   return function(dispatch) {
+     dispatch(fetchUserRequest())
+      fetch('http://localhost:55555/user/resetPassword', {
+       method: 'PUT',
+       body:JSON.stringify({'email_address': email})
+       })
+       .then( res =>{
+         dispatch(fetchUserSucess(res.data))
+       })
+       .catch(error => {
+         dispatch(fetchUserFailure(error.message))
+       })
+    }
   }
-}
+
+
 export const fetchUser = (user_id) => {
   return function(dispatch) {
     dispatch(fetchUserRequest())
