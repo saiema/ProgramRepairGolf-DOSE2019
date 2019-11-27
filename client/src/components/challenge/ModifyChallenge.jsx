@@ -89,8 +89,8 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button>View </button>
-          <button> Modify</button>
+          <button className="button-table"> View </button>
+          <button className="button-table"> Modify</button>
         </td>
       </tr>
     )
@@ -121,8 +121,8 @@ const TableTestChallenge = ({ listTestChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button> View</button>
-          <button>Modify</button>
+          <button className="button-table"> View </button>
+          <button className="button-table"> Modify </button>
         </td>
       </tr>
     )
