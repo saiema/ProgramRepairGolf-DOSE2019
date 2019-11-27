@@ -60,10 +60,10 @@ public class ChallengeStat extends Model {
         "challenge_id = ?", challengeId);
 
         //getting the current average score and the current solved count
-        float currentAverage = challengeSToupdate.getFloat("average_score");
+        double currentAverage = challengeSToupdate.getFloat("average_score");
         int currentSolvedCount = incrementSolvedCount(challengeSToupdate);
 
-        float updatedAverageScore = currentAverage
+        double updatedAverageScore = currentAverage
         + ((userScore - currentAverage) / currentSolvedCount);
 
         challengeSToupdate.set("average_score", updatedAverageScore);

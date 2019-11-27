@@ -35,12 +35,16 @@ export const fetchAllCompilationChallenge = () => {
     return function(dispatch) {
         dispatch(fetchAllCompilationChallengeRequest())
 
-        axios.get('http://localhost:55555/compilationChallenge/all')
-            .then( res =>{
-                dispatch(fetchAllCompilationChallengeSucess(res.data))
-            })
-            .catch(error => {
-                dispatch(fetchAllCompilationChallengeFailure(error.message))
+        axios.get('http://localhost:55555/compilationChallenge/all', {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res =>{
+            dispatch(fetchAllCompilationChallengeSucess(res.data))
+        })
+        .catch(error => {
+            dispatch(fetchAllCompilationChallengeFailure(error.message))
         })
     }
 }
@@ -69,12 +73,16 @@ export const fetchResolvedCompilationChallenge = () => {
     return function(dispatch) {
         dispatch(fetchResolvedCompilationChallengeRequest())
 
-        axios.get('http://localhost:55555/compilationChallenge/resolved')
-            .then( res =>{
-                dispatch(fetchResolvedCompilationChallengeSucess(res.data))
-            })
-            .catch(error => {
-                dispatch(fetchResolvedCompilationChallengeFailure(error.message))
+        axios.get('http://localhost:55555/compilationChallenge/resolved', {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res =>{
+            dispatch(fetchResolvedCompilationChallengeSucess(res.data))
+        })
+        .catch(error => {
+            dispatch(fetchResolvedCompilationChallengeFailure(error.message))
         })
     }
 }
@@ -103,12 +111,16 @@ export const fetchUnsolvedCompilationChallenge = () => {
     return function(dispatch) {
         dispatch(fetchUnsolvedCompilationChallengeRequest())
 
-        axios.get('http://localhost:55555/compilationChallenge/unsolved')
-            .then( res =>{
-                dispatch(fetchUnsolvedCompilationChallengeSucess(res.data))
-            })
-            .catch(error => {
-                dispatch(fetchUnsolvedCompilationChallengeFailure(error.message))
+        axios.get('http://localhost:55555/compilationChallenge/unsolved', {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res =>{
+            dispatch(fetchUnsolvedCompilationChallengeSucess(res.data))
+        })
+        .catch(error => {
+            dispatch(fetchUnsolvedCompilationChallengeFailure(error.message))
         })
     }
 }

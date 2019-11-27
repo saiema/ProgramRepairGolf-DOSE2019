@@ -35,12 +35,16 @@ export const fetchAllTestChallenge = () => {
     return function(dispatch) {
         dispatch(fetchAllTestChallengeRequest())
 
-        axios.get('http://localhost:55555/testChallenge/all')
-            .then( res =>{
-                dispatch(fetchAllTestChallengeSucess(res.data))
-            })
-            .catch(error => {
-                dispatch(fetchAllTestChallengeFailure(error.message))
+        axios.get('http://localhost:55555/testChallenge/all', {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res =>{
+            dispatch(fetchAllTestChallengeSucess(res.data))
+        })
+        .catch(error => {
+            dispatch(fetchAllTestChallengeFailure(error.message))
         })
     }
 }
@@ -69,12 +73,16 @@ export const fetchResolvedTestChallenge = () => {
     return function(dispatch) {
         dispatch(fetchResolvedTestChallengeRequest())
 
-        axios.get('http://localhost:55555/testChallenge/resolved')
-            .then( res =>{
-                dispatch(fetchResolvedTestChallengeSucess(res.data))
-            })
-            .catch(error => {
-                dispatch(fetchResolvedTestChallengeFailure(error.message))
+        axios.get('http://localhost:55555/testChallenge/resolved', {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res =>{
+            dispatch(fetchResolvedTestChallengeSucess(res.data))
+        })
+        .catch(error => {
+            dispatch(fetchResolvedTestChallengeFailure(error.message))
         })
     }
 }
@@ -103,12 +111,16 @@ export const fetchUnsolvedTestChallenge = () => {
     return function(dispatch) {
         dispatch(fetchUnsolvedTestChallengeRequest())
 
-        axios.get('http://localhost:55555/testChallenge/unsolved')
-            .then( res =>{
-                dispatch(fetchUnsolvedTestChallengeSucess(res.data))
-            })
-            .catch(error => {
-                dispatch(fetchUnsolvedTestChallengeFailure(error.message))
+        axios.get('http://localhost:55555/testChallenge/unsolved', {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res =>{
+            dispatch(fetchUnsolvedTestChallengeSucess(res.data))
+        })
+        .catch(error => {
+            dispatch(fetchUnsolvedTestChallengeFailure(error.message))
         })
     }
 }
