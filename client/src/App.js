@@ -6,6 +6,9 @@ import Home from './components/Home'
 import About from './components/About'
 import Navbar from './components/Navbar'
 import PropositionContainer from './components/proposition/PropositionContainer'
+import PrivateRoute from './components/PrivateRoute';
+import ResetPass from './components/componentsUser/EmailContainer';
+
 
 class App extends Component {
   render() {
@@ -19,6 +22,8 @@ class App extends Component {
             <Route path='/about' component={About} />
             <Route path='/hackers' component={HackersContainer} />
             <Route path='/propositions' component={PropositionContainer} />
+            <Route exact path='/resetPassword' component={ResetPass}/>
+            <PrivateRoute path='/hackers' component={HackersContainer} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
           </Switch>
         </div>
