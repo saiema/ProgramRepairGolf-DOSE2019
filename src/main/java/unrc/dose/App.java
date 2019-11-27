@@ -72,7 +72,8 @@ public class App
                   new ChallengeEndPoint(),
                   new CompilationChallengeEndPoint(),
                   new TestChallengeEndPoint(),
-                  new PropositionEndpoint()))
+                  new PropositionEndpoint(),
+				          new ChallengeStatEndpoint()))
           .generateDoc();
       }
       catch(IOException e) {

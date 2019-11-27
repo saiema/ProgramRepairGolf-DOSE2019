@@ -122,16 +122,16 @@ public class TestChallenge extends Model {
      * method that resturns a list of all test challenges.
      * @return list of all test challange.
      */
-    public static List<Map<String, String>> viewAllTestChallange() {
+    public static List<Map<String, Object>> viewAllTestChallange() {
         LazyList<TestChallenge> all = TestChallenge.findAll();
-        LinkedList<Map<String, String>> allChallenges
-        = new LinkedList<Map<String, String>>();
+        LinkedList<Map<String, Object>> allChallenges
+        = new LinkedList<Map<String, Object>>();
         if (!all.isEmpty()) {
             for (TestChallenge currentChallenge : all) {
                 Challenge c = Challenge.findFirst(
                     "id = ?",
                     currentChallenge.get("challenge_id"));
-                Map<String, String> t = toTestChallege(c, currentChallenge);
+                    Map<String, Object> t = toTestChallege(c, currentChallenge);
                 allChallenges.add(t);
             }
         }
@@ -143,11 +143,11 @@ public class TestChallenge extends Model {
      * method that returns a list of resolved test challenges.
      * @return list of test challanges resolved.
      */
-    public static List<Map<String, String>> viewResolvedTestChallange() {
+    public static List<Map<String, Object>> viewResolvedTestChallange() {
         LazyList<Proposition> allResolved =
         Proposition.where("isSolution = ?", 1);
-        LinkedList<Map<String, String>> resolved =
-        new LinkedList<Map<String, String>>();
+        LinkedList<Map<String, Object>> resolved =
+        new LinkedList<Map<String, Object>>();
         if (!allResolved.isEmpty()) {
             for (Proposition challengeResolved : allResolved) {
                 Challenge c = Challenge.findFirst(
@@ -156,7 +156,7 @@ public class TestChallenge extends Model {
                 TestChallenge tc = TestChallenge.findFirst(
                     "challenge_id = ?",
                     challengeResolved.get("challenge_id"));
-                Map<String, String> t = toTestChallege(c, tc);
+                Map<String, Object> t = toTestChallege(c, tc);
                 if (!(resolved.contains(t))) {
                     resolved.add(t);
                 }
@@ -169,13 +169,13 @@ public class TestChallenge extends Model {
      * method that returns a list of unsolved test challenges.
      * @return list of test challanges unresolved.
      */
-    public static List<Map<String, String>> viewUnsolvedTestChallange() {
-        List<Map<String, String>> resolved = viewResolvedTestChallange();
-        List<Map<String, String>> all = viewAllTestChallange();
-        List<Map<String, String>> unsolved =
-        new LinkedList<Map<String, String>>();
+    public static List<Map<String, Object>> viewUnsolvedTestChallange() {
+        List<Map<String, Object>> resolved = viewResolvedTestChallange();
+        List<Map<String, Object>> all = viewAllTestChallange();
+        List<Map<String, Object>> unsolved =
+        new LinkedList<Map<String, Object>>();
         if (!all.isEmpty()) {
-            for (Map<String, String> c: all) {
+            for (Map<String, Object> c: all) {
                 if (!(resolved.contains(c))) {
                     unsolved.add(c);
                 }
@@ -260,12 +260,19 @@ public class TestChallenge extends Model {
      * @param t a TestChallenge.
      * @return Map<Challenge, TestChallenge>.
      */
-    public static Map<String, String> toTestChallege(
+    public static Map<String, Object> toTestChallege(
         final Challenge c, final TestChallenge t) {
-        Map<String, String> ret = new HashMap<String, String>();
-        ret.put(c.toJson(true, "id", "user_id", "title",
-        "class_name", "description", "source", "point", "owner_solution_id"),
-        t.toJson(true, "id", "challenge_id", "test"));
+        Map<String, Object> ret = new HashMap<String, Object>();
+        ret.put("id", c.getInteger("id"));
+        ret.put("user_id", c.getInteger("user_id"));
+        ret.put("title", c.getString("title"));
+        ret.put("class_name", c.getString("class_name"));
+        ret.put("description", c.getString("description"));
+        ret.put("source", c.getString("source"));
+        ret.put("point", c.getInteger("point"));
+        ret.put("owner_solution_id", c.getString("owner_solution_id"));
+        ret.put("id_test", t.getInteger("id"));
+        ret.put("test", t.getString("test"));
         return ret;
 
     }
