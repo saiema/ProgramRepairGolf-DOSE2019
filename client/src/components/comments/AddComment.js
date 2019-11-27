@@ -6,7 +6,7 @@ state = {
   title: null,
   description: null,
   //CurrentUser
-  user_id: "1",
+  user_id: "74",
   challenge_id:this.props.challenge_id.toString(),
 }
 

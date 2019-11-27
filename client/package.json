@@ -4,11 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
-<<<<<<< HEAD
     "dotenv": "^8.2.0",
-=======
     "base-64": "^0.1.0",
->>>>>>> 7c10b60efb228292dbabd1335cea88872a1a89d7
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-redux": "^7.1.3",

@@ -38,7 +38,9 @@ public class Comment extends Model {
     c.set("title", title);
     c.set("description", description);
     c.set("challenge_id", challengeId);
+    User u = User.findById(userId);
     c.set("user_id", userId);
+    c.set("username",u.getString("username"));
     c.saveIt();
     return c;
   }
@@ -70,7 +72,9 @@ public class Comment extends Model {
     if (!isResponse(commentId)) {
       Comment c = Comment.findById(commentId);
       comment.set("description", description);
+      User u = User.findById(userId);
       comment.set("user_id", userId);
+      comment.set("username",u.getString("username"));
       comment.set("title", "Re :" + c.getString("title"));
       comment.set("comment_id", commentId);
       comment.set("challenge_id", c.getInteger("challenge_id"));
@@ -92,11 +96,9 @@ public class Comment extends Model {
   public static List<Comment> viewComment(final int id, final Object obj) {
     List<Comment> list = new ArrayList<Comment>();
     if (obj instanceof User) {
-      String query="SELECT * from repair_game.comments as c1 inner join repair_game.comments as c2 on c1.user_id=? and c1.id=c2.id and c2.comment_id is null;";
-      list = Comment.findBySQL(query, id);
+      list = Comment.where("user_id=? and comment_id is null",id);
     } else if (obj instanceof Challenge) {
-      String query="SELECT * from repair_game.comments as c1 inner join repair_game.comments as c2 on c1.challenge_id=? and c1.id=c2.id and c2.comment_id is null;";
-      list = Comment.findBySQL(query, id);
+      list = Comment.where("challenge_id=? and comment_id is null",id);
     } else if (obj instanceof Comment) {
       list = Comment.where("comment_id=?", id);
     } else {
@@ -137,7 +139,8 @@ public static Comment findComment(final int id) {
     return "{id: " + this.getId() + ", title: "
       + this.getString("title") + ", description: "
       + this.getString("description") + ", user_id: "
-      + this.getInteger("user_id") + ", challenge_id: "
+      + this.getInteger("user_id") + ", username: "
+      + this.getString("username") + ", challenge_id:"
       + this.getInteger("challenge_id") + ", father_id:"
       + this.getInteger("comment_id") + "}";
   }
