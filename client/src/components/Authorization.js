@@ -26,8 +26,7 @@ const Authorization = {
   },
   signout(cb) {
     Authorization.isAuthenticated = false;
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
+    localStorage.removeItem('token');
   }
 }
 
