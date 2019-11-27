@@ -7,6 +7,7 @@ import unsolvedCompilationChallengeReducer from './challenge/unsolvedCompilation
 import allTestChallengeReducer from './challenge/allTestChallengeReducer'
 import resolvedTestChallengeReducer from './challenge/resolvedTestChallengeReducer'
 import unsolvedTestChallengeReducer from './challenge/unsolvedTestChallengeReducer'
+import challengeReducer from './challenge/challengeReducer'
 
 // STATE
 //
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
     unsolvedCompilationChallenge: unsolvedCompilationChallengeReducer,
     allTestChallenge: allTestChallengeReducer,
     resolvedTestChallenge: resolvedTestChallengeReducer,
-    unsolvedTestChallenge: unsolvedTestChallengeReducer
+    unsolvedTestChallenge: unsolvedTestChallengeReducer,
+    challenge: challengeReducer
 
 })
 

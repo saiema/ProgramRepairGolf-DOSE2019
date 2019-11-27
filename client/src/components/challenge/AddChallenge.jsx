@@ -2,21 +2,28 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import './Style.css';
 
+
 export default class AddChallenge extends Component {
   
  state = {
       user_id: 1,
-      title: null,
-      class_name: null,
-      description: null,
-      source: null,
-      point: null,
+      title: "",
+      class_name: "",
+      description: "",
+      source: "",
+      point: "",
       owner_solution_id: 1,
-      test: null,
-      typeChallenge: "0"
+      test: "",
+      typeChallenge: ""
   }
 
   handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
+
+  handleChange2 = (e) => {
     this.setState({
       typeChallenge: e.value
     });
@@ -24,6 +31,22 @@ export default class AddChallenge extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+  }
+
+  handleSubmit1 = (e) => {
+    e.preventDefault();
+    const { user_id, title, class_name, description, source,
+    point, owner_solution_id} = this.state;
+    this.props.addCompilationChallenge(user_id, title, class_name, description,
+      source, point, owner_solution_id);
+  }
+  
+  handleSubmit2 = (e) => {
+    e.preventDefault();
+    const { user_id, title, class_name, description, source,
+      point, owner_solution_id, test} = this.state;
+      this.props.addTestChallenge(user_id, title, class_name, description,
+        source, point, owner_solution_id, test);
   }
 
   formTest(){
@@ -63,23 +86,31 @@ export default class AddChallenge extends Component {
   }
 
   show(){
-    if (this.state.typeChallenge === "1"){
+    if (this.state.typeChallenge === "Compilation Challenge"){
       return (
         <div>
           {this.formCompilation()}
           <div className="block-button"> 
-            <button className="button-submit"> submit </button>
+            <button 
+              className="button-submit" 
+              onClick = {this.handleSubmit1}
+              > Submit 
+            </button>
           </div>
         </div>
       );
     }
-    else if (this.state.typeChallenge === "2"){
+    else if (this.state.typeChallenge === "Test Challenge"){
       return (
         <div>
           {this.formCompilation()}
           {this.formTest()}
           <div className="block-button"> 
-            <button className="button-submit"> submit </button>
+            <button 
+              className="button-submit" 
+              onClick = {this.handleSubmit2}
+            > Submit 
+            </button>
           </div>
         </div>
       );
@@ -92,19 +123,20 @@ export default class AddChallenge extends Component {
   }
 
   render() {  
-    const { typeChallenge } = this.state;
+   
     const options = [
-      { value: "1", label: 'Compilation Challenge' },
-      { value: "2", label: 'Test Challenge' }
+      { value: 'Compilation Challenge', label: 'Compilation Challenge' },
+      { value: 'Test Challenge', label: 'Test Challenge' }
     ]
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} >
           <div className="block-button"> <h1> Load the challenge </h1> </div>
           <p> Select of the type challenge </p>
-          <Select         
-            value={typeChallenge}
-            onChange={this.handleChange}
+          <Select 
+            placeholder = {this.state.typeChallenge}        
+            value={this.state.typeChallenge}
+            onChange={this.handleChange2}
             options={options}
           />
           {this.show()}

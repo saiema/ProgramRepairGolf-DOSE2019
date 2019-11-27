@@ -1,6 +1,11 @@
 import React , {Component} from 'react'
 import AddChallenge from './AddChallenge'
 import ViewChallenge from './ViewChallenge'
+import { connect } from 'react-redux';
+import {
+  addCompilationChallenge,
+  addTestChallenge
+}  from '../../actions/challengeActions';
 
 class Challenge extends Component {
 
@@ -12,7 +17,11 @@ class Challenge extends Component {
     if (this.state.opc === "add") {
       return (
         <div>
-          { <AddChallenge/> }
+          { 
+          <AddChallenge
+            addCompilationChallenge={this.props.addCompilationChallenge}
+            addTestChallenge={this.props.addTestChallenge}
+          /> }
         </div>
       );
     }
@@ -49,4 +58,23 @@ class Challenge extends Component {
   }
 }
 
-export default Challenge
+const mapStateToProps = (state) => {
+  return {
+    challenge: state.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCompilationChallenge: (user_id, title, class_name, description, source, point, owner_solution_id) => {
+      dispatch(addCompilationChallenge(user_id, title, class_name, description,
+        source, point, owner_solution_id))
+    },
+    addTestChallenge: (user_id, title, class_name, description, source, point, owner_solution_id, test) => {
+      dispatch(addTestChallenge(user_id, title, class_name, description,
+        source, point, owner_solution_id, test))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Challenge)
