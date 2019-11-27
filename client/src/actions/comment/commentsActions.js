@@ -63,11 +63,11 @@ export const fetchCommentsUsers = (id) => {
   return function(dispatch, getState) {
     if (getState().comments.data.length === 0) {
       dispatch(fetchCommentsRequest())
-      const h = new Headers();
-       h.append('Content-Type','application/json;charset=utf-8');
-       h.set('Access-Control-Allow-Origin', "*");
+      let base64 = require('base-64');
+      const user = localStorage.getItem('username');
+      const pass = localStorage.getItem('password');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/users/'+id, {
-         headers: h,
+        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
       })
         .then( res =>{
           let result = [];
@@ -90,17 +90,15 @@ export const fetchAddComment = (state) => {
   return function(dispatch, getState) {
       console.log(state.challenge_id);
       dispatch(fetchCommentsRequest())
-      const h = new Headers();
-       h.append('Content-Type','application/json;charset=utf-8');
-       h.set('Access-Control-Allow-Origin', "*");
-       //Current user
-      const id=1;
+      let base64 = require('base-64');
+      const user = localStorage.getItem('username');
+      const pass = localStorage.getItem('password');
        axios.post(process.env.REACT_APP_API_HOST+'/comments/createComment', null,{params:{
          title: state.title,
          description: state.description,
          userId: state.user_id,
          challengeId: state.challenge_id}},{
-         headers: h,
+        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
       })
         .then( res =>{
         
@@ -118,11 +116,11 @@ export const fetchCommentsChallenge = (id) => {
   return function(dispatch, getState) {
     if (getState().comments.data.length === 0) {
       dispatch(fetchCommentsRequest())
-      const h = new Headers();
-       h.append('Content-Type','application/json;charset=utf-8');
-       h.set('Access-Control-Allow-Origin', "*");
+      let base64 = require('base-64');
+      const user = localStorage.getItem('username');
+      const pass = localStorage.getItem('password');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/challenges/'+id, {
-         headers: h,
+         headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
       })
         .then( res =>{
           let result = [];
@@ -144,15 +142,15 @@ export const fetchCommentsChallenge = (id) => {
 export const fetchAddResponse = (state) => {
   return function(dispatch, getState) {
       dispatch(fetchCommentsRequest())
-      const h = new Headers();
-       h.append('Content-Type','application/json;charset=utf-8');
-       h.set('Access-Control-Allow-Origin', "*");
+      let base64 = require('base-64');
+      const user = localStorage.getItem('username');
+      const pass = localStorage.getItem('password');
        axios.post(process.env.REACT_APP_API_HOST+'/comments/createResponse', null,{params:{
          description: state.description,
          userId: state.user_id,
          challengeId: state.challenge_id,
          commentId: state.comment_id}},{
-         headers: h,
+        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
       })
         .then( res =>{
           console.log(res.data);

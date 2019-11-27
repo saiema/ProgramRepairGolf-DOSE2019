@@ -31,11 +31,11 @@ export const fetchResponses = (id) => {
   return function(dispatch, getState) {
     if (getState().comment.responses.length === 0) {
       dispatch(fetchResponsesRequest())
-      const h = new Headers();
-       h.append('Content-Type','application/json;charset=utf-8');
-       h.set('Access-Control-Allow-Origin', "*");
+      let base64 = require('base-64');
+      const user = localStorage.getItem('username');
+      const pass = localStorage.getItem('password');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/responses/'+id, {
-         headers: h,
+        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
       })
         .then( res =>{
           let result = [];
