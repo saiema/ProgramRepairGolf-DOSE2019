@@ -33,7 +33,8 @@ export const fetchRanking = () => {
   return function(dispatch, getState) {
       dispatch(fetchRankingRequest())
 
-      axios.get('http://localhost:55555/userstats/ranking?number=20')
+      axios.get('http://localhost:55555/userstats/ranking?number=20', 
+      {headers:{ Authorization: "Basic " + localStorage.getItem("token")}})
         .then( res =>{
           dispatch(fetchRankingSucess(res.data))
         })
@@ -64,10 +65,12 @@ export const fetchRanking = () => {
   }
 
 
-  export const fetchIndividualUserStats = (id) => {
+  export const fetchIndividualUserStats = () => {
     return function(dispatch, getState){
       dispatch(fetchIndividualStatsRequest())
-      axios.get('http://localhost:55555/userstats?id='+id)
+      let userid = getState().user.currentUser.id;
+      axios.get('http://localhost:55555/userstats?id='+userid,
+      {headers:{ Authorization: "Basic " + localStorage.getItem("token")}})
         .then( res =>{
           dispatch(fetchIndividualStatsSucess(res.data))
         })

@@ -6,12 +6,12 @@ import style from './style.css'
 const UserStat = (props) => {
     return (
         <div>
-        <div class="left">
-            <IndividualStatsContainer />
-        </div>
-        <div class="right">
-            <RankingContainer />
-        </div>
+            <div class="left">
+                <IndividualStatsContainer />
+            </div>
+            <div class="right">
+                <RankingContainer />
+            </div>
         </div>
     )
 }

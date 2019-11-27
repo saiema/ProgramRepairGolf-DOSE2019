@@ -8,7 +8,7 @@ import { fetchIndividualUserStats } from '../../actions/UserStatActions';
 
 class IndividualStatsContainer extends Component {
 	componentDidMount() {
-		this.props.fetchIndividualUserStats(54) /*TODO: de-harcoding this id when login it's ready*/
+		this.props.fetchIndividualUserStats()
 	}
 
 	render() {
