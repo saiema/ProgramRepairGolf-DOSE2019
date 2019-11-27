@@ -13,7 +13,6 @@ const fetchPropositionsRequest = () => {
 }
 
 const fetchPropositionsSucess = propositions => {
-    console.log(propositions);
     return {
         type: FETCH_PROPOSITIONS_SUCCESS,
         payload: propositions.data
@@ -31,11 +30,29 @@ export const fetchPropositions = () => {
   return async function(dispatch, getState) {
     if (getState().propositions.data.length === 0) {
       dispatch(fetchPropositionsRequest())
-      const head = new Headers();
-       head.append('Content-Type','application/json;charset=utf-8');
+      //const head = new Headers();
+      //head.append('Content-Type','application/json;charset=utf-8');
       const idUsr=139;
-      axios.get('http://192.168.128.176:55555/user/'+idUsr+'/proposition')
+      axios.post('http://localhost:55555/user/'+idUsr+'/proposition')
         .then( res =>{
+          dispatch(fetchPropositionsSucess(res))
+        })
+        .catch(error => {
+          console.log(error)
+          dispatch(fetchPropositionsFailure(error.message))
+        })
+    }
+  }
+}
+
+export const fetchPropositionsGame = () => {
+  return async function(dispatch, getState) {
+    if (getState().propositions.data.length === 0) {
+      dispatch(fetchPropositionsRequest())
+      const idUsr=139;
+      const idChallenge=22;
+      axios.post('http://localhost:55555/users/'+idUsr+'/challenge/'+idChallenge+'/propsitions')
+        .then(res => {
           dispatch(fetchPropositionsSucess(res))
         })
         .catch(error => {
