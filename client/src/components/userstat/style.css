@@ -1,12 +1,15 @@
 div.left {
     float: left;
-    margin-left: 100px;
-    margin-top: -30px;
+    width: 40%;
+    height: 100%;
+    margin-left: 5%;
 }
 
 div.right {
-    float: right;
-    margin-right: 100px;
+    float: left;
+    width: 40%;
+    height: 100%;
+    margin-right: 5%;
 }
 
 
@@ -23,6 +26,7 @@ div.ranking{
 }
 
 h1.center{
+    margin-top: 20px;
     text-align: center;
     text-decoration-line: underline;
     font-size: 55px;
