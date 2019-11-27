@@ -1,8 +1,5 @@
 Feature: the user resolves the challenge again, but better, and receives the maximum score of the challenge
 
-Background:
-	Given that the database has the default data
-
 Scenario: A user resolves a previously resolved challenge again
     Given that user "pponzio" is already logged on
     And wants to solve the test based challenge with id 5
