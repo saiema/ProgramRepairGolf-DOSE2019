@@ -179,8 +179,7 @@ public final class UserStat extends Model {
 
     @Override
     public boolean equals(final Object o) {
-        return (o == null || !(o instanceof UserStat))
-            ? false : this.hashCode() == o.hashCode();
+        return (o instanceof UserStat) && this.hashCode() == o.hashCode();
     }
 
     @Override
