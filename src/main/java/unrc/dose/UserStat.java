@@ -17,7 +17,7 @@ import org.javalite.activejdbc.Model;
  * Class for UserStat.
  * @author Nahuel Alvarez, Borda Agustin, Castillo Conrado
  */
-public class UserStat extends Model {
+public final class UserStat extends Model {
 
     /** Id of the user. **/
     public static final String USERID = "user_id";
@@ -164,4 +164,28 @@ public class UserStat extends Model {
         }
         return userStats;
     }
+
+    /**
+     * Return the position in the ranking of an userStat.
+     * @param userStat witch want to get the position
+     * @return the position in the ranking
+     */
+    public static int getPosition(final UserStat userStat) {
+        LazyList<UserStat> userStats = UserStat.
+            where(CURRENTPOINTS + " >= ?", userStat.getCurrentPoints());
+        userStats.orderBy("current_points desc");
+        return userStats.indexOf(userStat) + 1;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        return (o == null || !(o instanceof UserStat))
+            ? false : this.hashCode() == o.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return getUserId();
+    }
+
 }

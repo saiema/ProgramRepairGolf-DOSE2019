@@ -8,6 +8,7 @@ const IndividualStats = ({ stats }) => {
         <p class="individualStats">Points: { stats.current_points }</p>
         <p class="individualStats">Created challenges : { stats.created_challenges }</p>
         <p class="individualStats">Solved challenges: { stats.solved_challenges }</p>
+        <p class="individualStats">Ranking position: { stats.ranking_position }</p>
       </div>
     );
   }
