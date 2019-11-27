@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
+import rankingReducer from './rankingReducer'
+import individualStatsReducer from './individualStatsReducer'
 import allCompilationChallengeReducer from './challenge/allCompilationChallengeReducer'
 import resolvedCompilationChallengeReducer from './challenge/resolvedCompilationChallengeReducer'
 import unsolvedCompilationChallengeReducer from './challenge/unsolvedCompilationChallengeReducer'
@@ -31,6 +33,8 @@ const rootReducer = combineReducers({
 
     hackers: hackersReducer,
     hacker: hackerReducer,
+    ranking: rankingReducer,
+    individual_stats: individualStatsReducer,
     allCompilationChallenge: allCompilationChallengeReducer,
     resolvedCompilationChallenge: resolvedCompilationChallengeReducer,
     unsolvedCompilationChallenge: unsolvedCompilationChallengeReducer,

@@ -4,7 +4,8 @@ import { fetchChallengeStat }  from '../../actions/challengeStatActions/challeng
 
 class ChallengeStat extends Component {
   componentDidMount() {
-    this.props.fetchChallengeStat(this.props.match.params.challenge_id)
+    //this.props.fetchChallengeStat(this.props.match.params.challenge_id)
+    this.props.fetchChallengeStat(2)
   }
 
   render() {
@@ -25,9 +26,9 @@ class ChallengeStat extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    challengeStat: state.challengeStat.data
+    challengeStat: state.challengeStat
   }
 }
 

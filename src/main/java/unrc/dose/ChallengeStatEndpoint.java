@@ -97,7 +97,7 @@ public final class ChallengeStatEndpoint implements Endpoint {
                 .withResponseType(String.class),
             (req, res) -> {
                 int challengeId = Integer.parseInt(req.params(":challengeId"));
-
+                System.out.println("challenge id endpoint: " + challengeId);
                 ChallengeStat cs = ChallengeStat.getChallengeStat(challengeId);
 
                 return cs.toJson(true, "id", "challenge_id", "solved_count", "average_score");
