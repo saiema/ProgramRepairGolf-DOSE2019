@@ -24,6 +24,8 @@ public final class UserStatSerializer implements JsonSerializer<UserStat> {
                 src.getSolvedChallenges());
         jsonUserStat.addProperty(UserStat.CURRENTPOINTS,
                 src.getCurrentPoints());
+        jsonUserStat.addProperty("username",
+                ((User) User.findById(src.getUserId())).getName());
         return jsonUserStat;
     }
 }
