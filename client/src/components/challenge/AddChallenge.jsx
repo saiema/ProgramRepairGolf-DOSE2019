@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import './Style.css';
+import { connect } from 'react-redux';
+import {
+  addCompilationChallenge,
+  addTestChallenge
+}  from '../../actions/challengeActions';
 
-export default class AddChallenge extends Component {
+class AddChallenge extends Component {
   
  state = {
       user_id: 1,
-      title: null,
-      class_name: null,
-      description: null,
-      source: null,
-      point: null,
+      title: "",
+      class_name: "",
+      description: "",
+      source: "",
+      point: "",
       owner_solution_id: 1,
-      test: null,
-      typeChallenge: null
+      test: "",
+      typeChallenge: ""
   }
 
   handleChange = (e) => {
@@ -30,6 +35,16 @@ export default class AddChallenge extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+  }
+
+  handleSubmit1 = (e) => {
+    e.preventDefault();
+    this.props.addCompilationChallenge(this.state);
+  }
+  
+  handleSubmit2 = (e) => {
+    e.preventDefault();
+    this.props.addTestChallenge(this.state);
   }
 
   formTest(){
@@ -74,7 +89,11 @@ export default class AddChallenge extends Component {
         <div>
           {this.formCompilation()}
           <div className="block-button"> 
-            <button className="button-submit"> submit </button>
+            <button 
+              className="button-submit" 
+              onClick = {this.handleSubmit1}
+              > Submit 
+            </button>
           </div>
         </div>
       );
@@ -85,7 +104,11 @@ export default class AddChallenge extends Component {
           {this.formCompilation()}
           {this.formTest()}
           <div className="block-button"> 
-            <button className="button-submit"> submit </button>
+            <button 
+              className="button-submit" 
+              onClick = {this.handleSubmit2}
+            > Submit 
+            </button>
           </div>
         </div>
       );
@@ -120,3 +143,22 @@ export default class AddChallenge extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    challenge: state.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCompilationChallenge: (state) => {
+      dispatch(addCompilationChallenge(state))
+    },
+    addTestChallenge: (state) => {
+      dispatch(addTestChallenge(state))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddChallenge)
