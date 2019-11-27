@@ -12,12 +12,10 @@ class ChallengeStat extends Component {
     const { challengeStat } = this.props
     return (
       challengeStat ? (
-          //renderizado de la info del challenge stat, mostrar average score y solved count
         <div className="container">
-          <h2>Challenge: {this.props.challengeStat.challenge_id}</h2>
-          <h4>Stats</h4>
-          <h4>Solved count: {this.props.challengeStat.solved_count}</h4>
-          <h4>Average Score: {this.props.challengeStat.average_score}</h4>
+          <h3>Challenge id: {challengeStat.challenge_id}</h3>
+          <h3>Solved count: {challengeStat.solved_count}</h3>
+          <h3>Average score: {challengeStat.average_score}</h3>
         </div>
       ) : (
         <div>There is no challenge stat in the store... refetching</div>
@@ -28,7 +26,7 @@ class ChallengeStat extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    challengeStat: state.challengeStat
+    challengeStat: state.challengeStat.data
   }
 }
 

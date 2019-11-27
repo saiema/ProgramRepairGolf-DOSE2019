@@ -93,7 +93,7 @@ export const fetchChallengeStat = (challenge_id) => {
   return function(dispatch) {
     dispatch(fetchChallengeStatRequest())
     
-    axios.post('http://localhost:55555/challengestat/get/' + challenge_id, {
+    axios.get('http://localhost:55555/challengestat/get/' + challenge_id, {
     headers: {
       Authorization: "Basic" + localStorage.getItem("token") }
     }) 

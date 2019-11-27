@@ -87,7 +87,7 @@ public final class ChallengeStatEndpoint implements Endpoint {
             }
         )
 
-        .post(
+        .get(
             path("/get/:challengeId")
                 .withDescription("Will fetch challenge stat data")
                 .withPathParam()
