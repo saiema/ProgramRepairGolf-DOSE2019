@@ -1,6 +1,8 @@
 package unrc.dose;
 
-import org.javalite.activejdbc.LazyList;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.javalite.activejdbc.Model;
 
 
@@ -11,6 +13,7 @@ import org.javalite.activejdbc.Model;
 * description     :varchar(300)    not null
 * challenge_id    :integer     not null
 * user_id         :integer    not null
+* responses       :boolean
 * comment_id      :integer
 */
 public class Comment extends Model {
@@ -35,7 +38,9 @@ public class Comment extends Model {
     c.set("title", title);
     c.set("description", description);
     c.set("challenge_id", challengeId);
+    User u = User.findById(userId);
     c.set("user_id", userId);
+    c.set("username",u.getString("username"));
     c.saveIt();
     return c;
   }
@@ -67,11 +72,15 @@ public class Comment extends Model {
     if (!isResponse(commentId)) {
       Comment c = Comment.findById(commentId);
       comment.set("description", description);
+      User u = User.findById(userId);
       comment.set("user_id", userId);
+      comment.set("username",u.getString("username"));
       comment.set("title", "Re :" + c.getString("title"));
       comment.set("comment_id", commentId);
       comment.set("challenge_id", c.getInteger("challenge_id"));
       comment.saveIt();
+      c.set("responses",true );
+      c.saveIt();
     } else {
       throw new IllegalArgumentException("Can't respond to a response comment");
     }
@@ -84,12 +93,12 @@ public class Comment extends Model {
   *@param obj can be a User, Comment or Challenge
   *@return a list of comments
   */
-  public static LazyList<Comment> viewComment(final int id, final Object obj) {
-    LazyList<Comment> list = null;
+  public static List<Comment> viewComment(final int id, final Object obj) {
+    List<Comment> list = new ArrayList<Comment>();
     if (obj instanceof User) {
-      list = Comment.where("user_id=?", id);
+      list = Comment.where("user_id=? and comment_id is null",id);
     } else if (obj instanceof Challenge) {
-      list = Comment.where("challenge_id=?", id);
+      list = Comment.where("challenge_id=? and comment_id is null",id);
     } else if (obj instanceof Comment) {
       list = Comment.where("comment_id=?", id);
     } else {
@@ -97,6 +106,21 @@ public class Comment extends Model {
     }
     return list;
   }
+
+  /**
+*return the comment with de id passed as parameter.
+*@param id the comment's id
+*@return the comment with the id passed as parameter
+*@throws IllegalArgumentException when does not exits the comment with that id
+**/
+
+public static Comment findComment(final int id) {
+  Comment c = Comment.findById(id);
+  if (c == null) {
+    throw new IllegalArgumentException("Comment does not exists");
+  }
+  return c;
+}
 
   /**
   *creation of equal method.
@@ -112,12 +136,44 @@ public class Comment extends Model {
    * @return comment as a string
    */
   public String toString() {
-    return "[id: " + this.getId() + ", title: "
-      + this.getString("title") + "description: "
-      + this.getString("description") + "user_id: "
-      + this.getInteger("user_id") + "challenge_id: "
-      + this.getInteger("challenge_id") + "father_id:"
-      + this.getInteger("comment_id") + "]";
+    return "{id: " + this.getId() + ", title: "
+      + this.getString("title") + ", description: "
+      + this.getString("description") + ", user_id: "
+      + this.getInteger("user_id") + ", username: "
+      + this.getString("username") + ", challenge_id:"
+      + this.getInteger("challenge_id") + ", father_id:"
+      + this.getInteger("comment_id") + "}";
   }
 
+  /**
+  *
+  */
+  public static String toJson(List<Comment> list){
+    String aux="[";
+    for(int i=0;i<list.size();i++){
+      aux=aux+list.get(i).toJson(true);
+      if(i<list.size()-1){
+        aux=aux+",";
+      }
+    }
+    aux=aux+"]";
+    return aux;
+  }
+  //Borrar un comentario
+  public static void deleteComment(final int id) {
+    Comment c = new Comment();
+    c = Comment.findById(id);
+    if (c==null){
+      throw new IllegalArgumentException("Comment does not exists");
+    }
+    else{
+      List<Comment> listresp = Comment.where("comment_id = ?", id);
+      if (listresp!=null){
+        for (Comment r: listresp){
+          r.delete();
+        }
+      }
+      c.delete();
+    }
+  }
 }
