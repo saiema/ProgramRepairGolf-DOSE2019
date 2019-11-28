@@ -1,11 +1,11 @@
 import React from 'react'
+import UsContain from './componentsUser/UsersContainer'
 
 const Home = (props) => {
     return (
         <div>
         <div className="container">
-            <h4 className="center">Home</h4>
-            <p>Lorem ipsum dolor ...</p>
+        <UsContain />
         </div>
         </div>
     )

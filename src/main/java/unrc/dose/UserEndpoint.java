@@ -29,7 +29,7 @@ public final class UserEndpoint implements Endpoint {
 
    ArrayList<ParameterDescriptor> list = new ArrayList<ParameterDescriptor>();
 
-    
+
     /** service used to manipulate in memory the users. */
     //private static User user = new User();
 
@@ -41,7 +41,7 @@ public final class UserEndpoint implements Endpoint {
             endpointPath(NAME_SPACE)
                 .withDescription(
                     "user REST API exposing all users utilities"
-                ), 
+                ),
             (q, a) -> LOGGER.info("Logging Received request for User Rest API")
         )
         .get(
@@ -66,24 +66,25 @@ public final class UserEndpoint implements Endpoint {
             .withDescription("Will return a boolean that describe if user has been created succesfully or not")
             .withParams(
                 list
-                // new ParameterDescriptor()
+                // new ParameterDescriptor() Esta comentado por que aun no
+                //                           encontramos como hacer para especificar que los parametros vienen en el body
             )
-                // .withName("username") 
-                // .withName("password") 
+                // .withName("username")
+                // .withName("password")
                 // .withDescription("The password is the key to log in the system")
-                // .withName("email_address") 
+                // .withName("email_address")
                 // .withDescription("The email_address is the form to contact with the user")
             //.and()
             .withResponseType(String.class),
             (req, res) -> {
                 Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
-                
+
 
                 if (User.userExistsByUsername((String)bodyParams.get("username")) || User.userExistsByEmail((String)bodyParams.get("email_address"))) {
                     return "Nombre de usuario o email ya utilizados";
                 } else {
                     User user = User.set((String)bodyParams.get("username"), (String)bodyParams.get("password"), (String)bodyParams.get("email_address"), false);
-                    
+
                     return"username: "+ (String)user.get("username")+ (String)user.get("email_address");
                 }
 
@@ -98,15 +99,22 @@ public final class UserEndpoint implements Endpoint {
                     .withName("password")
                     .withDescription("This is pass with which will user try log in")
                     .and()
-                .withResponseType(Boolean.class),
+                .withResponseType(String.class),
             (req, res) -> {
                     Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
-
-                    return( User.validateCredentials((String)bodyParams.get("username"),(String)bodyParams.get("password")));
-            }
+                    String username = (String) bodyParams.get("username");
+                    String pass = (String) bodyParams.get("password");
+                    if(User.validateCredentials(username, pass)) {
+                      res.status(200);
+                      User u = User.findFirst("username = ?", username);
+                      String us = u.toJson(true);
+                      res.body(us);
+                    } else {
+                      res.status(401);
+                    }
+                    return "";
+                }
         )
-        
-           
 
         .put(
             path("/resetPassword")
@@ -122,7 +130,7 @@ public final class UserEndpoint implements Endpoint {
                 return(User.resetPassword((String)bodyParams.get("email_address")));
             }
         )
-		
+
         .put(
             path("/updatePassword")
                 .withDescription("Update a user's password")
@@ -141,7 +149,7 @@ public final class UserEndpoint implements Endpoint {
             	return(User.updatePassword((String)bodyParams.get("email_address"),(String)bodyParams.get("oldPassword"), (String)bodyParams.get("newPassword")));
             }
         )
-		
+
 
         .put(
             path("/updateEmail")
@@ -156,13 +164,13 @@ public final class UserEndpoint implements Endpoint {
             (req, res) -> {
             Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
 
-            	return(User.updateEmail((String)bodyParams.get("newEmail_address"), (String)bodyParams.get("username")));            
+            	return(User.updateEmail((String)bodyParams.get("newEmail_address"), (String)bodyParams.get("username")));
             }
         )
-		
-      
-	
-        
+
+
+
+
         .put(
             path("/disableAccount")
                 .withDescription("Disable logically user account")
@@ -177,9 +185,8 @@ public final class UserEndpoint implements Endpoint {
                  Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
 
                 return(User.disableUser((String)bodyParams.get("username"), (String)bodyParams.get("password")));
-                   	
+
             }
         );
     }
 }
-

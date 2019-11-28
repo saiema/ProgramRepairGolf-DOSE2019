@@ -2,6 +2,7 @@ package unrc.dose;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -190,5 +191,27 @@ private static final Logger log = LoggerFactory.getLogger(UserStatTest.class);
 		stat.set("solved_challenges", 0);
 		assertFalse(stat.isValid());
 	}
+
+    /**
+     * Test the getPosition method
+     */
+    @Test
+    public void getPositionTest() {
+        User u = User.findFirst("username = ?","Themosque");
+        UserStat stat = UserStat.findFirst("user_id = ?", u.getId());
+        assertEquals(1, UserStat.getPosition(stat));
+    }
+
+    /**
+     * Test the equals method
+     */
+    @Test
+    public void notEqualsTest() {
+        User u1 = User.findFirst("username = ?","Hackerman");
+        UserStat stat1 = UserStat.findFirst("user_id = ?", u1.getId());
+        User u2 = User.findFirst("username = ?","Hackerman");
+        UserStat stat2 = UserStat.findFirst("user_id = ?", u2.getId());
+        assertTrue(stat1.equals(stat2));
+    }
 
 }

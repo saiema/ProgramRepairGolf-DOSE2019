@@ -3,15 +3,13 @@ package unrc.dose;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
-import org.javalite.activejdbc.LazyList;
-
+import java.util.*;
 import unrc.dose.Comment;
-import unrc.dose.StepUtils;
 import unrc.dose.User;
 
-public class CommentSteps extends StepUtils {
+public class CommentSteps {
   private static User user = new User();
+  private static User admin = new User();
   private static User userAux = new User();
   private static Challenge ch = new Challenge();
   private static Comment c = new Comment();
@@ -20,6 +18,13 @@ public class CommentSteps extends StepUtils {
 
   @Given("^the user \"([^\"]*)\" is already logged on$")
   public boolean the_user_is_already_logged_on(String arg1) throws Exception {
+          User userr = User.set("Pablo", "root", "pablo@gmail.com", false);
+      User adminn = User.set("admin", "root", "admin@gmail.com", true);
+      Challenge cha = Challenge.addChallenge(adminn.getInteger("id"), "challenge",
+         "Test", "descripcion", "codigoooooo", 10, userr.getInteger("id"));
+     
+      userr = User.set("Pedro","root","pedrito@gmail.com",false);
+      Comment co = Comment.createComment("comment","this is a description", cha.getInteger("id"),userr.getInteger("id"));
     user = User.findFirst("username = ?", arg1);
     return user != null;
   }
@@ -82,7 +87,7 @@ public class CommentSteps extends StepUtils {
 
   @Then("^the system will return a list of comments of the user \"([^\"]*)\"$")
   public boolean the_system_will_return_a_list_of_comments_of_the_user(String arg1) throws Exception {
-    LazyList<Comment> list = Comment.viewComment(userAux.getId(), new User());
+    List<Comment> list = Comment.viewComment(userAux.getId(), new User());
     return list != null;
   }
 
@@ -93,7 +98,7 @@ public class CommentSteps extends StepUtils {
 
   @Then("^the system will return a list of comments of the challenge$")
   public boolean the_system_will_return_a_list_of_comments_of_the_challenge() throws Exception {
-    LazyList<Comment> list = Comment.viewComment(ch.getInteger("id"), new Challenge());
+    List<Comment> list = Comment.viewComment(ch.getInteger("id"), new Challenge());
     return list != null;
   }
 
@@ -104,7 +109,7 @@ public class CommentSteps extends StepUtils {
 
   @Then("^the system will return a list of responses to the comment$")
   public boolean the_system_will_return_a_list_of_responses_to_the_comment() throws Exception {
-    LazyList<Comment> list = Comment.viewComment(c.getInteger("id"), new Comment());
+    List<Comment> list = Comment.viewComment(c.getInteger("id"), new Comment());
     return list != null;
   }
 }

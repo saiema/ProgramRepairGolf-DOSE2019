@@ -2,10 +2,12 @@ package unrc.dose;
 
 import com.beerboy.ss.SparkSwagger;
 import com.beerboy.ss.rest.Endpoint;
-import com.google.gson.Gson;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+
 
 import static com.beerboy.ss.descriptor.EndpointDescriptor.endpointPath;
 import static com.beerboy.ss.descriptor.MethodDescriptor.path;
@@ -73,15 +75,19 @@ public final class ChallengeStatEndpoint implements Endpoint {
         .post(
             path("/all")
                 .withDescription("Will return all challenge stats in the store")
-                .withResponseType(String.class),
+                .withResponseType(List.class),
             (req, res) -> {
-                List<Map<String, Object>> allCS =
+                List<ChallengeStat> allCS =
                 ChallengeStat.allChallengeStats();
-                return JsonHelper.toJsonString(allCS);
+                List<String> jsonList = new ArrayList<String>();
+                for (ChallengeStat cs: allCS) {
+                    jsonList.add(cs.toJson(true, "id", "challenge_id", "solved_count", "average_score"));
+                }
+                return jsonList;
             }
         )
 
-        .post(
+        .get(
             path("/get/:challengeId")
                 .withDescription("Will fetch challenge stat data")
                 .withPathParam()
@@ -91,7 +97,7 @@ public final class ChallengeStatEndpoint implements Endpoint {
                 .withResponseType(String.class),
             (req, res) -> {
                 int challengeId = Integer.parseInt(req.params(":challengeId"));
-
+                System.out.println("challenge id endpoint: " + challengeId);
                 ChallengeStat cs = ChallengeStat.getChallengeStat(challengeId);
 
                 return cs.toJson(true, "id", "challenge_id", "solved_count", "average_score");

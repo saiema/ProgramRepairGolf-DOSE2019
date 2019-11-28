@@ -40,7 +40,12 @@ public final class UserStatService {
         if (userStat == null) {
             throw new UserStatNotFoundException(userid);
         }
-        return userStatToJson(userStat);
+        UserStatSerializer serializer = new UserStatSerializer();
+        JsonObject jsonUserStat = (JsonObject) serializer.serialize(userStat,
+                UserStat.class, null);
+        jsonUserStat.addProperty("ranking_position",
+                UserStat.getPosition(userStat));
+        return jsonUserStat.toString();
     }
 
     /**

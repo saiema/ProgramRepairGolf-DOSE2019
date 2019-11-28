@@ -1,11 +1,11 @@
 import {
     FETCH_CHALLENGESTAT_REQUEST,
-    FETCH_CHALLENGESTAT_REQUEST,
-    FETCH_CHALLENGESTAT_REQUEST,
+    FETCH_CHALLENGESTAT_SUCCESS,
+    FETCH_CHALLENGESTAT_FAILURE,
 } from '../../constants/challengeStatConstants/ActionTypes'
 
 const initChallengeStatState = {
-    data: {},
+    data: [],
     loading: false,
     error: ''
 }
