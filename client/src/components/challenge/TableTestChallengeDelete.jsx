@@ -1,7 +1,7 @@
 import React from 'react';
 import './Style.css';
 
-const TableTestChallengeDelete = ({ listTestChallenge }) => {
+const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge}) => {
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -13,7 +13,7 @@ const TableTestChallengeDelete = ({ listTestChallenge }) => {
           <button className="button-table"> VIEW SOURCE AND TEST</button>
           <button
             className="button-table"
-            onClick = {() => this.props.deleteChallenge(challenge.id)}
+            onClick = {() => executeDeleteChallenge(challenge.id)}
           > DELETE </button>
         </td>
       </tr>
