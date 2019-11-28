@@ -21,21 +21,21 @@ class Challenge extends Component {
     else if (this.state.opc==="modify"){
       return (
         <div>
-          {<ModifyChallenge/>}
+          <ModifyChallenge/>
         </div>
       );
     }
     else if (this.state.opc==="delete"){
       return (
         <div>
-          { <DeleteChallenge/> }
+          <DeleteChallenge/>
         </div>
       );
     }
     else if (this.state.opc==="view"){
       return (
         <div>
-          { <ViewChallenge/> }
+          <ViewChallenge/>
         </div>
       );
     }
