@@ -15,10 +15,11 @@ class Challenge extends Component {
       return (
         <div>
           { 
-          <AddChallenge
-            addCompilationChallenge={this.props.addCompilationChallenge}
-            addTestChallenge={this.props.addTestChallenge}
-          /> }
+            <AddChallenge
+              addCompilationChallenge={this.props.addCompilationChallenge}
+              addTestChallenge={this.props.addTestChallenge}
+            /> 
+          }
         </div>
       );
     }
