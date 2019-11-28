@@ -9,6 +9,7 @@ const Responses = ({ responses }) => {
       return (
         <div className="responses card" key={id}>
           <div className="card-content">
+            <p>Re: {responses.username} </p>
             <p>description: { responses.description }</p>
           </div>
         </div>
