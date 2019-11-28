@@ -1,6 +1,7 @@
 package unrc.dose;
 
 import com.google.gson.Gson;
+import java.util.List;
 
 /**
 * Class which calls comment's methods and transforms they to json.
@@ -18,9 +19,8 @@ public final class CommentService {
       final String description,
       final int challengeId,
       final int userId) {
-    Gson g = new Gson();
-    return g.toJson(Comment.createComment(
-      title, description, challengeId, userId));
+    return Comment.createComment(
+      title, description, challengeId, userId).toJson(true);
 
   }
 
@@ -35,8 +35,7 @@ public final class CommentService {
   public String response(final String description,
       final int userId,
       final int commentId) {
-    Gson g = new Gson();
-    return g.toJson(Comment.createResponse(description, userId, commentId));
+    return Comment.createResponse(description, userId, commentId).toJson(true);
 
   }
 
@@ -47,9 +46,28 @@ public final class CommentService {
   *@return a comment transformed to json
   **/
   public String view(final int id, final Object obj) {
-    Gson g = new Gson();
-    return g.toJson(Comment.viewComment(id, obj).toArray());
-
+    List<Comment> c = Comment.viewComment(id, obj);
+    return Comment.toJson(c);
   }
 
+  /**
+  *Invokes the method which return the comment with the id passed by parameter.
+  *@param id the comment's id
+  *@return a comment transformed to toJson
+  **/
+
+  public String find(final int id) {
+    return Comment.findComment(id).toJson(true);
+  }
+  
+  /**
+  *Invokes the method which deletes the comment by the id passed by parameter.
+  *@param id the comment's id
+  *@return void
+  **/
+  public String delete(final int id) {
+    Comment.deleteComment(id);
+    String aux = "ok";
+    return aux;
+  }
 }

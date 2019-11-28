@@ -73,6 +73,7 @@ public class App
                   new CompilationChallengeEndPoint(),
                   new TestChallengeEndPoint(),
                   new PropositionEndpoint(),
+									new CommentEndpoint(),
 				          new ChallengeStatEndpoint()))
           .generateDoc();
       }
@@ -84,12 +85,20 @@ public class App
         return "hello" + req.params(":name");
       });
 
+			spark.options("/*",
+					(req, response) -> {
+						return "OK";
+					}
+			);
+
       spark.get("/users", (req, res) -> {
         res.type("application/json");
 
         LazyList<User> users = User.findAll();
 
         return users.toJson(true, "username", "password");
+
+
       });
     }
 }
