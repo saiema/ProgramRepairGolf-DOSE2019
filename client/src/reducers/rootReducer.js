@@ -10,6 +10,8 @@ import allTestChallengeReducer from './challenge/allTestChallengeReducer'
 import resolvedTestChallengeReducer from './challenge/resolvedTestChallengeReducer'
 import unsolvedTestChallengeReducer from './challenge/unsolvedTestChallengeReducer'
 import challengeReducer from './challenge/challengeReducer'
+import commentsReducer from './comment/commentsReducer'
+import commentReducer from './comment/commentReducer'
 import userReducer from './reducersUser/userReducer'
 import usersReducer from './reducersUser/usersReducer'
 
@@ -26,7 +28,19 @@ import usersReducer from './reducersUser/usersReducer'
 //      data: {},
 //      loading: false,
 //      error: ''
-//    }
+//    },
+//   comments: {
+//      data: [],
+//      count: 0,
+//      loading: false,
+//      error: ''
+//     },
+//    comment: {
+//      data: {},
+//      loading: false,
+//      responses:[],
+//      error:''
+//     },
 // }
 
 const rootReducer = combineReducers({
@@ -42,6 +56,8 @@ const rootReducer = combineReducers({
     resolvedTestChallenge: resolvedTestChallengeReducer,
     unsolvedTestChallenge: unsolvedTestChallengeReducer,
     challenge: challengeReducer,
+    comments: commentsReducer,
+    comment: commentReducer,
     users: usersReducer,
     user: userReducer
 })
