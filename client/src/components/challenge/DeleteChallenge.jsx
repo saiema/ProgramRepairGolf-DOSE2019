@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {fetchAllCompilationChallenge} from '../../actions/compilationChallengeActions'
 import {fetchAllTestChallenge} from '../../actions/testChallengeActions'
 import {
-  deleteChallenge
+  executeDeleteChallenge
 }  from '../../actions/challengeActions';
 import TableTestChallengeDelete from './TableTestChallengeDelete'
 import TableCompilationChallengeDelete from './TableCompilationChallengeDelete'
@@ -28,7 +28,7 @@ class DeleteChallenge extends Component {
             <p>all compilation challenge</p>
             <TableCompilationChallengeDelete
               listCompilationChallenge={this.props.allCompilationChallenge}
-              deleteChallenge={this.props.deleteChallenge}
+              executeDeleteChallenge={this.props.executeDeleteChallenge}
             />
         </div>
       );
@@ -39,7 +39,7 @@ class DeleteChallenge extends Component {
           <p>all test challenge</p>
           <TableTestChallengeDelete
             listTestChallenge={this.props.allTestChallenge}
-            deleteChallenge={this.props.deleteChallenge}
+            executeDeleteChallenge={this.props.executeDeleteChallenge}
           />
         </div>
       );
@@ -93,8 +93,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchAllTestChallenge: () => {
       dispatch(fetchAllTestChallenge())
     },
-    deleteChallenge: (id) => {
-      dispatch(deleteChallenge(id))
+    executeDeleteChallenge: (id) => {
+      dispatch(executeDeleteChallenge(id))
     }
   }
 }

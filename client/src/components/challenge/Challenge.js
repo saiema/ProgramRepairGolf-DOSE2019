@@ -14,32 +14,21 @@ class Challenge extends Component {
     if (this.state.opc === "add") {
       return (
         <div>
-          { 
-            <AddChallenge
-              addCompilationChallenge={this.props.addCompilationChallenge}
-              addTestChallenge={this.props.addTestChallenge}
-            /> 
-          }
+          { <AddChallenge/> }
         </div>
       );
     }
     else if (this.state.opc==="modify"){
       return (
         <div>
-          { <ModifyChallenge/> }
+          {<ModifyChallenge/>}
         </div>
       );
     }
     else if (this.state.opc==="delete"){
       return (
         <div>
-          {
-            <DeleteChallenge
-              listCompilationChallenge={this.props.allCompilationChallenge}
-              listTestChallenge={this.props.allTestChallenge}
-              deleteChallenge={this.props.deleteChallenge}
-            />
-           }
+          { <DeleteChallenge/> }
         </div>
       );
     }
