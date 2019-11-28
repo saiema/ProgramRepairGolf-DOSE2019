@@ -23,6 +23,7 @@ class Comments extends Component{
       return comments.map(comment =>
           <div className="comment card" key={comment.id}>
             <div className="card-content">
+              <p>{comment.username} :</p>
               <p>title: { comment.title } </p>
               <p>description: { comment.description }</p>
               { comment.responses ?(

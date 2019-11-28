@@ -25,6 +25,7 @@ class CommentContainerChallenge extends Component {
  
 
 	render(){
+    console.log(this.props.currentUser_id);
     const press= this.state.press;
     console.log(press);
 		return this.props.loading ? (
@@ -36,7 +37,7 @@ class CommentContainerChallenge extends Component {
       </div>
     {press ? (
       <div>
-        <AddComment challenge_id={this.props.challenge} addComment={this.props.addComment}/>
+        <AddComment user_id={this.props.currentUser_id} challenge_id={this.props.challenge} addComment={this.props.addComment}/>
         </div>
       ):(
         <div></div>
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => {
   return {
     comments: state.comments.data,
     loading: state.comments.loading,
+    currentUser_id: state.user.currentUser.id,
   }
 }
 
