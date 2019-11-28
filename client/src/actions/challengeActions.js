@@ -67,20 +67,12 @@ const fetchDataFailure = error => {
 }
 
 export const addCompilationChallenge = (state) => {
-    console.log("param addCompilationChallenge");
-    console.log(state.user_id);
-    console.log(state.title);
-    console.log(state.class_name);
-    console.log(state.description);
-    console.log(state.source);
-    console.log(state.point);
-    console.log(state.owner_solution_id);
-    console.log("....................");
-    return function(dispatch) {
+    return function(dispatch, getState) {
+        let userid = getState().user.currentUser.id;
         dispatch(fetchDataRequest())
         axios.post('http://localhost:55555/compilationChallenge/create', null, {
             params:{
-                userId: state.user_id,
+                userId: userid,
                 title: state.title,
                 className: state.class_name,
                 description: state.description,
@@ -93,8 +85,6 @@ export const addCompilationChallenge = (state) => {
             }
         })
         .then( res => {
-        console.log("res.data-ADD_COMPILATION");
-        console.log(res.data);
             dispatch(fetchDataSucess(res.data))
         })
         .catch( error => {
@@ -104,11 +94,12 @@ export const addCompilationChallenge = (state) => {
 }
 
 export const addTestChallenge = (state) => {
-    return function(dispatch) {
+    return function(dispatch, getState) {
+        let userid = getState().user.currentUser.id;
         dispatch(fetchDataRequest())
         axios.post('http://localhost:55555/testChallenge/create', null, {
             params:{
-                userId: state.user_id,
+                userId: userid,
                 title: state.title,
                 className: state.class_name,
                 description: state.description,
@@ -122,8 +113,6 @@ export const addTestChallenge = (state) => {
             }
         })
         .then( res => {
-        console.log("res.data-ADD_TEST");
-        console.log(res.data);
             dispatch(fetchDataSucess(res.data))
         })
         .catch( error => {
