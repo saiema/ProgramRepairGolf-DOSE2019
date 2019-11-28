@@ -49,8 +49,8 @@ class ModifyChallenge extends Component {
       <div className="block-button"> <h1> Modify challenge </h1>
       <div className="Block-buttonGroup">
           <ButtonGroup>
-            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedCompilation"})}>unsolved compilation challenge</Button>
-            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedTest"})}>unsolved test challenge</Button>
+            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedCompilation"})}>compilation challenge</Button>
+            <Button className="button-group" onClick={() => this.setState({opc:"unsolvedTest"})}>test challenge</Button>
           </ButtonGroup>
         </div>
         <div>
@@ -89,8 +89,8 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button>View </button>
-          <button> Modify</button>
+          <button className="button-table"> VIEW SOURCE </button>
+          <button className="button-table"> MODIFY </button>
         </td>
       </tr>
     )
@@ -121,8 +121,8 @@ const TableTestChallenge = ({ listTestChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button> View</button>
-          <button>Modify</button>
+          <button className="button-table"> VIEW SOURCE AND TEST</button>
+          <button className="button-table"> MODIFY </button>
         </td>
       </tr>
     )
