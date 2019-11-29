@@ -2,38 +2,47 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Propositions from './Propositions';
 import logo from '../../logo.svg';
-import { fetchPropositions, fetchPropositionsGame } from '../../actions/proposition/propositionsActions';
+import { fetchPropositionsGame } from '../../actions/proposition/propositionsActions';
+
 
 class PropositionContainer extends Component {
 
+  
 	componentDidMount() {
-		this.props.fetchPropositionsGame()
+    console.log(this.props.userId)
+    this.props.fetchPropositionsGame(this.props.userId, this.props.challengeId)
 	}
+  
 
 	render() {
+    console.log("GDGFGFGGFGF " +this.props.description)
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
-			<Propositions propositions={this.props.propositions}/>
+			<Propositions propositions = {this.props.propositions}
+        description = {this.props.description}
+      />
     )
 	}
 }
 
+
 const mapStateToProps = (state) => {
   return {
-  
+    
     propositions: state.propositions.data,
-    //currentUser: state.current,
     loading: state.propositions.loading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPropositionsGame: () => {
-      dispatch(fetchPropositionsGame())
+    fetchPropositionsGame: (userId, challengeId) => {
+      dispatch(fetchPropositionsGame(userId, challengeId))
     }
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(PropositionContainer)
+

@@ -6,10 +6,10 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
 import Navbar from './components/Navbar'
-import PropositionContainer from './components/proposition/PropositionContainer'
 import Challenge from './components/challenge/Challenge'
 import PrivateRoute from './components/PrivateRoute';
 import ResetPass from './components/componentsUser/EmailContainer';
+import PropositionPlay from './components/proposition/PropositionPlay';
 
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path='/' component={Home}/>
             <Route path='/about' component={About} />
             <Route path='/hackers' component={HackersContainer} />
-            <Route path='/propositions' component={PropositionContainer} />
+            <Route path='/propositions' component={PropositionPlay} />
             <Route path='/userstats' component={UserStats} />
             <Route path='/hackers' component={HackersContainer} />
             <Route path="/challenge" component={Challenge} />

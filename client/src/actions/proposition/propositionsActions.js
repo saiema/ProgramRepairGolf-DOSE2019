@@ -26,41 +26,19 @@ const fetchPropositionsFailure = error => {
     }
 }
 
-export const fetchPropositions = () => {
-  return async function(dispatch, getState) {
-    if (getState().propositions.data.length === 0) {
-      dispatch(fetchPropositionsRequest())
-      //const head = new Headers();
-      //head.append('Content-Type','application/json;charset=utf-8');
-      const idUsr=139;
-      axios.post('http://localhost:55555/user/'+idUsr+'/proposition', {
-        headers: {
-          Authorization: "Basic " + localStorage.getItem("token")
-        }
-      })
-        .then( res =>{
-          dispatch(fetchPropositionsSucess(res))
-        })
-        .catch(error => {
-          console.log(error)
-          dispatch(fetchPropositionsFailure(error.message))
-        })
-    }
-  }
-}
 
-export const fetchPropositionsGame = () => {
+//idUsr, idChallenge
+export const fetchPropositionsGame = (idUsr, idChallenge) => {
   return async function(dispatch, getState) {
     if (getState().propositions.data.length === 0) {
       dispatch(fetchPropositionsRequest())
-      const idUsr=139;
-      const idChallenge=22;
       axios.post('http://localhost:55555/users/'+idUsr+'/challenge/'+idChallenge+'/propsitions', null, {
         headers: {
           Authorization: "Basic " + localStorage.getItem("token")
         }
       })
         .then(res => {
+          //console.log("----------------" + res)
           dispatch(fetchPropositionsSucess(res))
         })
         .catch(error => {
@@ -72,10 +50,3 @@ export const fetchPropositionsGame = () => {
 }
 
 
-/*fetch(
-  url:'',
-  method:'GET'
-  headers {
-    Authorization "Basic " + localStorage.getItem("token")
-  }
-)*/
