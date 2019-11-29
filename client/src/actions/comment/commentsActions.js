@@ -48,11 +48,9 @@ const fetchAddCommentFailure = error => {
 export const fetchCommentsUsers = (id) => {
   return function(dispatch, getState) {
       dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
-      const user = localStorage.getItem('username');
-      const pass = localStorage.getItem('password');
+      const token = localStorage.getItem('token');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/users/'+id, {
-        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
+        headers: {'Authorization' : 'Basic '+ token},
       })
         .then( res =>{
           let result = [];
@@ -74,18 +72,16 @@ export const fetchAddComment = (state) => {
   return function(dispatch, getState) {
       console.log(state.challenge_id);
       dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
-      const user = localStorage.getItem('username');
-      const pass = localStorage.getItem('password');
+      const token = localStorage.getItem('token');
        axios.post(process.env.REACT_APP_API_HOST+'/comments/createComment',{
          title: state.title,
          description: state.description,
          userId: state.user_id,
          challengeId: state.challenge_id},{
-        headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
+        headers: {'Authorization' : 'Basic '+ token},
       })
         .then( res =>{
-        
+
           console.log(res.data);
           dispatch(fetchAddCommentsSucess(res.data))
         })
@@ -98,13 +94,11 @@ export const fetchAddComment = (state) => {
 //
 export const fetchCommentsChallenge = (id) => {
   return function(dispatch, getState) {
-   
+
       dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
-      const user = localStorage.getItem('username');
-      const pass = localStorage.getItem('password');
+      const token = localStorage.getItem('token');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/challenges/'+id, {
-         headers: {'Authorization' : 'Basic '+ base64.encode(user+ ":"+ pass)},
+         headers: {'Authorization' : 'Basic '+ token},
       })
         .then( res =>{
           let result = [];
@@ -120,6 +114,5 @@ export const fetchCommentsChallenge = (id) => {
           dispatch(fetchCommentsFailure(error))
         })
     }
-  
-}
 
+}

@@ -6,12 +6,20 @@ import { fetchResponses } from '../../actions/comment/responsesActions';
 
 class ResponsesContainer extends Component {
 
-	componentDidMount() {
-		this.props.fetchResponses(this.props.match.params.id)
-  }
 
+		componentDidMount() {
+				console.log("estoy por ir al fetch eh");
+				this.props.fetchResponses(this.props.match.params.id);
+				console.log("ya volvi a container");
+		}
 
 	render(){
+		console.log(this.props.responses);
+    console.log(this.props.match.params.id);
+    console.log(this.props.comment_id);
+		const comment_id= this.props.match.params.id;
+    console.log("aqui señora");
+    console.log(this.props.responses[comment_id]);
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
@@ -28,8 +36,8 @@ class ResponsesContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    responses: state.comment.responses,
-    loading: state.comment.responses.loading,
+    responses: state.responses.data,
+    loading: state.responses.loading,
   }
 }
 

@@ -36,7 +36,7 @@ class Comments extends Component{
               )}
               {id === comment.id & press ?(
                 <div>
-                <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id}/>
+                <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
                 </div>
               ):(
                 <div>
@@ -77,8 +77,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    comments: state.comments.data,
     loading: state.comments.loading,
+    currentUser_id: state.user.currentUser.id,
   }
 }
 

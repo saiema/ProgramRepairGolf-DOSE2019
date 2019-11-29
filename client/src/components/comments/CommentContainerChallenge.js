@@ -22,7 +22,7 @@ class CommentContainerChallenge extends Component {
     this.setState({press:true});
   }
 
- 
+
 
 	render(){
     console.log(this.props.currentUser_id);

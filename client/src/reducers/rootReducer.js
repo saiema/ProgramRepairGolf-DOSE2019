@@ -30,15 +30,14 @@ import usersReducer from './reducersUser/usersReducer'
 //      error: ''
 //    },
 //   comments: {
-//      data: [],
+//      data: [{comment}]
 //      count: 0,
 //      loading: false,
 //      error: ''
 //     },
-//    comment: {
-//      data: {},
+//    responses: {
+//      data: [ (id, [{comment}]) ],
 //      loading: false,
-//      responses:[],
 //      error:''
 //     },
 // }
@@ -57,7 +56,7 @@ const rootReducer = combineReducers({
     unsolvedTestChallenge: unsolvedTestChallengeReducer,
     challenge: challengeReducer,
     comments: commentsReducer,
-    comment: commentReducer,
+    responses: commentReducer,
     users: usersReducer,
     user: userReducer
 })
