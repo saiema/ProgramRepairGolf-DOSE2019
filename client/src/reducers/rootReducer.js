@@ -37,6 +37,7 @@ import usersReducer from './reducersUser/usersReducer'
 //     },
 //    responses: {
 //      data: [ (id, [{comment}]) ],
+//      count:0,
 //      loading: false,
 //      error:''
 //     },

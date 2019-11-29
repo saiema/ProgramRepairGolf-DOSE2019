@@ -70,7 +70,6 @@ export const fetchCommentsUsers = (id) => {
 //
 export const fetchAddComment = (state) => {
   return function(dispatch, getState) {
-      console.log(state.challenge_id);
       dispatch(fetchCommentsRequest())
       const token = localStorage.getItem('token');
        axios.post(process.env.REACT_APP_API_HOST+'/comments/createComment',{

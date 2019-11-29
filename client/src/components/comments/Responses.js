@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 
 const Responses = ({ responses, id }) => {
   console.log(responses);
-
-  console.log(responses[id]);
   console.log(id);
  let result = [];
  Object.values(responses).forEach(item => {

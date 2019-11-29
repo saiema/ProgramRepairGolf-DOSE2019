@@ -8,6 +8,7 @@ import {
 
 const initCommentState = {
       data: {},
+      count:0,
       loading: false,
       error:''
 }
@@ -21,14 +22,11 @@ const commentReducer = (state = initCommentState, action) => {
             }
 
         case FETCH_RESPONSES_SUCCESS:
-        		console.log("con ustedes, lo que tenia: ");
-        		console.log(state.data);
-        		console.log("y lo nuevo: ");
-        		console.log(action.payload);
             return {
                 ...state,
                 loading: false,
                 data: responses(state.data, action.payload),
+                count: action.payload.length,
                 error: ''
             }
 
@@ -44,12 +42,14 @@ const commentReducer = (state = initCommentState, action) => {
                     ...state,
                     loading:false,
                     data: add_response(state.data, action.payload),
+                    count:state.count + 1
             }
             case FETCH_ADD_RESPONSE_FAILURE:
               return{
                 ...state,
                 loading: false,
                 error: action.payload,
+                count:0
             }
 
         default:
@@ -59,7 +59,7 @@ const commentReducer = (state = initCommentState, action) => {
 
  function add_response(responses, response) {
    const existingResponses = responses[response.comment_id];
-   if(typeof existingResponses === 'undefined') {
+   if(responses === []) {
      existingResponses.push(response)
    } else {
      const comment_id= response.comment_id;
@@ -68,13 +68,8 @@ const commentReducer = (state = initCommentState, action) => {
    return responses;
  }
 function responses(responses, newResponse) {
-  console.log("en reponses jiji");
     const comment_id= newResponse[0].comment_id;
-    console.log("el comment_id");
-    console.log(comment_id);
   responses[comment_id]= newResponse;
-  console.log("y retorno");
-  console.log(responses);
   return responses;
 }
 

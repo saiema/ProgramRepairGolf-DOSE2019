@@ -49,7 +49,6 @@ export const fetchResponses = (id) => {
         headers: {'Authorization' : 'Basic '+ token},
       })
         .then( res =>{
-        console.log("me fue bien en el fetch");
           let result = [];
 
           Object.values(res.data).forEach(item => {
@@ -63,7 +62,6 @@ export const fetchResponses = (id) => {
           dispatch(fetchResponsesSucess(result))
         })
         .catch(error => {
-        console.log("me fue mal :(");
           console.log(error)
           dispatch(fetchResponsesFailure(error))
         })

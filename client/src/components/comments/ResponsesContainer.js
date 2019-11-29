@@ -2,25 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Responses from './Responses';
 import logo from '../../logo.svg';
+import Comment from './Comment';
 import { fetchResponses } from '../../actions/comment/responsesActions';
+import AddResponse from './AddResponse';
 
 class ResponsesContainer extends Component {
 
 
 	componentDidMount() {
-				console.log("estoy por ir al fetch eh");
 				this.props.fetchResponses(this.props.match.params.id);
-				console.log("ya volvi a container");
 		}
-
+// <Comment comment={this.props.comment} />
+//REsponse
+// <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id} />
 	render(){
+    console.log(this.props.location);
 		console.log(this.props.responses);
     console.log(this.props.match.params.id);
-    console.log(this.props.comment_id);
+    console.log(this.props.comment);
 		const comment_id= this.props.match.params.id;
     console.log("aqui señora");
     const res=this.props.responses[comment_id];
-    console.log(res);
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
@@ -29,6 +31,7 @@ class ResponsesContainer extends Component {
 			  <Responses
 				 responses={this.props.responses} id={this.props.match.params.id}
 			  />
+       
        </div>
       </div>
 		)
@@ -39,6 +42,7 @@ const mapStateToProps = (state) => {
   return {
     responses: state.responses.data,
     loading: state.responses.loading,
+    //    currentUser_id: state.user.currentUser.id,
   }
 }
 
@@ -48,6 +52,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchResponses: (id) => {
       dispatch(fetchResponses(id))
     },
+    // addResponse: (res) => {
+    //   dispatch(fetchAddResponse(res))
+    // },
   }
 }
 

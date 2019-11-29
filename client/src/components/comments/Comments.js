@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import AddResponse from './AddResponse';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import {fetchAddResponse} from '../../actions/comment/responsesActions';
+import Comment from './Comment';
 
 class Comments extends Component{
     state={
@@ -22,30 +19,7 @@ class Comments extends Component{
       console.log(press);
       return comments.map(comment =>
           <div className="comment card" key={comment.id}>
-            <div className="card-content">
-              <p>{comment.username} :</p>
-              <p>title: { comment.title } </p>
-              <p>description: { comment.description }</p>
-              { comment.responses ?(
-                <div>
-              <Link to={'/responses/'+ comment.id} comment_id={comment.id}> Show responses </Link>
-               </div>
-               ):(
-               <div>
-               </div>
-              )}
-              {id === comment.id & press ?(
-                <div>
-                <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
-                </div>
-              ):(
-                <div>
-                  <button onClick={this.handleClick(comment.id)}> Reply</button>
-                </div>
-              )}
-
-
-            </div>
+              <Comment comment={comment}/>
 
           </div>
 
@@ -66,20 +40,6 @@ class Comments extends Component{
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-  console.log();
-  return {
-    addResponse: (res) => {
-      dispatch(fetchAddResponse(res))
-    },
-  }
-}
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.comments.loading,
-    currentUser_id: state.user.currentUser.id,
-  }
-}
 
-export default  connect(mapStateToProps, mapDispatchToProps)(Comments)
+export default  Comments

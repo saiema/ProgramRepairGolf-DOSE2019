@@ -12,9 +12,6 @@ class CommentContainerChallenge extends Component {
     press:false
   }
 	componentDidMount() {
-    console.log("componentDidMount");
-    console.log(this.props.challenge);
-    console.log("end");
 		this.props.fetchCommentsChallenge(this.props.challenge)
   }
 
