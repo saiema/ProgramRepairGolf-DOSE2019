@@ -1,8 +1,7 @@
 import React from 'react';
 import './Style.css';
 
-
-const TableCompilationChallengeDelete = ({ listCompilationChallenge }) => {
+const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDeleteChallenge}) => {
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -14,7 +13,7 @@ const TableCompilationChallengeDelete = ({ listCompilationChallenge }) => {
           <button className="button-table"> VIEW SOURCE </button>
           <button
             className="button-table"
-            onClick = {() => this.props.deleteChallenge(challenge.id)}
+            onClick = {() => executeDeleteChallenge(challenge.id)}
           > DELETE </button>
         </td>
       </tr>

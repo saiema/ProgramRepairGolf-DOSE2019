@@ -4,7 +4,7 @@ import {
     MODIFY_COMPILATION_CHALLENGE,
     ADD_TEST_CHALLENGE,
     MODIFY_TEST_CHALLENGE,
-    //DELETE_CHALLENGE,
+    DELETE_CHALLENGE,
     FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAILURE
@@ -38,12 +38,12 @@ export const modifyTestChallenge = (challenge) => {
     }
 }
 
-// export const deleteChallenge = (id) => {
-//   return {
-//     type: DELETE_CHALLENGE,
-//     id
-//   }
-// }
+export const deleteChallenge = (id) => {
+  return {
+    type: DELETE_CHALLENGE,
+    id
+  }
+}
 
 
 const fetchDataRequest = () => {
@@ -121,24 +121,24 @@ export const addTestChallenge = (state) => {
     }
 }
 
-// export const deleteChallenge = (id) => {
-//     console.log("param delete");
-//     console.log(id);
-//     return function(dispatch) {
-//         dispatch(fetchDataRequest())
-//         axios.delete('http://localhost:55555//challenge/' + id )
-//         .then( res => {
-//         console.log("res.data-DELETE");
-//         console.log(res.data);
-//             dispatch(fetchDataSucess(id))
-//         })
-//         .catch( error => {
-//             dispatch(fetchDataFailure(error.message))
-//         })
-//     }
-// }
+export const executeDeleteChallenge = (id) => {
+    return function(dispatch) {
+        dispatch(fetchDataRequest())
+        axios.delete('http://localhost:55555/challenge/' + id , {
+            headers: {
+                Authorization: "Basic" + localStorage.getItem("token")
+            }
+        })
+        .then( res => {
+            dispatch(fetchDataSucess(res.data))
+        })
+        .catch( error => {
+            dispatch(fetchDataFailure(error.message))
+        })
+    }
+}
 
-// export const modifyCompilationChallenge = (state) =>{
+//export const modifyCompilationChallenge = (state) =>{
 //     return function(dispatch) {
 //         dispatch(fetchDataRequest())
 //         axios.put('http://localhost:55555/compilationChallenge/modify', {
