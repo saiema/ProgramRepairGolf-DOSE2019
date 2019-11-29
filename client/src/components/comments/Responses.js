@@ -2,15 +2,32 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const Responses = ({ responses }) => {
+const Responses = ({ responses, id }) => {
   console.log(responses);
-    const responsesList = responses.map(responses => {
-      const id = responses.id;
+
+  console.log(responses[id]);
+  console.log(id);
+ let result = [];
+ Object.values(responses).forEach(item => {
+   console.log(item === responses[id]);
+    if(item === responses[id]){
+     result = result.concat(item);
+    }
+ }) 
+ 
+// const a=responses.forEach(element => 
+//   console.log(element)
+// );
+
+  //const responsesList = 2;
+    const responsesList = Object.keys(result).map((key, index) => {
+      const res = result[key];
+      console.log(res);
       return (
-        <div className="responses card" key={id}>
+        <div className="responses card" key={key}>
           <div className="card-content">
-            <p>Re: {responses.username} </p>
-            <p>description: { responses.description }</p>
+            <p>Re: {res.username} </p>
+            <p>description: { res.description }</p>
           </div>
         </div>
       )

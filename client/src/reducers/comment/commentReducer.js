@@ -72,7 +72,6 @@ function responses(responses, newResponse) {
     const comment_id= newResponse[0].comment_id;
     console.log("el comment_id");
     console.log(comment_id);
-  const existingResponses = responses[comment_id];
   responses[comment_id]= newResponse;
   console.log("y retorno");
   console.log(responses);
