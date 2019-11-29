@@ -11,16 +11,16 @@ public class BasicAuth {
     Password passUser = Password.findFirst("username = ?", creds[0]);
     if(passUser != null) {
 
-    byte[] salt = (byte[]) passUser.get("salt");
+      byte[] salt = (byte[]) passUser.get("salt");
 
-    byte[] passSaved = Password.hash(pass.toCharArray(), salt);
+      byte[] passSaved = Password.hash(pass.toCharArray(), salt);
 
-    return User.findFirst(
-      "username = ? AND password = ?",
-      creds[0],
-      passSaved
-    ) != null;
-    }else {
+      return User.findFirst(
+        "username = ? AND password = ?",
+        creds[0],
+        passSaved
+        ) != null;
+    } else {
       return false;
     }
   }

@@ -1,5 +1,3 @@
-import React from "react";
-import Navbar from './Navbar';
 
 
 const Authorization = {
@@ -18,7 +16,8 @@ const Authorization = {
       })
       .then(function(response) {
         Authorization.isAuthenticated = true;
-        localStorage.setItem('token', base64.encode(user+ ":"+ pass));
+        localStorage.setItem('username', user);
+        localStorage.setItem('password', pass);
       })
       .catch( error => {
         Authorization.isAuthenticated = false;
@@ -26,7 +25,8 @@ const Authorization = {
     },
     signout(cb) {
       Authorization.isAuthenticated = false;
-      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('pass');
     }
 }
 

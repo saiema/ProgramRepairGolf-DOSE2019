@@ -16,7 +16,7 @@ export default class Login extends Component{
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to= "/propositions" />
+      return <Redirect to= "/userstats" />
     }
   }
 
@@ -46,13 +46,10 @@ export default class Login extends Component{
       }
       let ingresa = () => {
         f.authenticate(this.state.username, this.state.password);
-        if(localStorage.getItem('token') != null){
+        if(localStorage.getItem('username') != null){
             setRedirect();
         }
       }
-    let logout = () => {
-      f.signout();
-    }
 
       return (
         <div >
@@ -73,7 +70,6 @@ export default class Login extends Component{
               </div>
               <button onClick={ingresa} >Iniciar sesión</button>
             </form>
-              <button onClick={logout} >prueba</button>
           </div>
           <Link to="/resetPassword">Forgot password?</Link>
         </div>

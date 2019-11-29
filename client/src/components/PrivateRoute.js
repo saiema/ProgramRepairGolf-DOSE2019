@@ -13,11 +13,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchHackers: () => {
-//       //dispatch(fetchHackers())
-//     }
-//   }
-// }
 export default PrivateRoute
