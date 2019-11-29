@@ -1,7 +1,8 @@
 import {
     FETCH_UNSOLVED_COMPILATION_CHALLENGE_REQUEST,
     FETCH_UNSOLVED_COMPILATION_CHALLENGE_SUCCESS,
-    FETCH_UNSOLVED_COMPILATION_CHALLENGE_FAILURE
+    FETCH_UNSOLVED_COMPILATION_CHALLENGE_FAILURE,
+    DELETE_CHALLENGE
 } from '../../constants/ActionTypesChallenges'
 
 const initCompilationChallengeState = {
@@ -35,6 +36,12 @@ const unsolvedCompilationChallengeReducer = (state = initCompilationChallengeSta
                 loading: false,
                 data: [],
                 error: action.payload,
+            }
+
+        case DELETE_CHALLENGE:
+            return {
+                ...state,
+                data: state.data.filter(challenge => challenge.id !== action.id)
             }
 
         default:

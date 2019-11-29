@@ -63,11 +63,6 @@ const challengeReducer = (state = initChallengeState, action) => {
                 data: {},
                 error: action.payload,
             }
-        // case DELETE_CHALLENGE:
-        //     return {
-        //         ...state,
-        //         data: state.data.filter(challenge => challenge.id !== action.id)
-        //     }
 
         default:
             return state

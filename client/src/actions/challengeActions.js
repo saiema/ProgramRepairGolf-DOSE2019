@@ -123,7 +123,7 @@ export const addTestChallenge = (state) => {
 
 export const executeDeleteChallenge = (id) => {
     return function(dispatch) {
-        dispatch(fetchDataRequest())
+        dispatch(deleteChallenge(id))
         axios.delete('http://localhost:55555/challenge/' + id , {
             headers: {
                 Authorization: "Basic" + localStorage.getItem("token")

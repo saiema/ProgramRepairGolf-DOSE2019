@@ -14,7 +14,7 @@ class Challenge extends Component {
     if (this.state.opc === "add") {
       return (
         <div>
-          { <AddChallenge/> }
+          <AddChallenge/>
         </div>
       );
     }
