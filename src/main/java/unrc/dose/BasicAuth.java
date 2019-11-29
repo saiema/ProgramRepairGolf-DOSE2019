@@ -9,6 +9,8 @@ public class BasicAuth {
     final String[] creds = getCredentials(headerAuth);
     String pass = creds[1];
     Password passUser = Password.findFirst("username = ?", creds[0]);
+    if(passUser != null) {
+
     byte[] salt = (byte[]) passUser.get("salt");
 
     byte[] passSaved = Password.hash(pass.toCharArray(), salt);
@@ -18,6 +20,9 @@ public class BasicAuth {
       creds[0],
       passSaved
     ) != null;
+    }else {
+      return false;
+    }
   }
 
   static User getUser(String headerAuth) {

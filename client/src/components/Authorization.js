@@ -1,8 +1,5 @@
-import React from 'react';
-import axios from 'axios';
-import {
-  FETCH_USERS_FAILURE
-} from '../constants/constantsUser/ActionTypes'
+import React from "react";
+import Navbar from './Navbar';
 
 
 const Authorization = {
@@ -24,13 +21,12 @@ const Authorization = {
         localStorage.setItem('token', base64.encode(user+ ":"+ pass));
       })
       .catch( error => {
-        Authorization.isAuthenticated = false
+        Authorization.isAuthenticated = false;
       })
     },
     signout(cb) {
       Authorization.isAuthenticated = false;
       localStorage.removeItem('token');
-      alert('Deslogueado exitosamente');
     }
 }
 

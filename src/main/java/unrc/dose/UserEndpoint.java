@@ -126,8 +126,15 @@ public final class UserEndpoint implements Endpoint {
                 .withResponseType(String.class),
             (req, res) -> {
             Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
+            String email = (String) bodyParams.get("email_address");
 
-                return(User.resetPassword((String)bodyParams.get("email_address")));
+            if(User.resetPassword(email)) {
+                res.status(200);
+            } else {
+                res.status(401);
+            }
+            System.out.println(res.status());
+              return "";
             }
         )
 

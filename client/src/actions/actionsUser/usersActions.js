@@ -116,7 +116,6 @@ export const login = (user, pass) =>{
       })
       .then(function(myJson) {
         dispatch(fetchUserSucess(myJson));
-        alert('Usuario logueado correctamente');
      })
      .catch( error => {
        dispatch(fetchUserFailure(error.message));
@@ -131,13 +130,18 @@ export const login = (user, pass) =>{
      dispatch(fetchUserRequest())
       fetch('http://localhost:55555/user/resetPassword', {
        method: 'PUT',
-       body:JSON.stringify({'email_address': email})
+       body:JSON.stringify({'email_address': email}),
+       mode:'cors',
+       cache:'default',
        })
-       .then( res =>{
-         dispatch(fetchUserSucess(res.data))
+       .then(function(response) {
+         dispatch(fetchUserSucess(response.data));
+         alert('Email enviado exitosamente.')
        })
        .catch(error => {
-         dispatch(fetchUserFailure(error.message))
+         dispatch(fetchUserFailure(error.message));
+         alert('No existe ningun usuario asociado al mail cargado.')
+
        })
     }
   }
