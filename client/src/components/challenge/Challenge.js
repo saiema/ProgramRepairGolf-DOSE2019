@@ -14,6 +14,9 @@ import {
   fetchResolvedTestChallenge,
   fetchUnsolvedTestChallenge
 } from '../../actions/testChallengeActions'
+import { 
+  fetchChallengesAssociatedToUser
+} from '../../actions/challengeActions'
 
 class Challenge extends Component {
 
@@ -28,6 +31,7 @@ class Challenge extends Component {
     this.props.fetchAllTestChallenge();
     this.props.fetchResolvedTestChallenge();
     this.props.fetchUnsolvedTestChallenge();
+    this.props.fetchChallengesAssociatedToUser();
   }
 
   show(){
@@ -68,6 +72,7 @@ class Challenge extends Component {
             allTestChallenge = {this.props.allTestChallenge}
             resolvedTestChallenge = {this.props.resolvedTestChallenge}
             unsolvedTestChallenge = {this.props.unsolvedTestChallenge}
+            challengesAssociatedToUser = {this.props.challengesAssociatedToUser}
           />
         </div>
       );
@@ -112,6 +117,7 @@ const mapStateToProps = (state) => {
     allTestChallenge: state.allTestChallenge.data,
     resolvedTestChallenge: state.resolvedTestChallenge.data,
     unsolvedTestChallenge: state.unsolvedTestChallenge.data,
+    challengesAssociatedToUser: state.challengesAssociatedToUser.data,
   }
 }
 
@@ -134,6 +140,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchUnsolvedTestChallenge: () => {
       dispatch(fetchUnsolvedTestChallenge())
+    },
+    fetchChallengesAssociatedToUser: () => {
+      dispatch(fetchChallengesAssociatedToUser())
     }
   }
 }

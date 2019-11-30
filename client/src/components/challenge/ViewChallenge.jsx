@@ -64,6 +64,15 @@ class ViewChallenge extends Component {
           </div>
         );
       }
+    else if (this.state.opc==="challengesAssociatedToUser"){
+      return (
+          <div className="container">
+            <TableCompilationChallenge
+              listCompilationChallenge={this.props.challengesAssociatedToUser}
+            />
+        </div>
+      );
+    }
     else {
       return (
         <div> </div>
@@ -84,6 +93,7 @@ class ViewChallenge extends Component {
             <Button className="button-group" onClick={() => this.setState({opc:"allTest"})}>all test challenge</Button> 
             <Button className="button-group" onClick={() => this.setState({opc:"unsolvedTest"})}>unsolved test challenge</Button>
             <Button className="button-group" onClick={() => this.setState({opc:"resolvedTest"})}>resolved test challenge</Button>
+            <Button className="button-group" onClick={() => this.setState({opc:"challengesAssociatedToUser"})}>created by you</Button>
           </ButtonGroup>
         </div>
         <div>

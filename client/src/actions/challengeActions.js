@@ -7,7 +7,10 @@ import {
     DELETE_CHALLENGE,
     FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
-    FETCH_DATA_FAILURE
+    FETCH_DATA_FAILURE,
+    FETCH_CHALLENGES_ASSOCIATED_TO_USER_REQUEST,
+    FETCH_CHALLENGES_ASSOCIATED_TO_USER_SUCCESS,
+    FETCH_CHALLENGES_ASSOCIATED_TO_USER_FAILURE
 } from '../constants/ActionTypesChallenges'
 
 export const cretateCompilationChallenge = (challenge) => {
@@ -69,6 +72,9 @@ export const addCompilationChallenge = (state) => {
     return function(dispatch, getState) {
         let userid = getState().user.currentUser.id;
         dispatch(fetchDataRequest(state))
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+
         axios.post('http://localhost:55555/compilationChallenge/create', null, {
             params:{
                 userId: userid,
@@ -80,7 +86,7 @@ export const addCompilationChallenge = (state) => {
                 ownerSolutionId: state.owner_solution_id
             },
             headers: {
-                Authorization: "Basic" + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
         .then( res => {
@@ -96,6 +102,9 @@ export const addTestChallenge = (state) => {
     return function(dispatch, getState) {
         let userid = getState().user.currentUser.id;
         dispatch(fetchDataRequest())
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+
         axios.post('http://localhost:55555/testChallenge/create', null, {
             params:{
                 userId: userid,
@@ -108,7 +117,7 @@ export const addTestChallenge = (state) => {
                 test: state.test
             },
             headers: {
-                Authorization: "Basic" + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
         .then( res => {
@@ -121,11 +130,14 @@ export const addTestChallenge = (state) => {
 }
 
 export const executeDeleteChallenge = (id) => {
-    return function(dispatch) {
+    return function(dispatch, getState) {
         dispatch(deleteChallenge(id))
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+
         axios.delete('http://localhost:55555/challenge/' + id , {
             headers: {
-                Authorization: "Basic" + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
         .then( res => {
@@ -181,3 +193,46 @@ export const executeDeleteChallenge = (id) => {
 //         })
 //     }
 // }
+
+const fetchChallengesAssociatedToUserRequest = () => {
+    return {
+      type: FETCH_CHALLENGES_ASSOCIATED_TO_USER_REQUEST
+    }
+}
+
+const fetchChallengesAssociatedToUserSucess = data => {
+    return {
+        type: FETCH_CHALLENGES_ASSOCIATED_TO_USER_SUCCESS,
+        payload: data
+    }
+}
+
+const fetchChallengesAssociatedToUserFailure = error => {
+    return {
+        type: FETCH_CHALLENGES_ASSOCIATED_TO_USER_FAILURE,
+        payload: error
+    }
+}
+
+export const fetchChallengesAssociatedToUser = () => {
+    return function(dispatch, getState) {
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+        let userid = getState().user.currentUser.id;
+
+        dispatch(fetchChallengesAssociatedToUserRequest())
+        axios.get('http://localhost:55555/challenge/user/' + userid , {
+            headers: {
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
+            }
+        })
+        .then( res => {
+            console.log("res.data");
+            console.log(res.data);
+            dispatch(fetchChallengesAssociatedToUserSucess(res.data))
+        })
+        .catch( error => {
+            dispatch(fetchChallengesAssociatedToUserFailure(error.message))
+        })
+    }
+}
