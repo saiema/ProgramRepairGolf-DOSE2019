@@ -3,6 +3,9 @@ package unrc.dose;
 import static com.beerboy.ss.descriptor.EndpointDescriptor.endpointPath;
 import static com.beerboy.ss.descriptor.MethodDescriptor.path;
 
+import java.util.Map;
+import com.google.gson.Gson;
+
 import com.beerboy.ss.SparkSwagger;
 import com.beerboy.ss.rest.Endpoint;
 
@@ -70,6 +73,19 @@ public final class CommentEndpoint implements Endpoint {
               Integer.parseInt(req.params(":id")), new Comment());
           }
       )
+        .get(
+          path("/comment/:id")
+            .withDescription(
+              "Will return the comment with the id passed as a parameter")
+            .withPathParam()
+              .withName("id")
+              .withDescription("comment's id").and()
+            .withResponseType(String.class),
+          (req, res) -> {
+            return commentService.find(
+              Integer.parseInt(req.params(":id")));
+          }
+      )
         .post(
           path("/createComment")
               .withDescription("Creates a new Comment")
@@ -87,10 +103,11 @@ public final class CommentEndpoint implements Endpoint {
                   .withDescription(" user's id who commented").and()
               .withResponseType(String.class),
           (req, res) -> {
-              return commentService.comment(req.queryParams("title"),
-                     req.queryParams("description"),
-                     Integer.parseInt(req.queryParams("challengeId")),
-                     Integer.parseInt(req.queryParams("userId")));
+            Map<String, Object> bodyParams = new Gson().fromJson(req.body(), Map.class);
+              return commentService.comment(bodyParams.get("title").toString(),
+                     bodyParams.get("description").toString(),
+                     Integer.parseInt(bodyParams.get("challengeId").toString()),
+                     Integer.parseInt(bodyParams.get("userId").toString()));
 
           }
       )
@@ -109,11 +126,25 @@ public final class CommentEndpoint implements Endpoint {
               .withResponseType(String.class),
                "application/json",
           (req, res) -> {
-              return commentService.response(req.queryParams(
-                    "description"), Integer.parseInt(req.queryParams("userId")),
-                      Integer.parseInt(req.queryParams("commentId")));
+    
+             Map<String, Object> bodyParams = new Gson().fromJson(req.body(), Map.class);
+              return commentService.response(bodyParams.get(
+                    "description").toString(), Integer.parseInt(bodyParams.get("userId").toString()),
+                      Integer.parseInt(bodyParams.get("commentId").toString()));
           }
-      );
+      )
+      .post(
+        path("/deleteComment")
+            .withDescription("Deletes a Comment with it's Responses")
+            .withQueryParam()
+                .withName("id")
+                .withDescription("Response's body").and()
+            .withResponseType(String.class),
+             "application/json",
+        (req, res) -> {
+            return commentService.delete(Integer.parseInt(req.queryParams("commentId")));
+        }
+    );
   }
 
 }
