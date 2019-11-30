@@ -59,9 +59,14 @@ const commentReducer = (state = initCommentState, action) => {
 
  function add_response(responses, response) {
    const existingResponses = responses[response.comment_id];
-   if(responses === []) {
+   console.log("a ver");
+   console.log(existingResponses);
+   console.log(existingResponses==='undefined');
+   if(typeof existingResponses !== 'undefined') {
+     console.log("Hay che");
      existingResponses.push(response)
    } else {
+     console.log("no che");
      const comment_id= response.comment_id;
      responses[comment_id]= response
    }

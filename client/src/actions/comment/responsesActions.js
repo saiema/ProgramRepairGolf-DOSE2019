@@ -81,10 +81,12 @@ export const fetchAddResponse = (state) => {
       })
         .then( res =>{
           console.log(res.data);
+          alert('Reply send');
           dispatch(fetchAddResponseSucess(res.data))
         })
         .catch(error => {
           console.log(error)
+          alert('Error: No se puede enviar una respuesta vacia');
           dispatch(fetchAddResponseFailure(error))
         })
     }
