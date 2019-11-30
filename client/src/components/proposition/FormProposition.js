@@ -29,12 +29,15 @@ class FormProposition extends Component {
     onClickCompile = (event) => {
         const idProp = this.state.idProp;
         const source = this.state.code;
+
+        let base64 = require("base-64");
+        let username = this.props.currentUser.username;
         axios.get('http://localhost:55555/proposition/'+idProp+'/compile', {
             params: {
                 source: source
             },
             headers: {
-                Authorization: "Basic " + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
          .then((res) => {
@@ -53,13 +56,15 @@ class FormProposition extends Component {
     onClickSolution = (event) => {
         const idProp = this.state.idProp;
         const source2 = this.state.code;
-        console.log(source2);
+
+        let base64 = require("base-64");
+        let username = this.props.currentUser.username;
         axios.get('http://localhost:55555/proposition/'+idProp+'/submit', {
             params: {
                 source: source2
             },
             headers: {
-                Authorization: "Basic " + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
         .then((res) => {

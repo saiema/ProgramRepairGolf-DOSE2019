@@ -7,7 +7,7 @@ import FormProposition from "./FormProposition";
 
 
   
-const Propositions = ({propositions, description}) => {
+const Propositions = ({propositions, description, currentUser}) => {
   const id = propositions.id
   
   return (
@@ -18,20 +18,14 @@ const Propositions = ({propositions, description}) => {
         
       </div>
 
-      <FormProposition code={propositions.source} idProp={propositions.id} />
+      <FormProposition 
+        code={propositions.source}
+        idProp={propositions.id}
+        currentUser={currentUser}/>
     </div>
   );
 
 
 }
-
-
-  
-
-    
-     
-
-
-
 
 export default Propositions

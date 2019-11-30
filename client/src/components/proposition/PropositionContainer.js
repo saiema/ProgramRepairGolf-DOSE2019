@@ -9,18 +9,18 @@ class PropositionContainer extends Component {
 
   
 	componentDidMount() {
-    console.log(this.props.userId)
+    console.log(this.props)
     this.props.fetchPropositionsGame(this.props.userId, this.props.challengeId)
 	}
   
 
 	render() {
-    console.log("GDGFGFGGFGF " +this.props.description)
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
 			<Propositions propositions = {this.props.propositions}
         description = {this.props.description}
+        currentUser = {this.props.currentUser}
       />
     )
 	}
@@ -29,8 +29,8 @@ class PropositionContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
     propositions: state.propositions.data,
+    currentUser: state.user.currentUser,
     loading: state.propositions.loading
   }
 }

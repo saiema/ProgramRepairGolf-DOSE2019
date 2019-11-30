@@ -26,19 +26,18 @@ const fetchPropositionsFailure = error => {
     }
 }
 
-
-//idUsr, idChallenge
 export const fetchPropositionsGame = (idUsr, idChallenge) => {
   return async function(dispatch, getState) {
     if (getState().propositions.data.length === 0) {
       dispatch(fetchPropositionsRequest())
+      let base64 = require("base-64");
+      let username = getState().user.currentUser.username;
       axios.post('http://localhost:55555/users/'+idUsr+'/challenge/'+idChallenge+'/propsitions', null, {
         headers: {
-          Authorization: "Basic " + localStorage.getItem("token")
+          Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
         }
       })
         .then(res => {
-          //console.log("----------------" + res)
           dispatch(fetchPropositionsSucess(res))
         })
         .catch(error => {
