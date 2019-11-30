@@ -76,7 +76,7 @@ class AddChallenge extends Component {
         </div>
         <div className="block-margin">
           <label htmlFor="point">points:</label>
-          <input className="input-text" type="text" id="point" onChange={this.handleChange} />
+          <input className="input-text" type="number" id="point" onChange={this.handleChange} />
         </div>
     </div>
     );
