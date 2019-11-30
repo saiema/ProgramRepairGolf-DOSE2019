@@ -1,8 +1,6 @@
 import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
 import { connect } from 'react-redux'
-import {fetchAllCompilationChallenge} from '../../actions/compilationChallengeActions'
-import {fetchAllTestChallenge} from '../../actions/testChallengeActions'
 import {
   executeDeleteChallenge
 }  from '../../actions/challengeActions';
@@ -16,16 +14,10 @@ class DeleteChallenge extends Component {
     opc: ""
   }
 
-  componentDidMount() {
-    this.props.fetchAllCompilationChallenge();
-    this.props.fetchAllTestChallenge();
-  }
-
   show(){
     if (this.state.opc === "allCompilation") {
       return (
         <div className="container">
-            <p>all compilation challenge</p>
             <TableCompilationChallengeDelete
               listCompilationChallenge={this.props.allCompilationChallenge}
               executeDeleteChallenge={this.props.executeDeleteChallenge}
@@ -36,7 +28,6 @@ class DeleteChallenge extends Component {
     else if (this.state.opc==="allTest"){
       return (
         <div className="container">
-          <p>all test challenge</p>
           <TableTestChallengeDelete
             listTestChallenge={this.props.allTestChallenge}
             executeDeleteChallenge={this.props.executeDeleteChallenge}
@@ -77,22 +68,14 @@ class DeleteChallenge extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {
-    allCompilationChallenge: state.allCompilationChallenge.data,
-    allTestChallenge: state.allTestChallenge.data,
-    challenge: state.challenge.data
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllCompilationChallenge: () => {
-      dispatch(fetchAllCompilationChallenge())
-    },
-    fetchAllTestChallenge: () => {
-      dispatch(fetchAllTestChallenge())
-    },
     executeDeleteChallenge: (id) => {
       dispatch(executeDeleteChallenge(id))
     }

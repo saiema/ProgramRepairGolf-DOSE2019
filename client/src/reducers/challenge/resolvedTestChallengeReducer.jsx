@@ -13,9 +13,9 @@ const initTestChallengeState = {
 
 
 const resolvedTestChallengeReducer = (state = initTestChallengeState, action) => {
-    
+
     switch(action.type) {
-        
+
         case FETCH_RESOLVED_TEST_CHALLENGE_REQUEST:
             return {
                 ...state,
@@ -29,7 +29,6 @@ const resolvedTestChallengeReducer = (state = initTestChallengeState, action) =>
                 data: action.payload,
                 error: ''
             }
-
 
         case FETCH_RESOLVED_TEST_CHALLENGE_FAILURE:
             return {
@@ -47,7 +46,9 @@ const resolvedTestChallengeReducer = (state = initTestChallengeState, action) =>
 
         default:
             return state
+
     }
+
 }
 
 export default resolvedTestChallengeReducer;

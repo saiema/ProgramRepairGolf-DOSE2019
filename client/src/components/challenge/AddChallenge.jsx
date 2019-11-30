@@ -145,7 +145,7 @@ class AddChallenge extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    challenge: state.data
+    validationChallenge: state.data
   }
 }
 

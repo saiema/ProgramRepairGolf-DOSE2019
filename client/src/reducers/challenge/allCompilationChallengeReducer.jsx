@@ -15,7 +15,7 @@ const initCompilationChallengeState = {
 const allCompilationChallengeReducer = (state = initCompilationChallengeState, action) => {
     
     switch(action.type) {
-        
+
         case FETCH_ALL_COMPILATION_CHALLENGE_REQUEST:
             return {
                 ...state,
@@ -30,7 +30,6 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
                 error: ''
             }
 
-
         case FETCH_ALL_COMPILATION_CHALLENGE_FAILURE:
             return {
                 ...state,
@@ -38,7 +37,7 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
                 data: [],
                 error: action.payload,
             }
-        
+
         case DELETE_CHALLENGE:
             return {
                 ...state,
@@ -47,7 +46,9 @@ const allCompilationChallengeReducer = (state = initCompilationChallengeState, a
 
         default:
             return state
+
     }
+
 }
 
 export default allCompilationChallengeReducer;

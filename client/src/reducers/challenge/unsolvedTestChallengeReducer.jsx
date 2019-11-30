@@ -13,9 +13,9 @@ const initTestChallengeState = {
 
 
 const unsolvedTestChallengeReducer = (state = initTestChallengeState, action) => {
-    
+
     switch(action.type) {
-        
+
         case FETCH_UNSOLVED_TEST_CHALLENGE_REQUEST:
             return {
                 ...state,
@@ -29,7 +29,6 @@ const unsolvedTestChallengeReducer = (state = initTestChallengeState, action) =>
                 data: action.payload,
                 error: ''
             }
-
 
         case FETCH_UNSOLVED_TEST_CHALLENGE_FAILURE:
             return {
@@ -47,7 +46,9 @@ const unsolvedTestChallengeReducer = (state = initTestChallengeState, action) =>
 
         default:
             return state
+
     }
+
 }
 
 export default unsolvedTestChallengeReducer;

@@ -12,9 +12,9 @@ const initCompilationChallengeState = {
 }
 
 const unsolvedCompilationChallengeReducer = (state = initCompilationChallengeState, action) => {
-    
+
     switch(action.type) {
-        
+
         case FETCH_UNSOLVED_COMPILATION_CHALLENGE_REQUEST:
             return {
                 ...state,
@@ -28,7 +28,6 @@ const unsolvedCompilationChallengeReducer = (state = initCompilationChallengeSta
                 data: action.payload,
                 error: ''
             }
-
 
         case FETCH_UNSOLVED_COMPILATION_CHALLENGE_FAILURE:
             return {
@@ -46,7 +45,9 @@ const unsolvedCompilationChallengeReducer = (state = initCompilationChallengeSta
 
         default:
             return state
+
     }
+
 }
 
 export default unsolvedCompilationChallengeReducer;

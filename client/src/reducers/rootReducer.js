@@ -55,7 +55,7 @@ const rootReducer = combineReducers({
     allTestChallenge: allTestChallengeReducer,
     resolvedTestChallenge: resolvedTestChallengeReducer,
     unsolvedTestChallenge: unsolvedTestChallengeReducer,
-    challenge: challengeReducer,
+    validationChallenge: challengeReducer,
     comments: commentsReducer,
     comment: commentReducer,
     users: usersReducer,

@@ -45,7 +45,6 @@ export const deleteChallenge = (id) => {
   }
 }
 
-
 const fetchDataRequest = () => {
     return {
       type: FETCH_DATA_REQUEST
@@ -69,7 +68,7 @@ const fetchDataFailure = error => {
 export const addCompilationChallenge = (state) => {
     return function(dispatch, getState) {
         let userid = getState().user.currentUser.id;
-        dispatch(fetchDataRequest())
+        dispatch(fetchDataRequest(state))
         axios.post('http://localhost:55555/compilationChallenge/create', null, {
             params:{
                 userId: userid,
