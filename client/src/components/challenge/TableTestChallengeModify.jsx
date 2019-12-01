@@ -1,7 +1,8 @@
 import React from 'react';
 import './Style.css';
+import Modal from './Modal/Modal';
 
-const TableTestChallengeModify = ({ listTestChallenge }) => {
+const TableTestChallengeModify = ({ listTestChallenge, props }) => {
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -10,7 +11,30 @@ const TableTestChallengeModify = ({ listTestChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button className="button-table"> VIEW SOURCE AND TEST</button>
+        <button className="button-table" onClick={props.openModalHandler}> VIEW SOURCE </button>
+          { props.state.isShowing ? 
+          <div> 
+            <Modal
+              className="modal"
+              name = "Source"
+              show={props.state.isShowing}
+              close={props.closeModalHandler}>
+              {challenge.source}
+            </Modal>
+          </div>
+           : null}
+         <button className="button-table" onClick={props.openModalHandler}> VIEW TEST </button>
+          { props.state.isShowing ? 
+          <div> 
+            <Modal
+              className="modal"
+              name = "Test"
+              show={props.state.isShowing}
+              close={props.closeModalHandler}>
+              {challenge.test}
+            </Modal>
+          </div>
+           : null}
           <button className="button-table"> MODIFY </button>
         </td>
       </tr>

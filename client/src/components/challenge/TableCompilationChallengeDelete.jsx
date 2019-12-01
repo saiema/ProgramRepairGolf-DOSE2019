@@ -1,7 +1,8 @@
 import React from 'react';
 import './Style.css';
+import Modal from './Modal/Modal';
 
-const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDeleteChallenge}) => {
+const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDeleteChallenge, props}) => {
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -10,11 +11,22 @@ const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDel
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-          <button className="button-table"> VIEW SOURCE </button>
+          <button className="button-table" onClick={props.openModalHandler}> VIEW SOURCE </button>
+          { props.state.isShowing ? 
+          <div> 
+            <Modal
+              className="modal"
+              name = "Source"
+              show={props.state.isShowing}
+              close={props.closeModalHandler}>
+              {challenge.source}
+            </Modal>
+          </div>
+           : null}
           <button
             className="button-table"
             onClick = {() => executeDeleteChallenge(challenge.id)}
-          > DELETE </button>
+            > DELETE </button>
         </td>
       </tr>
     )
@@ -30,11 +42,24 @@ const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDel
             <th>Points</th>
             <th>Actions</th>
           </tr>
-          { compilationChallengeList }
+          {compilationChallengeList}
         </tbody>
       </table>
     </div>
   )
+}
+
+ const show = (props, challenge) =>{
+  return (
+    <div>
+      <Modal
+        className="modal"
+        show={props.state.isShowing}
+        close={props.closeModalHandler}>
+        {challenge.source}
+      </Modal>
+    </div>
+  );
 }
 
 export default TableCompilationChallengeDelete;

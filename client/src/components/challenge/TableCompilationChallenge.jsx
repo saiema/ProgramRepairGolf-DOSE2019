@@ -1,7 +1,8 @@
 import React from 'react';
 import './Style.css';
+import Modal from './Modal/Modal';
 
-const TableCompilationChallenge = ({ listCompilationChallenge }) => {
+const TableCompilationChallenge = ({ listCompilationChallenge, props}) => {
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -9,7 +10,18 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
         <td>{challenge.title}</td>
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
-        <td> <button className="button-table"> VIEW SOURCE </button></td>
+        <button className="button-table" onClick={props.openModalHandler}> VIEW SOURCE </button>
+          { props.state.isShowing ? 
+          <div> 
+            <Modal
+              className="modal"
+              name = "Source"
+              show={props.state.isShowing}
+              close={props.closeModalHandler}>
+              {challenge.source}
+            </Modal>
+          </div>
+           : null}
       </tr>
     )
   });
