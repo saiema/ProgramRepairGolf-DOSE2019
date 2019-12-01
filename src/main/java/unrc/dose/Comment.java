@@ -170,7 +170,7 @@ public static Comment findComment(final int id) {
       List<Comment> listresp = Comment.where("comment_id = ?", id);
       if (listresp!=null){
         for (Comment r: listresp){
-          r.delete();
+          r.deleteCascade();
         }
       }
       c.delete();

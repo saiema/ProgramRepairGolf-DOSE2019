@@ -3,7 +3,6 @@ import Comment from './Comment';
 import { Link } from 'react-router-dom';
 import AddResponse from './AddResponse';
 import { connect } from 'react-redux';
-import { fetchDeleteComment } from '../../actions/comment/commentsActions';
 import {fetchAddResponse} from '../../actions/comment/responsesActions';
 
 class Comments extends Component{
@@ -11,7 +10,6 @@ class Comments extends Component{
     comment_id: null,
     press:false,
     count:this.props.responses.count,
-    delete:false,
   }
 
   handleClick = id => (e) => {
@@ -29,7 +27,10 @@ class Comments extends Component{
       const press= this.state.press;
       const id = this.state.comment_id;
       const comments= this.props.comments;
-      const currentuser_id = this.props.currentUser_id;
+      
+      const currentuser_id = this.props.user_id;
+      console.log(currentuser_id);
+      console.log("AQUIIIIIIII"+currentuser_id)
       console.log(id);
       console.log(press);
       const cant = this.state.count;
@@ -39,7 +40,7 @@ class Comments extends Component{
               {id === comment.id & press ?(
                 <div>
                   <button onClick={this.reset}>Cerrar</button> 
-                  <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
+                  <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={currentuser_id}/>
                 </div>
               ):(
                 <div>
@@ -79,25 +80,22 @@ class Comments extends Component{
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log("AHORA "+state.user.currentUser.id);
+  return {
+    responses: state.responses,
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addResponse: (res) => {
       dispatch(fetchAddResponse(res))
     },
-    deleteComment: (id)=> {
-      dispatch(fetchDeleteComment(id))
-    },
+
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    responses: state.responses,
-    loading: state.comments.loading,
-    currentUser_id: state.user.currentUser.id,
-  }
-}
-
-
-export default  connect(mapStateToProps, mapDispatchToProps)(Comments)
+export default connect(mapStateToProps, mapDispatchToProps)(Comments)
 

@@ -23,6 +23,7 @@ handleSubmit = (e) => {
 
 render() {
   console.log(this.state);
+  console.log(this.props.user_id);
   return(
     <div>
         <form onSubmit={this.handleSubmit}>
