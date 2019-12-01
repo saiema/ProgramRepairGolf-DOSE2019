@@ -12,7 +12,7 @@ class CommentContainerChallenge extends Component {
     press:false
   }
 	componentDidMount() {
-		this.props.fetchCommentsChallenge(this.props.challenge)
+		this.props.fetchCommentsChallenge(this.props.match.params.id)
   }
 
   handleClick=(e)=>{
@@ -49,11 +49,12 @@ class CommentContainerChallenge extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,props) => {
   return {
     comments: state.comments.data,
     loading: state.comments.loading,
     currentUser_id: state.user.currentUser.id,
+    challenge: props.match.params.id
   }
 }
 

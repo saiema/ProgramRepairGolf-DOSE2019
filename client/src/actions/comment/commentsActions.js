@@ -45,17 +45,16 @@ const fetchAddCommentFailure = error => {
   }
 }
 
-const fetchDeleteCommentRequest = (id) => {
+const fetchDeleteCommentRequest = () => {
   return {
     type: FETCH_DELETE_COMMENT_REQUEST,
-    id
   }
 }
 
 const fetchDeleteCommentSuccess = (id) => {
   return {
     type: DELETE_COMMENT,
-    id
+    payload:id
   }
 }
 const fetchDeleteFailure = error => {
@@ -76,10 +75,12 @@ export const fetchDeleteComment = (id) =>{
     })
       .then( res =>{
         console.log(res.data);
+        alert('comment deleted');
         dispatch(fetchDeleteCommentSuccess(res.data))
       })
       .catch(error => {
         console.log(error)
+        alert('Error: could not delete comment');
         dispatch(fetchDeleteFailure(error))
       })
   }
@@ -135,7 +136,7 @@ export const fetchAddComment = (state) => {
 //
 export const fetchCommentsChallenge = (id) => {
   return function(dispatch, getState) {
-
+    console.log(id);
       dispatch(fetchCommentsRequest())
       const token = localStorage.getItem('token');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/challenges/'+id, {

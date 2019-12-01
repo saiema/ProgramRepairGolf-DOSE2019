@@ -57,6 +57,7 @@ public final class CommentEndpoint implements Endpoint {
                  .withDescription("challenge's id").and()
              .withResponseType(String.class),
           (req, res) -> {
+            System.out.println("ACAAAAAAAAAAAAAA"+req.params(":id"));
             return commentService.view(
               Integer.parseInt(req.params(":id")), new Challenge());
           }
@@ -142,13 +143,7 @@ public final class CommentEndpoint implements Endpoint {
             .withResponseType(String.class),
              "application/json",
         (req, res) -> {
-          if(Comment.deleteComment(Integer.parseInt(req.params(":id")))){
-            res.status(200);
-          }
-          else {
-            res.status(404);
-          }
-          return "";
+          return Comment.deleteComment(Integer.parseInt(req.params(":id")));
         }
     );
   }
