@@ -5,6 +5,9 @@ import {
   FETCH_RESPONSES_FAILURE,
   ADD_RESPONSE,
   FETCH_ADD_RESPONSE_FAILURE,
+  DELETE_RESPONSE,
+  FETCH_DELETE_RESPONSE_FAILURE,
+  FETCH_DELETE_RESPONSE_REQUEST,
 } from '../../constants/ActionTypes'
 
 
@@ -37,6 +40,25 @@ const fetchAddResponseSucess = responses => {
 const fetchAddResponseFailure = error => {
   return {
       type: FETCH_ADD_RESPONSE_FAILURE,
+      payload: error
+  }
+}
+
+const fetchDeleteResponseRequest = () => {
+  return {
+    type: FETCH_DELETE_RESPONSE_REQUEST,
+  }
+}
+
+const fetchDeleteResponseSuccess = (id) => {
+  return {
+    type: DELETE_RESPONSE,
+    payload:id
+  }
+}
+const fetchDeleteFailure = error => {
+  return {
+      type: FETCH_DELETE_RESPONSE_FAILURE,
       payload: error
   }
 }
@@ -90,4 +112,26 @@ export const fetchAddResponse = (state) => {
           dispatch(fetchAddResponseFailure(error))
         })
     }
+}
+//
+export const fetchDeleteResponse = (id) =>{
+  return function(dispatch) {
+    dispatch(fetchDeleteResponseRequest())
+     axios.delete(process.env.REACT_APP_API_HOST+'/comments/deleteComment/'+id,{
+        headers: {'Authorization' : 'Basic '+ localStorage.getItem("token")},
+        data:{
+          id:id
+        }
+    })
+      .then( res =>{
+        console.log(res.data);
+        alert('comment deleted');
+        dispatch(fetchDeleteResponseSuccess(res.data))
+      })
+      .catch(error => {
+        console.log(error)
+        alert('Error: could not delete comment');
+        dispatch(fetchDeleteFailure(error))
+      })
+  }
 }

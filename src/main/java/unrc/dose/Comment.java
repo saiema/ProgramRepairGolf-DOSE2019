@@ -160,9 +160,10 @@ public static Comment findComment(final int id) {
     return aux;
   }
   //Borrar un comentario
-  public static int deleteComment(final int id) {
+  public static Comment deleteComment(final int id) {
     Comment c = new Comment();
     c = Comment.findById(id);
+    Comment cm= Comment.findById(id);
     if (c==null){
       throw new IllegalArgumentException("Comment does not exists");
     }
@@ -175,8 +176,8 @@ public static Comment findComment(final int id) {
       }
       c.delete();
       System.out.println("ACAAAAAAAAAAAAAA");
-      System.out.println(id);
-      return id;
+      System.out.println(cm);
+      return cm;
     }
   }
 }

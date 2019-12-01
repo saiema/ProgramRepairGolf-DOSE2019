@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const Responses = ({ responses, id }) => {
+const Responses = ({ responses, id, user_id, deleteResponse }) => {
   console.log(responses);
   console.log(id);
  let result = [];
@@ -13,11 +13,6 @@ const Responses = ({ responses, id }) => {
     }
  }) 
  
-// const a=responses.forEach(element => 
-//   console.log(element)
-// );
-
-  //const responsesList = 2;
     const responsesList = Object.keys(result).map((key, index) => {
       const res = result[key];
       console.log(res);
@@ -26,6 +21,14 @@ const Responses = ({ responses, id }) => {
           <div className="card-content">
             <p>Re: {res.username} </p>
             <p>description: { res.description }</p>
+            {user_id === res.user_id ?(
+                <div>
+                  <button onClick={()=>deleteResponse(res.id)}> Delete </button>
+                </div>
+            ):(
+                <div>
+                </div>
+            )} 
           </div>
         </div>
       )

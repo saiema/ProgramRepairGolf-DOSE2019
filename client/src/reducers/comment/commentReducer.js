@@ -4,6 +4,9 @@ import {
     FETCH_RESPONSES_FAILURE,
     ADD_RESPONSE,
     FETCH_ADD_RESPONSE_FAILURE,
+    DELETE_RESPONSE,
+    FETCH_DELETE_RESPONSE_FAILURE,
+    FETCH_DELETE_RESPONSE_REQUEST
 } from '../../constants/ActionTypes'
 
 const initCommentState = {
@@ -51,6 +54,27 @@ const commentReducer = (state = initCommentState, action) => {
                 error: action.payload,
                 count:0
             }
+            case DELETE_RESPONSE:
+              return {
+                  ...state,
+                  loading:false,
+                  count: state.count - 1,
+                  data: delete_res(state.data,action.payload)
+              }
+          case FETCH_DELETE_RESPONSE_FAILURE:
+              return{
+                  ...state,
+                  data:[],
+                  loading:false,
+                  count:0,
+                  error: action.payload,
+              }
+          
+          case FETCH_DELETE_RESPONSE_REQUEST:
+              return {
+                  ...state,
+                  loading: true
+              }
 
         default:
             return state
@@ -76,6 +100,20 @@ function responses(responses, newResponse) {
     const comment_id= newResponse[0].comment_id;
   responses[comment_id]= newResponse;
   return responses;
+}
+
+function delete_res (responses, response){
+    const comment_id = response.comment_id;
+  const res = responses[comment_id];
+  let newResponses = [];
+  Object.values(res).forEach(r => {
+    if(r.id !== response.id){
+      newResponses.concat(r);
+    }
+    }
+  );
+  responses[comment_id] = newResponses;
+    return responses;
 }
 
 export default commentReducer;

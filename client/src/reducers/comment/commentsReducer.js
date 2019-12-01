@@ -59,11 +59,15 @@ const commentsReducer = (state = initCommentsState, action) => {
                   error: action.payload,
               }
               case DELETE_COMMENT:
+                console.log(action.payload.id);
+                console.log(state.data[1].id);
+                console.log(state.data[1].id.toString());
+                //console.log(state.data.filter(comment => comment.id !== action.payload.id));
                 return {
                     ...state,
                     loading:false,
                     count: state.count - 1,
-                    data: state.data.filter(comment => comment.id !== action.payload)
+                    data: state.data.filter(comment => comment.id !== action.payload.id)
                 }
             case FETCH_DELETE_COMMENT_FAILURE:
                 return{

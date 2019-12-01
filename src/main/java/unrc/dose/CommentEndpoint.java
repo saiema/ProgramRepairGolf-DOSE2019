@@ -143,7 +143,7 @@ public final class CommentEndpoint implements Endpoint {
             .withResponseType(String.class),
              "application/json",
         (req, res) -> {
-          return Comment.deleteComment(Integer.parseInt(req.params(":id")));
+          return commentService.delete(Integer.parseInt(req.params(":id")));
         }
     );
   }

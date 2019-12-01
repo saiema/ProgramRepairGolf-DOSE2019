@@ -5,6 +5,7 @@ import logo from '../../logo.svg';
 import Comment from './Comment';
 import { fetchResponses, fetchAddResponse } from '../../actions/comment/responsesActions';
 import AddResponse from './AddResponse';
+import { fetchDeleteResponse } from '../../actions/comment/responsesActions';
 
 class ResponsesContainer extends Component {
 
@@ -17,9 +18,9 @@ class ResponsesContainer extends Component {
 	componentDidMount() {
     console.log(this.props.match.params.id);
     console.log(this.props.responses);
-    if(!this.state.press || this.state.delete){
+    console.log("AHORA IRIA");
+    if(!this.state.press){
       this.props.fetchResponses(this.props.match.params.id);
-      this.setState({delte:false});
     }
 		}
 
@@ -39,14 +40,14 @@ class ResponsesContainer extends Component {
     console.log("aqui señora");
     console.log(press);
     console.log(cant);
-    console.log(this.props.responses.count);
+    console.log(this.props.currentUser_id);
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
       <div>
        <div>
        <Comment comment={this.props.comment} />
-        {press & cant=== this.props.responses.count?(
+        {press?(
           <div>
              <button onClick={this.reset}>Cerrar</button> 
             <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
@@ -56,7 +57,7 @@ class ResponsesContainer extends Component {
             <button onClick={this.handleClick(comment.id)}> Reply</button>
           </div>
         )}
-			  <Responses
+			  <Responses deleteResponse={this.props.deleteResponse} user_id={this.props.currentUser_id}
 				 responses={this.props.responses.data} id={this.props.match.params.id}
 			  />
        </div>
@@ -87,6 +88,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addResponse: (res) => {
        dispatch(fetchAddResponse(res))
+    },
+    deleteResponse: (id)=> {
+      dispatch(fetchDeleteResponse(id))
     },
   }
 }
