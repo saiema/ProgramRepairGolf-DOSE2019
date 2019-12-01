@@ -76,11 +76,6 @@ export const fetchResponses = (id) => {
           Object.values(res.data).forEach(item => {
               result = result.concat(item);
           });
-          // let responses= {};
-          // const comment_id= res.data[0].comment_id;
-          // responses[comment_id] = result;
-          // console.log(responses);
-          console.log(result);
           dispatch(fetchResponsesSucess(result))
         })
         .catch(error => {

@@ -6,7 +6,6 @@ class Comment extends Component{
 
  render(){
   const comment = this.props.comment;
-  console.log(this.props.responses);
 
   return(
    <div className="card-content">

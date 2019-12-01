@@ -101,7 +101,6 @@ export const fetchCommentsUsers = (id) => {
           Object.values(res.data).forEach(item => {
               result = result.concat(item);
           });
-          console.log(result);
           dispatch(fetchCommentsSucess(result))
         })
         .catch(error => {
@@ -136,7 +135,6 @@ export const fetchAddComment = (state) => {
 //
 export const fetchCommentsChallenge = (id) => {
   return function(dispatch, getState) {
-    console.log(id);
       dispatch(fetchCommentsRequest())
       const token = localStorage.getItem('token');
        axios.get(process.env.REACT_APP_API_HOST+'/comments/challenges/'+id, {

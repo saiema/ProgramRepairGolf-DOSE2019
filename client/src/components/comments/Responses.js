@@ -3,19 +3,15 @@ import React from 'react'
 
 
 const Responses = ({ responses, id, user_id, deleteResponse }) => {
-  console.log(responses);
-  console.log(id);
  let result = [];
  Object.values(responses).forEach(item => {
-   console.log(item === responses[id]);
     if(item === responses[id]){
      result = result.concat(item);
     }
- }) 
- 
+ })
+
     const responsesList = Object.keys(result).map((key, index) => {
       const res = result[key];
-      console.log(res);
       return (
         <div className="responses card" key={key}>
           <div className="card-content">
@@ -28,7 +24,7 @@ const Responses = ({ responses, id, user_id, deleteResponse }) => {
             ):(
                 <div>
                 </div>
-            )} 
+            )}
           </div>
         </div>
       )

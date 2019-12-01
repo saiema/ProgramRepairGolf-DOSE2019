@@ -17,9 +17,6 @@ class ResponsesContainer extends Component {
     }
 
 	componentDidMount() {
-    console.log(this.props.match.params.id);
-    console.log(this.props.responses);
-    console.log("AHORA IRIA");
     if(!this.state.press){
       this.props.fetchResponses(this.props.match.params.id);
     }
@@ -33,15 +30,11 @@ class ResponsesContainer extends Component {
     reset = (e) => {
       this.setState({press:false});
     }
-    
+
 	render(){
     const press= this.state.press;
     const cant = this.props.responses.count;
 		const comment= this.props.comment;
-    console.log("aqui señora");
-    console.log(comment);
-    console.log(cant);
-    console.log(this.props.currentUser_id);
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
@@ -61,10 +54,7 @@ class ResponsesContainer extends Component {
 
 const mapStateToProps = (state,props) => {
   const comment_id=props.match.params.id;
-  console.log(comment_id);
-  console.log(state.comments.data[0].id === comment_id);
   const c = state.comments.data.find(comment => comment.id.toString()===comment_id);
-  console.log(c); 
   return {
     responses: state.responses,
     loading: state.responses.loading,
@@ -74,7 +64,6 @@ const mapStateToProps = (state,props) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log(" VER");
   return {
     fetchResponses: (id) => {
       dispatch(fetchResponses(id))

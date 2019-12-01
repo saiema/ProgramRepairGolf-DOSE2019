@@ -18,17 +18,14 @@ class Comments extends Component{
     commentList(){
       const id = this.state.comment_id;
       const comments= this.props.comments;
-      
+
       const currentuser_id = this.props.user_id;
-      console.log(currentuser_id);
-      console.log("AQUIIIIIIII"+currentuser_id)
-      console.log(id);
       const responses= this.props.responses;
       return comments.map(comment =>
           <div className="comment card" key={comment.id}>
               <Comment comment={comment}/>
-              
-              <Link to={"/responses/"+comment.id}> Reply </Link>  
+
+              <Link to={"/responses/"+comment.id}> Reply </Link>
               {currentuser_id === comment.user_id ?(
                 <div>
                   <button onClick={this.handleDeleteClick(comment.id)}> Delete </button>
@@ -36,7 +33,7 @@ class Comments extends Component{
               ):(
                 <div>
                 </div>
-              )} 
+              )}
              { comment.responses ?(
                 <div>
                   <Link to={{pathname:'/responses/'+ comment.id, state:{c:comment}}}> Show responses </Link>
@@ -64,7 +61,6 @@ class Comments extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log("AHORA "+state.user.currentUser.id);
   return {
     responses: state.responses,
   }
@@ -80,4 +76,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments)
-

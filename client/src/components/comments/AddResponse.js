@@ -4,7 +4,6 @@ class AddResponse extends Component {
 
 state = {
   description: null,
-  //CurrentUser
   user_id: this.props.user_id.toString(),
   challenge_id:this.props.challenge_id.toString(),
   comment_id:this.props.comment_id.toString(),
@@ -22,8 +21,6 @@ handleSubmit = (e) => {
 }
 
 render() {
-  console.log(this.state);
-  console.log(this.props.user_id);
   return(
     <div>
         <form onSubmit={this.handleSubmit}>

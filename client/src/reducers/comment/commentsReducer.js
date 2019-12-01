@@ -3,7 +3,7 @@ import {
     FETCH_COMMENTS_SUCCESS,
     FETCH_COMMENTS_FAILURE,
     ADD_COMMENT,
-    FETCH_ADD_COMMENT_FAILURE,  
+    FETCH_ADD_COMMENT_FAILURE,
     FETCH_DELETE_COMMENT_REQUEST,
     DELETE_COMMENT,
     FETCH_DELETE_COMMENT_FAILURE,
@@ -59,10 +59,6 @@ const commentsReducer = (state = initCommentsState, action) => {
                   error: action.payload,
               }
               case DELETE_COMMENT:
-                console.log(action.payload.id);
-                console.log(state.data[1].id);
-                console.log(state.data[1].id.toString());
-                //console.log(state.data.filter(comment => comment.id !== action.payload.id));
                 return {
                     ...state,
                     loading:false,
@@ -77,7 +73,7 @@ const commentsReducer = (state = initCommentsState, action) => {
                     count:0,
                     error: action.payload,
                 }
-            
+
             case FETCH_DELETE_COMMENT_REQUEST:
                 return {
                     ...state,

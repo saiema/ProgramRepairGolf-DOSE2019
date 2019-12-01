@@ -5,7 +5,6 @@ class AddComment extends Component {
 state = {
   title: null,
   description: null,
-  //CurrentUser
   user_id: this.props.user_id.toString(),
   challenge_id:this.props.challenge_id.toString(),
 }
@@ -22,7 +21,6 @@ handleSubmit = (e) => {
 }
 
 render() {
-  console.log(this.state);
   return(
     <div>
         <form onSubmit={this.handleSubmit}>

@@ -178,8 +178,6 @@ public static Comment findComment(final int id) {
         }
       }
       c.deleteCascade();
-      System.out.println("ACAAAAAAAAAAAAAA");
-      System.out.println(cm);
       return cm;
     }
   }

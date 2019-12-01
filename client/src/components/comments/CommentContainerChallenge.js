@@ -24,9 +24,7 @@ class CommentContainerChallenge extends Component {
 
 
 	render(){
-    console.log(this.props.currentUser_id);
     const press= this.state.press;
-    console.log(press);
 		return this.props.loading ? (
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
@@ -42,7 +40,7 @@ class CommentContainerChallenge extends Component {
         <div></div>
       )}
       <div>
-			<Comments deleteComment={this.props.deleteComment} user_id={this.props.currentUser_id} 
+			<Comments deleteComment={this.props.deleteComment} user_id={this.props.currentUser_id}
 				comments={this.props.comments}
 			/>
       </div>
@@ -52,7 +50,6 @@ class CommentContainerChallenge extends Component {
 }
 
 const mapStateToProps = (state,props) => {
-  console.log("AHORA "+state.user.currentUser.id);
   return {
     comments: state.comments.data,
     loading: state.comments.loading,
@@ -68,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     addComment: (comment) => {
       dispatch(fetchAddComment(comment))
-    },    
+    },
     deleteComment: (id)=> {
       dispatch(fetchDeleteComment(id))
     },

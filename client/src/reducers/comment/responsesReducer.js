@@ -69,7 +69,7 @@ const responsesReducer = (state = initCommentState, action) => {
                   count:0,
                   error: action.payload,
               }
-          
+
           case FETCH_DELETE_RESPONSE_REQUEST:
               return {
                   ...state,
@@ -83,26 +83,17 @@ const responsesReducer = (state = initCommentState, action) => {
 
  function add_response(responses, response) {
    const existingResponses = responses[response.comment_id];
-   console.log("a ver");
-   console.log(response);
-   console.log(existingResponses);
-   console.log(existingResponses==='undefined');
    if(typeof existingResponses !== 'undefined') {
-     console.log("Hay che");
      existingResponses.push(response)
    } else {
-     console.log("no che");
      const comment_id= response.comment_id;
      let a= []
      a.push(response);
-     console.log(a);
      responses[comment_id]= a;
-     console.log(responses);
    }
    return responses;
  }
 function responses(responses, newResponse) {
-  console.log(newResponse);
     const comment_id= newResponse[0].comment_id;
   responses[comment_id]= newResponse;
   return responses;
@@ -112,19 +103,13 @@ function delete_res (responses, response){
     const comment_id = response.comment_id;
   const res = responses[comment_id];
   let newResponses = [];
-  console.log(comment_id);
-  console.log(response.id);
   Object.values(res).forEach(r => {
-    
+
     if(r.id !== response.id){
-      console.log("al de id "+r.id)
       newResponses= newResponses.concat(r);
     }
     }
   );
-  console.log(responses);
-  console.log(responses[comment_id]);
-  console.log(newResponses);
   responses[comment_id] = newResponses;
     return responses;
 }
