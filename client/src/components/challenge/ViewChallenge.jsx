@@ -32,7 +32,6 @@ class ViewChallenge extends Component {
             { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
             <TableCompilationChallenge
               listCompilationChallenge={this.props.allCompilationChallenge}
-              props = {this}
             />
         </div>
       );
@@ -76,7 +75,6 @@ class ViewChallenge extends Component {
             { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
             <TableTestChallenge
               listTestChallenge={this.props.unsolvedTestChallenge}
-              props = {this}
             />
           </div>
         );
@@ -87,8 +85,7 @@ class ViewChallenge extends Component {
               { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
               <TableTestChallenge
                 listTestChallenge={this.props.resolvedTestChallenge}
-                props = {this}
-              />
+                />
           </div>
         );
       }

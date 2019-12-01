@@ -33,7 +33,6 @@ class ModifyChallenge extends Component {
            { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableCompilationChallengeModify
             listCompilationChallenge={this.props.unsolvedCompilationChallenge}
-            props = {this}
           />
         </div>
       );
@@ -44,8 +43,7 @@ class ModifyChallenge extends Component {
                { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
               <TableTestChallengeModify
                 listTestChallenge={this.props.unsolvedTestChallenge}
-                props = {this}
-              />
+                  />
           </div>
         );
       }

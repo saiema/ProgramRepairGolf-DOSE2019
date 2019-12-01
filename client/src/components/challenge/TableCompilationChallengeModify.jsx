@@ -1,8 +1,12 @@
 import React from 'react';
 import './Style.css';
-import Modal from './Modal/Modal';
+import useModal from 'use-react-modal'
+import ViewModal from './ViewModal'
 
-const TableCompilationChallengeModify = ({ listCompilationChallenge, props }) => {
+const TableCompilationChallengeModify = ({ listCompilationChallenge  }) => {
+
+  const {openModal, isOpen } = useModal()
+
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -11,18 +15,13 @@ const TableCompilationChallengeModify = ({ listCompilationChallenge, props }) =>
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-        <button className="button-table" onClick={props.openModalHandler}> VIEW SOURCE </button>
-          { props.state.isShowing ? 
-          <div> 
-            <Modal
-              className="modal"
-              name = "Source"
-              show={props.state.isShowing}
-              close={props.closeModalHandler}>
-              {challenge.source}
-            </Modal>
-          </div>
-           : null}
+          <button className="button-table" onClick={(e) => openModal(e)}> VIEW SOURCE </button>
+            {isOpen && (
+              <ViewModal
+                title = "SOURCE CODE"
+                text = {challenge.source}
+              />
+            )}
           <button className="button-table"> MODIFY </button>
         </td>
       </tr>

@@ -94,6 +94,7 @@ export const addCompilationChallenge = (state) => {
         })
         .catch( error => {
             dispatch(fetchDataFailure(error.message))
+            alert("ERROR! Check the data entered")
         })
     }
 }
@@ -125,6 +126,7 @@ export const addTestChallenge = (state) => {
         })
         .catch( error => {
             dispatch(fetchDataFailure(error.message))
+            alert("ERROR! Check the data entered")
         })
     }
 }
@@ -227,8 +229,6 @@ export const fetchChallengesAssociatedToUser = () => {
             }
         })
         .then( res => {
-            console.log("res.data");
-            console.log(res.data);
             dispatch(fetchChallengesAssociatedToUserSucess(res.data))
         })
         .catch( error => {

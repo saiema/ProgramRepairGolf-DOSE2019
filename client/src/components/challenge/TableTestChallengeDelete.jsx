@@ -1,8 +1,12 @@
 import React from 'react';
 import './Style.css';
-import Modal from './Modal/Modal';
+import useModal from 'use-react-modal'
+import ViewModal from './ViewModal'
 
-const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge, props}) => {
+const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge }) => {
+
+  const {openModal, isOpen } = useModal()
+
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -11,30 +15,20 @@ const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge, p
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td>
-        <button className="button-table" onClick={props.openModalHandler}> VIEW SOURCE </button>
-          { props.state.isShowing ? 
-          <div> 
-            <Modal
-              className="modal"
-              name = "Source"
-              show={props.state.isShowing}
-              close={props.closeModalHandler}>
-              {challenge.source}
-            </Modal>
-          </div>
-           : null}
-         <button className="button-table" onClick={props.openModalHandler}> VIEW TEST </button>
-          { props.state.isShowing ? 
-          <div> 
-            <Modal
-              className="modal"
-              name = "Test"
-              show={props.state.isShowing}
-              close={props.closeModalHandler}>
-              {challenge.test}
-            </Modal>
-          </div>
-           : null}
+        <button className="button-table" onClick={(e) => openModal(e)}> VIEW SOURCE </button>
+            {isOpen && (
+              <ViewModal
+                title = "SOURCE CODE"
+                text = {challenge.source}
+              />
+            )}
+          <button className="button-table" onClick={(e) => openModal(e)}> VIEW TEST </button>
+            {isOpen && (
+              <ViewModal
+                title = "TEST CODE"
+                text = {challenge.test}
+              />
+            )}
           <button
             className="button-table"
             onClick = {() => executeDeleteChallenge(challenge.id)}

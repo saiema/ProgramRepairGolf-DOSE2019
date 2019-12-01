@@ -37,8 +37,7 @@ class DeleteChallenge extends Component {
             <TableCompilationChallengeDelete
               listCompilationChallenge={this.props.allCompilationChallenge}
               executeDeleteChallenge={this.props.executeDeleteChallenge}
-              props = {this}
-            />
+              />
             
         </div>
       );
@@ -50,7 +49,6 @@ class DeleteChallenge extends Component {
           <TableTestChallengeDelete
             listTestChallenge={this.props.allTestChallenge}
             executeDeleteChallenge={this.props.executeDeleteChallenge}
-            props = {this}
           />
         </div>
       );
