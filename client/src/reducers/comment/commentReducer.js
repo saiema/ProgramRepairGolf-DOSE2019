@@ -106,12 +106,19 @@ function delete_res (responses, response){
     const comment_id = response.comment_id;
   const res = responses[comment_id];
   let newResponses = [];
+  console.log(comment_id);
+  console.log(response.id);
   Object.values(res).forEach(r => {
+    
     if(r.id !== response.id){
-      newResponses.concat(r);
+      console.log("al de id "+r.id)
+      newResponses= newResponses.concat(r);
     }
     }
   );
+  console.log(responses);
+  console.log(responses[comment_id]);
+  console.log(newResponses);
   responses[comment_id] = newResponses;
     return responses;
 }

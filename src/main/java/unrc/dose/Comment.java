@@ -168,13 +168,16 @@ public static Comment findComment(final int id) {
       throw new IllegalArgumentException("Comment does not exists");
     }
     else{
-      List<Comment> listresp = Comment.where("comment_id = ?", id);
-      if (listresp!=null){
-        for (Comment r: listresp){
-          r.deleteCascade();
+        if (isResponse(id)){
+        int comment_id= cm.getInteger("comment_id");
+        List<Comment> listResp = Comment.where("comment_id=?",comment_id);
+        if(listResp.size()==1){
+          Comment father= Comment.findById(comment_id);
+          father.set("responses",false);
+          father.saveIt();
         }
       }
-      c.delete();
+      c.deleteCascade();
       System.out.println("ACAAAAAAAAAAAAAA");
       System.out.println(cm);
       return cm;

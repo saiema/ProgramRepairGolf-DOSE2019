@@ -6,6 +6,7 @@ import Comment from './Comment';
 import { fetchResponses, fetchAddResponse } from '../../actions/comment/responsesActions';
 import AddResponse from './AddResponse';
 import { fetchDeleteResponse } from '../../actions/comment/responsesActions';
+import { Link } from 'react-router-dom'
 
 class ResponsesContainer extends Component {
 
@@ -38,7 +39,7 @@ class ResponsesContainer extends Component {
     const cant = this.props.responses.count;
 		const comment= this.props.comment;
     console.log("aqui señora");
-    console.log(press);
+    console.log(comment);
     console.log(cant);
     console.log(this.props.currentUser_id);
 		return this.props.loading ? (
@@ -46,18 +47,10 @@ class ResponsesContainer extends Component {
 		) : (
       <div>
        <div>
+         <Link to={"/challenges_comments/"+comment.challenge_id}>go back</Link>
        <Comment comment={this.props.comment} />
-        {press?(
-          <div>
-             <button onClick={this.reset}>Cerrar</button> 
-            <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
-          </div>
-        ):(
-          <div>
-            <button onClick={this.handleClick(comment.id)}> Reply</button>
-          </div>
-        )}
-			  <Responses deleteResponse={this.props.deleteResponse} user_id={this.props.currentUser_id}
+      <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
+			<Responses deleteResponse={this.props.deleteResponse} user_id={this.props.currentUser_id}
 				 responses={this.props.responses.data} id={this.props.match.params.id}
 			  />
        </div>

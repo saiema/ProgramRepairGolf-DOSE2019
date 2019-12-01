@@ -8,23 +8,14 @@ import {fetchAddResponse} from '../../actions/comment/responsesActions';
 class Comments extends Component{
   state={
     comment_id: null,
-    press:false,
-    count:this.props.responses.count,
   }
 
-  handleClick = id => (e) => {
-    this.setState({press:true, comment_id: id});
-  }
+
   handleDeleteClick = id => (e)=>{
     this.props.deleteComment(id);
   }
 
-  reset = (e) => {
-    this.setState({press:false});
-  }
-
     commentList(){
-      const press= this.state.press;
       const id = this.state.comment_id;
       const comments= this.props.comments;
       
@@ -32,21 +23,12 @@ class Comments extends Component{
       console.log(currentuser_id);
       console.log("AQUIIIIIIII"+currentuser_id)
       console.log(id);
-      console.log(press);
-      const cant = this.state.count;
+      const responses= this.props.responses;
       return comments.map(comment =>
           <div className="comment card" key={comment.id}>
               <Comment comment={comment}/>
-              {id === comment.id & press ?(
-                <div>
-                  <button onClick={this.reset}>Cerrar</button> 
-                  <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={currentuser_id}/>
-                </div>
-              ):(
-                <div>
-                  <button onClick={this.handleClick(comment.id)}> Reply</button>
-                </div>
-              )}
+              
+              <Link to={"/responses/"+comment.id}> Reply </Link>  
               {currentuser_id === comment.user_id ?(
                 <div>
                   <button onClick={this.handleDeleteClick(comment.id)}> Delete </button>
