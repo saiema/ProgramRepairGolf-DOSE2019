@@ -1,36 +1,56 @@
 import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
 import { connect } from 'react-redux'
-import {
-  executeDeleteChallenge
-}  from '../../actions/challengeActions';
+import {executeDeleteChallenge}  from '../../actions/challengeActions';
 import TableTestChallengeDelete from './TableTestChallengeDelete'
 import TableCompilationChallengeDelete from './TableCompilationChallengeDelete'
 
 
 class DeleteChallenge extends Component {
 
-  state = {
-    opc: ""
+  constructor() {
+    super();
+
+    this.state = {
+        isShowing: false,
+        opc: ""
+    }
+  }
+  
+  openModalHandler = () => {
+    this.setState({
+        isShowing: true
+    });
   }
 
+  closeModalHandler = () => {
+    this.setState({
+        isShowing: false
+    });
+  }
   show(){
     if (this.state.opc === "allCompilation") {
       return (
-        <div className="container">
+       <div className="container">
+            <p>all compilation challenge</p>
+            { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
             <TableCompilationChallengeDelete
               listCompilationChallenge={this.props.allCompilationChallenge}
               executeDeleteChallenge={this.props.executeDeleteChallenge}
+              props = {this}
             />
+            
         </div>
       );
     }
     else if (this.state.opc==="allTest"){
       return (
         <div className="container">
+           { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableTestChallengeDelete
             listTestChallenge={this.props.allTestChallenge}
             executeDeleteChallenge={this.props.executeDeleteChallenge}
+            props = {this}
           />
         </div>
       );

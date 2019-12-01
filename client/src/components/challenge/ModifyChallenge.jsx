@@ -5,16 +5,35 @@ import TableTestChallengeModify from './TableTestChallengeModify'
 
 class ModifyChallenge extends Component {
 
-  state = {
-    opc: ""
+  constructor() {
+    super();
+
+    this.state = {
+        isShowing: false,
+        opc: ""
+    }
+  }
+
+  openModalHandler = () => {
+    this.setState({
+        isShowing: true
+    });
+  }
+
+  closeModalHandler = () => {
+    this.setState({
+        isShowing: false
+    });
   }
 
   show(){
     if (this.state.opc === "unsolvedCompilation"){
       return (
         <div className="container">
+           { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableCompilationChallengeModify
             listCompilationChallenge={this.props.unsolvedCompilationChallenge}
+            props = {this}
           />
         </div>
       );
@@ -22,8 +41,10 @@ class ModifyChallenge extends Component {
     else if (this.state.opc==="unsolvedTest"){
         return (
             <div className="container">
+               { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
               <TableTestChallengeModify
                 listTestChallenge={this.props.unsolvedTestChallenge}
+                props = {this}
               />
           </div>
         );
