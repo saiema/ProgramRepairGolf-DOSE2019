@@ -3,17 +3,22 @@ import Comment from './Comment';
 import { Link } from 'react-router-dom';
 import AddResponse from './AddResponse';
 import { connect } from 'react-redux';
+import { fetchDeleteComment } from '../../actions/comment/commentsActions';
 import {fetchAddResponse} from '../../actions/comment/responsesActions';
 
 class Comments extends Component{
   state={
     comment_id: null,
     press:false,
-    count:this.props.responses.count
+    count:this.props.responses.count,
+    delete:false,
   }
 
   handleClick = id => (e) => {
     this.setState({press:true, comment_id: id});
+  }
+  handleDeleteClick = id => (e)=>{
+    this.props.deleteComment(id);
   }
 
   reset = (e) => {
@@ -24,6 +29,7 @@ class Comments extends Component{
       const press= this.state.press;
       const id = this.state.comment_id;
       const comments= this.props.comments;
+      const currentuser_id = this.props.currentUser_id;
       console.log(id);
       console.log(press);
       const cant = this.state.count;
@@ -40,6 +46,14 @@ class Comments extends Component{
                   <button onClick={this.handleClick(comment.id)}> Reply</button>
                 </div>
               )}
+              {currentuser_id === comment.user_id ?(
+                <div>
+                  <button onClick={this.handleDeleteClick(comment.id)}> Delete </button>
+                </div>
+              ):(
+                <div>
+                </div>
+              )} 
              { comment.responses ?(
                 <div>
                   <Link to={{pathname:'/responses/'+ comment.id, state:{c:comment}}}> Show responses </Link>
@@ -69,6 +83,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addResponse: (res) => {
       dispatch(fetchAddResponse(res))
+    },
+    deleteComment: (id)=> {
+      dispatch(fetchDeleteComment(id))
     },
   }
 }

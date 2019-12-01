@@ -160,7 +160,7 @@ public static Comment findComment(final int id) {
     return aux;
   }
   //Borrar un comentario
-  public static void deleteComment(final int id) {
+  public static Boolean deleteComment(final int id) {
     Comment c = new Comment();
     c = Comment.findById(id);
     if (c==null){
@@ -174,6 +174,8 @@ public static Comment findComment(final int id) {
         }
       }
       c.delete();
+      Comment.exists(id);
+      return (!Comment.exists(id));
     }
   }
 }

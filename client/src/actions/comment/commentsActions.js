@@ -5,6 +5,9 @@ import {
   FETCH_COMMENTS_FAILURE,
   ADD_COMMENT,
   FETCH_ADD_COMMENT_FAILURE,
+  FETCH_DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT,
+  FETCH_DELETE_COMMENT_FAILURE
 } from '../../constants/ActionTypes'
 
 
@@ -42,6 +45,45 @@ const fetchAddCommentFailure = error => {
   }
 }
 
+const fetchDeleteCommentRequest = (id) => {
+  return {
+    type: FETCH_DELETE_COMMENT_REQUEST,
+    id
+  }
+}
+
+const fetchDeleteCommentSuccess = (id) => {
+  return {
+    type: DELETE_COMMENT,
+    id
+  }
+}
+const fetchDeleteFailure = error => {
+  return {
+      type: FETCH_DELETE_COMMENT_FAILURE,
+      payload: error
+  }
+}
+
+export const fetchDeleteComment = (id) =>{
+  return function(dispatch) {
+    dispatch(fetchDeleteCommentRequest())
+     axios.delete(process.env.REACT_APP_API_HOST+'/comments/deleteComment/'+id,{
+        headers: {'Authorization' : 'Basic '+ localStorage.getItem("token")},
+        data:{
+          id:id
+        }
+    })
+      .then( res =>{
+        console.log(res.data);
+        dispatch(fetchDeleteCommentSuccess(res.data))
+      })
+      .catch(error => {
+        console.log(error)
+        dispatch(fetchDeleteFailure(error))
+      })
+  }
+}
 
 
 //
