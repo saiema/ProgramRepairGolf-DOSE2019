@@ -63,7 +63,7 @@ const mapStateToProps = (state,props) => {
   const comment_id=props.match.params.id;
   console.log(comment_id);
   console.log(state.comments.data[0].id === comment_id);
-  const c = state.comments.data.find(comment => comment.id===comment_id);
+  const c = state.comments.data.find(comment => comment.id.toString()===comment_id);
   console.log(c); 
   return {
     responses: state.responses,

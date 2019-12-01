@@ -11,7 +11,7 @@ import resolvedTestChallengeReducer from './challenge/resolvedTestChallengeReduc
 import unsolvedTestChallengeReducer from './challenge/unsolvedTestChallengeReducer'
 import challengeReducer from './challenge/challengeReducer'
 import commentsReducer from './comment/commentsReducer'
-import commentReducer from './comment/commentReducer'
+import responsesReducer from './comment/responsesReducer'
 import userReducer from './reducersUser/userReducer'
 import usersReducer from './reducersUser/usersReducer'
 
@@ -57,7 +57,7 @@ const rootReducer = combineReducers({
     unsolvedTestChallenge: unsolvedTestChallengeReducer,
     challenge: challengeReducer,
     comments: commentsReducer,
-    responses: commentReducer,
+    responses: responsesReducer,
     users: usersReducer,
     user: userReducer
 })

@@ -16,7 +16,7 @@ const initCommentState = {
       error:''
 }
 
-const commentReducer = (state = initCommentState, action) => {
+const responsesReducer = (state = initCommentState, action) => {
     switch(action.type) {
         case FETCH_RESPONSES_REQUEST:
             return {
@@ -84,6 +84,7 @@ const commentReducer = (state = initCommentState, action) => {
  function add_response(responses, response) {
    const existingResponses = responses[response.comment_id];
    console.log("a ver");
+   console.log(response);
    console.log(existingResponses);
    console.log(existingResponses==='undefined');
    if(typeof existingResponses !== 'undefined') {
@@ -92,11 +93,16 @@ const commentReducer = (state = initCommentState, action) => {
    } else {
      console.log("no che");
      const comment_id= response.comment_id;
-     responses[comment_id]= response
+     let a= []
+     a.push(response);
+     console.log(a);
+     responses[comment_id]= a;
+     console.log(responses);
    }
    return responses;
  }
 function responses(responses, newResponse) {
+  console.log(newResponse);
     const comment_id= newResponse[0].comment_id;
   responses[comment_id]= newResponse;
   return responses;
@@ -123,4 +129,4 @@ function delete_res (responses, response){
     return responses;
 }
 
-export default commentReducer;
+export default responsesReducer;
