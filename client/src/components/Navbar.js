@@ -8,9 +8,6 @@ const Navbar = (props) => {
     <div className="container">
       <Link className="brand-logo" to="/">Program Repair Game</Link>
       <ul className="right">
-        <li><NavLink exact to="/">Home</NavLink></li>
-        <li><NavLink to='/about'>About</NavLink></li>
-        <li><NavLink to='/hackers'>Hackers</NavLink></li>
         <li><NavLink to='/userstats'>Statistics</NavLink></li>
         <li><NavLink to='/challenge'>Challenge</NavLink></li>
         <li><NavLink to='/comments'> Comments </NavLink></li>
@@ -23,6 +20,7 @@ const Navbar = (props) => {
     <Link className="brand-logo" to="/">Program Repair Game</Link>
     <ul className="right">
       <li><NavLink exact to="/">Home</NavLink></li>
+      <li><NavLink to='/about'>About Us</NavLink></li>
     </ul>
   </div>
 </nav>
