@@ -2,11 +2,10 @@ import React from 'react';
 import './Style.css';
 import useModal from 'use-react-modal'
 import ViewModal from './ViewModal'
+import { Link } from 'react-router-dom';
 
-const TableCompilationChallenge = ({ listCompilationChallenge }) => {
-
+const TableCompilationChallenge = ({ listCompilationChallenge, showStatsHandler }) => {
   const { openModal, isOpen } = useModal()
-
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -23,6 +22,11 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
             />
           )}
         </td>
+        <td> <button className="button-table"> VIEW SOURCE </button></td>
+
+        <td> <button onClick={showStatsHandler(challenge.id)}> STATS </button> </td>
+
+        <td> <Link to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link></td>
       </tr>
     )
   });

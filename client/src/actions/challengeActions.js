@@ -106,6 +106,8 @@ export const addCompilationChallenge = (state) => {
 export const addTestChallenge = (state) => {
     return function(dispatch, getState) {
         let userid = getState().user.currentUser.id;
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
         dispatch(fetchDataRequest())
         let base64 = require('base-64');
         let username = getState().user.currentUser.username;

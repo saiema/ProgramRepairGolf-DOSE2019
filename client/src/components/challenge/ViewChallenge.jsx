@@ -2,6 +2,7 @@ import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
 import TableCompilationChallenge from './TableCompilationChallenge'
 import TableTestChallenge from './TableTestChallenge'
+import { withRouter } from 'react-router-dom'
 
 class ViewChallenge extends Component {
 
@@ -31,7 +32,12 @@ class ViewChallenge extends Component {
         <div className="container">
             { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
             <TableCompilationChallenge
-              listCompilationChallenge={this.props.allCompilationChallenge}
+                listCompilationChallenge={this.props.allCompilationChallenge}
+                showStatsHandler = {(id) => () => {
+                	this.props.history.push({
+                	  pathname: '/challenges/' + id + '/stats',
+                	})
+                }}
             />
         </div>
       );
@@ -64,7 +70,11 @@ class ViewChallenge extends Component {
           { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableTestChallenge
             listTestChallenge={this.props.allTestChallenge}
-            props = {this}
+            showStatsHandler = {(id) => () => {
+                this.props.history.push({
+                  pathname: '/challenges/' + id + '/stats',
+                })
+            }}
           />
         </div>
       );
@@ -107,10 +117,10 @@ class ViewChallenge extends Component {
     }
   }
 
-  
+
   render () {
     return (
-        
+
       <div className="block-button"> <h1> View challenge </h1>
         <div className="Block-buttonGroup">
           <ButtonGroup>
@@ -131,4 +141,4 @@ class ViewChallenge extends Component {
   }
 }
 
-export default ViewChallenge
+export default withRouter(ViewChallenge)

@@ -1,5 +1,8 @@
 package unrc.dose;
 
+import java.util.List;
+
+import org.javalite.activejdbc.LazyList;
 import org.javalite.activejdbc.Model;
 
 /**
@@ -111,6 +114,16 @@ public class ChallengeStat extends Model {
             throw new IllegalArgumentException("The record doesn't exists");
         }
         cs.delete();
+    }
+
+    /**
+     * It returns a list with all ChallengeStats.
+     * @return List<ChallengeStat>
+     */
+    public static List<ChallengeStat> allChallengeStats() {
+        LazyList<ChallengeStat> allcs = ChallengeStat.findAll();
+
+        return allcs;
     }
 
     public Float getAverageScore() {
