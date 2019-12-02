@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import logo from '../../logo.svg';
-import { fetchUsers, newAccount, login}  from '../../actions/actionsUser/usersActions';
+import { fetchUsers, newAccount, login, addAdmin}  from '../../actions/actionsUser/usersActions';
 
 
 class UsersContainer extends Component {
@@ -16,6 +16,7 @@ class UsersContainer extends Component {
 				newAccount={this.props.newAccount}
 				deleteUser={this.props.deleteUser}
         login={this.props.login}
+        addAdmin={this.props.addAdmin}
 			/>
 		)
 	}
@@ -41,6 +42,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     login: (user, pass) => {
       dispatch(login(user, pass))
+    },
+    addAdmin: (user) => {
+      dispatch(addAdmin(user))
     }
   }
 }
