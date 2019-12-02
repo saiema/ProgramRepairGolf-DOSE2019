@@ -5,8 +5,8 @@ import f  from './Authorization';
 const Navbar = (props) => {
   return f.isAuthenticated ? (
     <nav className="nav-wrappen red">
-    <div className="container">
-      <Link className="brand-logo" >Program Repair Game</Link>
+    <div className="container" align="left">
+      <Link className="brand-logo" to="/">Program Repair Game</Link>
       <ul className="right">
 
         <li><NavLink to='/propositions'>Propositions</NavLink></li>
@@ -24,7 +24,7 @@ const Navbar = (props) => {
   </nav>
 ): (
   <nav className="nav-wrappen red">
-  <div className="container">
+  <div className="container" align="left">
     <Link className="brand-logo" to="/">Program Repair Game</Link>
     <ul className="right">
       <li><NavLink exact to="/">Home</NavLink></li>
