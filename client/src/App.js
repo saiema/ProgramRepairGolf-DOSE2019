@@ -8,8 +8,8 @@ import About from './components/About'
 import Navbar from './components/Navbar'
 import Challenge from './components/challenge/Challenge'
 
-import MenuComment from './components/comments/MenuComment';
 import CommentContainerChallenge from './components/comments/CommentContainerChallenge';
+import CommentContainerUser from './components/comments/CommentContainerUser';
 import ResponsesContainer from './components/comments/ResponsesContainer';
 import PrivateRoute from './components/PrivateRoute';
 import ResetPass from './components/componentsUser/EmailContainer';
@@ -26,8 +26,8 @@ class App extends Component {
             <Route path='/about' component={About} />
             <Route path='/userstats' component={UserStats} />
             <Route path="/challenge" component={Challenge} />
-            <Route path='/comments' component={MenuComment} />
             <Route path='/challenges_comments/:id' component={CommentContainerChallenge} />
+            <Route path='/comments' component={CommentContainerUser} />
             <Route path='/responses/:id' component={ResponsesContainer} />
             <Route exact path='/resetPassword' component={ResetPass}/>
             <PrivateRoute path='/hackers' component={HackersContainer} />

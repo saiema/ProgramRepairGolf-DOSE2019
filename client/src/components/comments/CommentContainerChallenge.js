@@ -21,6 +21,10 @@ class CommentContainerChallenge extends Component {
     this.setState({press:true});
   }
 
+  reset=(e)=>{
+    this.setState({press:false});
+  }
+
 
 
 	render(){
@@ -34,6 +38,7 @@ class CommentContainerChallenge extends Component {
       </div>
     {press ? (
       <div>
+        <button onClick={this.reset}>cerrar</button>
         <AddComment  user_id={this.props.currentUser_id} challenge_id={this.props.challenge} addComment={this.props.addComment}/>
         </div>
       ):(
