@@ -442,7 +442,7 @@ public class Proposition extends Model {
      * @return false if the source not compile, true otherwise.
      */
     public boolean submitProposition(
-    		final int challengeId,
+    		//final int challengeId,
             final String proposedCode,
             final String proposedClassName) {
         if (!(this.compileProposition(proposedCode, proposedClassName))) {
@@ -521,6 +521,4 @@ public class Proposition extends Model {
         }
         return result;
     }
-
-
 }
