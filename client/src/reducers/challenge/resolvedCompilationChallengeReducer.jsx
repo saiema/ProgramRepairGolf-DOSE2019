@@ -1,7 +1,8 @@
 import {
     FETCH_RESOLVED_COMPILATION_CHALLENGE_REQUEST,
     FETCH_RESOLVED_COMPILATION_CHALLENGE_SUCCESS,
-    FETCH_RESOLVED_COMPILATION_CHALLENGE_FAILURE
+    FETCH_RESOLVED_COMPILATION_CHALLENGE_FAILURE,
+    DELETE_CHALLENGE
 } from '../../constants/ActionTypesChallenges'
 
 const initCompilationChallengeState = {
@@ -11,9 +12,9 @@ const initCompilationChallengeState = {
 }
 
 const resolvedCompilationChallengeReducer = (state = initCompilationChallengeState, action) => {
-    
+
     switch(action.type) {
-        
+
         case FETCH_RESOLVED_COMPILATION_CHALLENGE_REQUEST:
             return {
                 ...state,
@@ -28,7 +29,6 @@ const resolvedCompilationChallengeReducer = (state = initCompilationChallengeSta
                 error: ''
             }
 
-
         case FETCH_RESOLVED_COMPILATION_CHALLENGE_FAILURE:
             return {
                 ...state,
@@ -36,10 +36,18 @@ const resolvedCompilationChallengeReducer = (state = initCompilationChallengeSta
                 data: [],
                 error: action.payload,
             }
+        
+        case DELETE_CHALLENGE:
+            return {
+                ...state,
+                data: state.data.filter(challenge => challenge.id !== action.id)
+            }
 
         default:
             return state
+
     }
+
 }
 
 export default resolvedCompilationChallengeReducer;

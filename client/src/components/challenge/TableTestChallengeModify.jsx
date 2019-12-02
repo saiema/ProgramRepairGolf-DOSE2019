@@ -2,36 +2,35 @@ import React from 'react';
 import './Style.css';
 
 const TableTestChallengeModify = ({ listTestChallenge }) => {
+
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
-      <tr key = {challenge.id} >
-        <td>{challenge.id}</td>
-        <td>{challenge.title}</td>
-        <td>{challenge.description}</td>
-        <td>{challenge.point}</td>
-        <td>
-          <button className="button-table"> VIEW SOURCE AND TEST</button>
-          <button className="button-table"> MODIFY </button>
-        </td>
-      </tr>
+      <div className="hacker card" key={challenge.id}>
+        <div className="card-content">
+          <span className="card-title">
+            <p style={{ color: '#F44336',fontWeight: 'bold' }}> { challenge.title }</p>
+          </span>
+          <div> id: <p style={{ color: '#F44336' }}> {challenge.id} </p> </div>
+          <div>description: <p style={{ color: '#F44336' }}>{challenge.description} </p></div>
+          <div>poit: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
+          <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
+          <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
+          <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
+          <button
+          className="button-table"
+          
+          > MODIFY </button>
+        </div>
+      </div>
     )
   });
   return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Points</th>
-            <th>Actions</th>
-          </tr> 
-          { testChallengeList }
-        </tbody>
-      </table>
+   <div className="post">
+      <div className="hacker-list">
+        {testChallengeList}
+      </div>
     </div>
-  )
+  );
 }
 
 export default TableTestChallengeModify;

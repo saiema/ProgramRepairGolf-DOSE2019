@@ -1,14 +1,14 @@
 package unrc.dose;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import org.javalite.activejdbc.Base;
+import org.javalite.activejdbc.LazyList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,9 +34,21 @@ public class ChallengeStatTest {
         "testClass", "testDesc", "testSrc", 20, 1);
         int challengeId = testChallenge.getInteger("id");
 
+        Challenge testChallenge1 = Challenge.addChallenge(userId, "testChallenge1",
+        "testClass1", "testDesc1", "testSrc1", 17, 1);
+        int challengeId1 = testChallenge1.getInteger("id");
+
+        Challenge testChallenge2 = Challenge.addChallenge(userId, "testChallenge2",
+        "testClass2", "testDesc2", "testSrc2", 25, 1);
+        int challengeId2 = testChallenge2.getInteger("id");
+
         Proposition.newProposition(userId, challengeId, "testSrc", true, 5, 0);
+        Proposition.newProposition(userId, challengeId1, "testSrc1", true, 3, 0);
+        Proposition.newProposition(userId, challengeId2, "testSrc2", true, 7, 0);
 
         ChallengeStat.newChallengeStat(challengeId);
+        ChallengeStat.newChallengeStat(challengeId1);
+        ChallengeStat.newChallengeStat(challengeId2);
 
     }
 
@@ -122,5 +134,19 @@ public class ChallengeStatTest {
         assertNotNull(result);
         assertTrue(comparison);
 
+    }
+
+    /**
+     * Test for allChallengeStats() method.
+     */
+    @Test
+    public void allChallengeStatsTest() {
+        LazyList<ChallengeStat> allcs1 = (LazyList<ChallengeStat>) ChallengeStat.allChallengeStats();
+        LazyList<ChallengeStat> allcs2 = ChallengeStat.findAll();
+        
+        int length1 = allcs1.size();
+        int length2 = allcs2.size();
+
+        assertEquals(length1, length2);
     }
 }

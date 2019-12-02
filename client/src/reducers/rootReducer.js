@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
+import propositionReducer from './proposition/propositionReducer'
 import rankingReducer from './rankingReducer'
 import individualStatsReducer from './individualStatsReducer'
 import allCompilationChallengeReducer from './challenge/allCompilationChallengeReducer'
@@ -9,11 +10,14 @@ import unsolvedCompilationChallengeReducer from './challenge/unsolvedCompilation
 import allTestChallengeReducer from './challenge/allTestChallengeReducer'
 import resolvedTestChallengeReducer from './challenge/resolvedTestChallengeReducer'
 import unsolvedTestChallengeReducer from './challenge/unsolvedTestChallengeReducer'
+import challengesAssociatedToUserReducer from './challenge/challengesAssociatedToUserReducer'
 import challengeReducer from './challenge/challengeReducer'
 import commentsReducer from './comment/commentsReducer'
-import commentReducer from './comment/commentReducer'
+import responsesReducer from './comment/responsesReducer'
 import userReducer from './reducersUser/userReducer'
 import usersReducer from './reducersUser/usersReducer'
+import challengeStatReducer from './challengeStatReducers/challengeStatReducer'
+
 
 // STATE
 //
@@ -30,15 +34,15 @@ import usersReducer from './reducersUser/usersReducer'
 //      error: ''
 //    },
 //   comments: {
-//      data: [],
+//      data: [{comment}]
 //      count: 0,
 //      loading: false,
 //      error: ''
 //     },
-//    comment: {
-//      data: {},
+//    responses: {
+//      data: [ (id, [{comment}]) ],
+//      count:0,
 //      loading: false,
-//      responses:[],
 //      error:''
 //     },
 // }
@@ -47,6 +51,7 @@ const rootReducer = combineReducers({
 
     hackers: hackersReducer,
     hacker: hackerReducer,
+    propositions: propositionReducer,
     ranking: rankingReducer,
     individual_stats: individualStatsReducer,
     allCompilationChallenge: allCompilationChallengeReducer,
@@ -55,11 +60,13 @@ const rootReducer = combineReducers({
     allTestChallenge: allTestChallengeReducer,
     resolvedTestChallenge: resolvedTestChallengeReducer,
     unsolvedTestChallenge: unsolvedTestChallengeReducer,
-    challenge: challengeReducer,
+    challengesAssociatedToUser: challengesAssociatedToUserReducer,
+    validationChallenge: challengeReducer,
     comments: commentsReducer,
-    comment: commentReducer,
+    responses: responsesReducer,
     users: usersReducer,
-    user: userReducer
+    user: userReducer,
+    challengeStat: challengeStatReducer
 })
 
 export default rootReducer
