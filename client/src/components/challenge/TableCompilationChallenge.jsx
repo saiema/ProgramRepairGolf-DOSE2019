@@ -16,8 +16,8 @@ const TableCompilationChallenge = ({ listCompilationChallenge, showStatsHandler 
           <div>poit: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
-          <button onClick={showStatsHandler(challenge.id)}> STATS </button> 
-          <Link to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link>
+          <button className="button-table" onClick={showStatsHandler(challenge.id)}> STATS </button> 
+          <Link className="button-table" to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link>
         </div>
       </div>
     )

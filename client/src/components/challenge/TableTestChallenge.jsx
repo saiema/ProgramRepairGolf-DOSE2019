@@ -17,8 +17,8 @@ const TableTestChallenge = ({ listTestChallenge, showStatsHandler }) => {
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
           <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
-          <button onClick={showStatsHandler(challenge.id)}>Stats </button>
-          <Link to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link>       
+          <button className="button-table" onClick={showStatsHandler(challenge.id)}>Stats </button>
+          <Link className="button-table" to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link>       
         </div>
       </div>
     )
