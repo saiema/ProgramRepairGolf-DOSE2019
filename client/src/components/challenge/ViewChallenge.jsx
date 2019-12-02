@@ -48,7 +48,11 @@ class ViewChallenge extends Component {
             { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableCompilationChallenge
             listCompilationChallenge={this.props.unsolvedCompilationChallenge}
-            props = {this}
+            showStatsHandler = {(id) => () => {
+              this.props.history.push({
+                pathname: '/challenges/' + id + '/stats',
+              })
+            }}
           />
         </div>
       );
@@ -59,7 +63,11 @@ class ViewChallenge extends Component {
           { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableCompilationChallenge
             listCompilationChallenge={this.props.resolvedCompilationChallenge}
-            props = {this}
+            showStatsHandler = {(id) => () => {
+              this.props.history.push({
+                pathname: '/challenges/' + id + '/stats',
+              })
+            }}
           />
         </div>
       );
@@ -85,6 +93,11 @@ class ViewChallenge extends Component {
             { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
             <TableTestChallenge
               listTestChallenge={this.props.unsolvedTestChallenge}
+              showStatsHandler = {(id) => () => {
+                this.props.history.push({
+                  pathname: '/challenges/' + id + '/stats',
+                })
+              }}
             />
           </div>
         );
@@ -95,7 +108,12 @@ class ViewChallenge extends Component {
               { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
               <TableTestChallenge
                 listTestChallenge={this.props.resolvedTestChallenge}
-                />
+                showStatsHandler = {(id) => () => {
+                  this.props.history.push({
+                    pathname: '/challenges/' + id + '/stats',
+                  })
+                }}
+              />
           </div>
         );
       }
@@ -105,7 +123,11 @@ class ViewChallenge extends Component {
             { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
             <TableCompilationChallenge
               listCompilationChallenge={this.props.challengesAssociatedToUser}
-              props = {this}
+              showStatsHandler = {(id) => () => {
+                this.props.history.push({
+                  pathname: '/challenges/' + id + '/stats',
+                })
+              }}
             />
         </div>
       );

@@ -109,8 +109,6 @@ export const addTestChallenge = (state) => {
         let base64 = require('base-64');
         let username = getState().user.currentUser.username;
         dispatch(fetchDataRequest())
-        let base64 = require('base-64');
-        let username = getState().user.currentUser.username;
         axios.post('http://localhost:55555/testChallenge/create', null, {
             params:{
                 userId: userid,
