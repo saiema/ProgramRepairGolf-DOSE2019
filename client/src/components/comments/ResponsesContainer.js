@@ -26,13 +26,13 @@ class ResponsesContainer extends Component {
 		) : (
       <div>
        <div>
-         <button onClick={this.goBack}>go back</button>>
        <Comment comment={this.props.comment} />
       <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
 			<Responses deleteResponse={this.props.deleteResponse} user_id={this.props.currentUser_id}
 				 responses={this.props.responses.data} id={this.props.match.params.id}
 			  />
        </div>
+       <button className= "button-submit" onClick={this.goBack}>go back</button>
       </div>
 		)
 	}
