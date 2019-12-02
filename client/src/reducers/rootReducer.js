@@ -14,6 +14,7 @@ import commentsReducer from './comment/commentsReducer'
 import responsesReducer from './comment/responsesReducer'
 import userReducer from './reducersUser/userReducer'
 import usersReducer from './reducersUser/usersReducer'
+import challengeStatReducer from './challengeStatReducers/challengeStatReducer'
 
 // STATE
 //
@@ -59,7 +60,8 @@ const rootReducer = combineReducers({
     comments: commentsReducer,
     responses: responsesReducer,
     users: usersReducer,
-    user: userReducer
+    user: userReducer,
+    challengeStat: challengeStatReducer
 })
 
 export default rootReducer

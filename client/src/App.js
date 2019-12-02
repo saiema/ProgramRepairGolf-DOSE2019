@@ -13,6 +13,7 @@ import CommentContainerChallenge from './components/comments/CommentContainerCha
 import ResponsesContainer from './components/comments/ResponsesContainer';
 import PrivateRoute from './components/PrivateRoute';
 import ResetPass from './components/componentsUser/EmailContainer';
+import ChallengeStat from './components/challengeStatComponents/ChallengeStat'
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path='/challenges_comments/:id' component={CommentContainerChallenge} />
             <Route path='/responses/:id' component={ResponsesContainer} />
             <Route exact path='/resetPassword' component={ResetPass}/>
+            <Route path="/challenges/:challenge_id/stats" component={ChallengeStat} />
             <PrivateRoute path='/hackers' component={HackersContainer} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
           </Switch>
