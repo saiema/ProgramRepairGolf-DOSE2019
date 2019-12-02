@@ -1,8 +1,8 @@
 import React from 'react';
 import './Style.css';
+import { Link } from 'react-router-dom';
 
-
-const TableTestChallenge = ({ listTestChallenge }) => {
+const TableTestChallenge = ({ listTestChallenge, showStatsHandler }) => {
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -12,6 +12,10 @@ const TableTestChallenge = ({ listTestChallenge }) => {
         <td>{challenge.point}</td>
         <td>
           <button className="button-table"> VIEW SOURCE AND TEST </button>
+          <td> <Link to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link></td>
+        </td>
+        <td>
+          <button onClick={showStatsHandler(challenge.id)}>Stats </button>
         </td>
       </tr>
     )
@@ -26,7 +30,7 @@ const TableTestChallenge = ({ listTestChallenge }) => {
             <th>Description</th>
             <th>Points</th>
             <th>Actions</th>
-          </tr> 
+          </tr>
           { testChallengeList }
         </tbody>
       </table>
