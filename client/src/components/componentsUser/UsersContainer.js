@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
+import logo from '../../logo.svg';
 import { fetchUsers, newAccount, login}  from '../../actions/actionsUser/usersActions';
 
 
 class UsersContainer extends Component {
 
 	render() {
-		return (
+		return this.props.loading ? (
+      <img src={logo} className="App-logo" alt="logo" />
+		) : (
 			<Users
 				users={this.props.users}
 				newAccount={this.props.newAccount}
 				deleteUser={this.props.deleteUser}
         login={this.props.login}
 			/>
-		);
+		)
 	}
 }
 

@@ -159,7 +159,7 @@ export const login = (user, pass) =>{
   }
 
 
-export const fetchUser = (user_id) => {
+  export const fetchUser = (user_id) => {
   return function(dispatch) {
     dispatch(fetchUserRequest())
 
@@ -170,5 +170,28 @@ export const fetchUser = (user_id) => {
       .catch(error => {
         dispatch(fetchUserFailure(error.message))
       })
+    }
   }
-}
+  
+  export const addAdmin = (name) =>{
+   return function(dispatch) {
+     dispatch(fetchUserRequest())
+      fetch('http://localhost:55555/user/activateAdmin', {
+       method: 'PUT',
+       headers:{
+        Authorization:"Basic" + localStorage.getItem("token")
+       },
+       body:JSON.stringify({'username': name})
+       })
+       .then( res =>{
+         dispatch(fetchUserSucess(res.data));
+         alert('Ahora '+name+' es admin');
+
+       })
+       .catch(error => {
+         dispatch(fetchUserFailure(error.message));
+         alert('Hubo un problema con hacer admin a : '+name+ ' o este usuario no existe');
+       })
+    }
+  }
+

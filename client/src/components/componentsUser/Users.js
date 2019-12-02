@@ -6,13 +6,9 @@ import "../../App.css";
 
 const Users = ({ users, newAccount, deleteUser, login}) => {
     return (
-      <div>
-        <div className="left">
-          <CreateAccount newAccount={newAccount}/>
-        </div>
-        <div className="right">
-          <Login login={login}/>
-        </div>
+      <div >
+        <CreateAccount newAccount={newAccount}/>
+        <Login login={login}/>
       </div>
     );
   }

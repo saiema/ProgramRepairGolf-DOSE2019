@@ -297,5 +297,18 @@ public class User extends Model {
       return list;
     }
 
+    /**
+    *This method is for activate user admin.
+    */
+    public static Boolean activaAdmin(String name) {
+        User user = User.findFirst("username = ? ", name);
+        if(user!=null){
+            user.set("ADMIN", true);
+            user.saveIt();
+            return true;
+        }  
+        return false;     
+    }
 
 }
+

@@ -201,6 +201,31 @@ public final class UserEndpoint implements Endpoint {
                 return(User.disableUser((String)bodyParams.get("username"), (String)bodyParams.get("password")));
 
             }
+        )
+
+
+
+         .put(
+            path("/activateAdmin")
+                .withDescription("Activate account admin")
+                .withPathParam()
+                    .withName("username")
+                    .withDescription("This is the user to activate admin")
+                    .and()
+                .withResponseType(String.class),
+            (req, res) -> {
+            Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
+                System.out.println(User.activaAdmin((String)bodyParams.get("username")));
+               System.out.println("****************************************************************************************");
+
+                if( User.activaAdmin((String)bodyParams.get("username"))) {
+                      res.status(200);
+                    } else {
+                      res.status(401);
+                    }
+                    return "";
+                
+            }
         );
     }
 }
