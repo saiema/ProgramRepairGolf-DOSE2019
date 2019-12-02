@@ -10,27 +10,15 @@ class ViewChallenge extends Component {
     super();
 
     this.state = {
-        isShowing: false,
         opc: ""
     }
   }
 
-  openModalHandler = () => {
-    this.setState({
-        isShowing: true
-    });
-  }
-
-  closeModalHandler = () => {
-    this.setState({
-        isShowing: false
-    });
-  }
   show(){
     if (this.state.opc === "allCompilation") {
       return (
         <div className="container">
-            { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
+
             <TableCompilationChallenge
                 listCompilationChallenge={this.props.allCompilationChallenge}
                 showStatsHandler = {(id) => () => {
@@ -45,7 +33,7 @@ class ViewChallenge extends Component {
     else if (this.state.opc === "unsolvedCompilation"){
       return (
         <div className="container">
-            { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
+
           <TableCompilationChallenge
             listCompilationChallenge={this.props.unsolvedCompilationChallenge}
             showStatsHandler = {(id) => () => {
@@ -60,7 +48,6 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="resolvedCompilation"){
       return (
         <div className="container">
-          { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableCompilationChallenge
             listCompilationChallenge={this.props.resolvedCompilationChallenge}
             showStatsHandler = {(id) => () => {
@@ -75,7 +62,6 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="allTest"){
       return (
         <div className="container">
-          { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
           <TableTestChallenge
             listTestChallenge={this.props.allTestChallenge}
             showStatsHandler = {(id) => () => {
@@ -90,7 +76,7 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="unsolvedTest"){
         return (
           <div className="container">
-            { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
+
             <TableTestChallenge
               listTestChallenge={this.props.unsolvedTestChallenge}
               showStatsHandler = {(id) => () => {
@@ -105,7 +91,7 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="resolvedTest"){
         return (
             <div className="container">
-              { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
+  
               <TableTestChallenge
                 listTestChallenge={this.props.resolvedTestChallenge}
                 showStatsHandler = {(id) => () => {
@@ -120,7 +106,7 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="challengesAssociatedToUser"){
       return (
           <div className="container">
-            { this.state.isShowing ? <div onClick={this.closeModalHandler}>></div> : null}
+
             <TableCompilationChallenge
               listCompilationChallenge={this.props.challengesAssociatedToUser}
               showStatsHandler = {(id) => () => {
