@@ -31,7 +31,7 @@ class App extends Component {
             <Route path='/challenges_comments/:id' component={CommentContainerChallenge} />
             <Route path='/responses/:id' component={ResponsesContainer} />
             <Route exact path='/resetPassword' component={ResetPass}/>
-            <Route path="/challengestat" component={ChallengeStat} />
+            <Route path="/challenges/:challenge_id/stats" component={ChallengeStat} />
             <PrivateRoute path='/hackers' component={HackersContainer} />
             <Route path="/:hacker_id" component={Hacker} ></Route>
           </Switch>
