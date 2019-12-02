@@ -4,7 +4,7 @@ import {
     MODIFY_COMPILATION_CHALLENGE,
     ADD_TEST_CHALLENGE,
     MODIFY_TEST_CHALLENGE,
-    //DELETE_CHALLENGE,
+    DELETE_CHALLENGE,
     FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAILURE
@@ -38,12 +38,12 @@ export const modifyTestChallenge = (challenge) => {
     }
 }
 
-// export const deleteChallenge = (id) => {
-//   return {
-//     type: DELETE_CHALLENGE,
-//     id
-//   }
-// }
+export const deleteChallenge = (id) => {
+  return {
+    type: DELETE_CHALLENGE,
+    id
+  }
+}
 
 
 const fetchDataRequest = () => {
@@ -69,6 +69,8 @@ const fetchDataFailure = error => {
 export const addCompilationChallenge = (state) => {
     return function(dispatch, getState) {
         let userid = getState().user.currentUser.id;
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
         dispatch(fetchDataRequest())
         axios.post('http://localhost:55555/compilationChallenge/create', null, {
             params:{
@@ -81,7 +83,7 @@ export const addCompilationChallenge = (state) => {
                 ownerSolutionId: state.owner_solution_id
             },
             headers: {
-                Authorization: "Basic" + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
         .then( res => {
@@ -96,6 +98,8 @@ export const addCompilationChallenge = (state) => {
 export const addTestChallenge = (state) => {
     return function(dispatch, getState) {
         let userid = getState().user.currentUser.id;
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
         dispatch(fetchDataRequest())
         axios.post('http://localhost:55555/testChallenge/create', null, {
             params:{
@@ -109,7 +113,7 @@ export const addTestChallenge = (state) => {
                 test: state.test
             },
             headers: {
-                Authorization: "Basic" + localStorage.getItem("token")
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
             }
         })
         .then( res => {
@@ -121,24 +125,26 @@ export const addTestChallenge = (state) => {
     }
 }
 
-// export const deleteChallenge = (id) => {
-//     console.log("param delete");
-//     console.log(id);
-//     return function(dispatch) {
-//         dispatch(fetchDataRequest())
-//         axios.delete('http://localhost:55555//challenge/' + id )
-//         .then( res => {
-//         console.log("res.data-DELETE");
-//         console.log(res.data);
-//             dispatch(fetchDataSucess(id))
-//         })
-//         .catch( error => {
-//             dispatch(fetchDataFailure(error.message))
-//         })
-//     }
-// }
+export const executeDeleteChallenge = (id) => {
+    return function(dispatch,getState) {
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+        dispatch(fetchDataRequest())
+        axios.delete('http://localhost:55555/challenge/' + id , {
+            headers: {
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
+            }
+        })
+        .then( res => {
+            dispatch(fetchDataSucess(res.data))
+        })
+        .catch( error => {
+            dispatch(fetchDataFailure(error.message))
+        })
+    }
+}
 
-// export const modifyCompilationChallenge = (state) =>{
+//export const modifyCompilationChallenge = (state) =>{
 //     return function(dispatch) {
 //         dispatch(fetchDataRequest())
 //         axios.put('http://localhost:55555/compilationChallenge/modify', {
