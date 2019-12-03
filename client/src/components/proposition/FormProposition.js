@@ -4,21 +4,17 @@ import { Button } from "reactstrap";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
+
+/**
+ * Allows the user to modify the code, check if it compiles and define a code as a proposed solution
+ */
 class FormProposition extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: "",
-      idProp: "",
+      code: this.props.propositions.source,
       redirect: false
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      code: this.props.code,
-      idProp: this.props.idProp
-    });
   }
 
   handleChange = event => {
@@ -26,7 +22,7 @@ class FormProposition extends Component {
   };
 
   onClickCompile = event => {
-    const idProp = this.state.idProp;
+    const idProp = this.props.propositions.id;
     const source = this.state.code;
 
     let base64 = require("base-64");
@@ -56,7 +52,7 @@ class FormProposition extends Component {
   };
 
   onClickSolution = event => {
-    const idProp = this.state.idProp;
+    const idProp = this.props.propositions.id;
     const source2 = this.state.code;
 
     let base64 = require("base-64");
@@ -84,7 +80,7 @@ class FormProposition extends Component {
       })
       .catch(error => {
         console.log(error);
-      });  
+      });
     event.preventDefault();
   };
 
@@ -94,14 +90,21 @@ class FormProposition extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to="/propositions" />;
+      return <Redirect to="/userstats"/>;
     }
   };
 
+  handleChange = event => {
+    this.setState({ code: event.target.value });
+  };
+
+  
   render() {
+    const des = this.props.description
     return (
       <div>
-        {this.renderRedirect()}
+      <div>Descriptions:</div>
+      <div>{des}</div>
         <form onSubmit={this.handleSubmit}>
           <label>Code:</label>
           <TextField
@@ -119,6 +122,7 @@ class FormProposition extends Component {
         <Button className="button-group" onClick={this.onClickSolution}>
           Submit
         </Button>
+        {this.renderRedirect()}
       </div>
     );
   }
