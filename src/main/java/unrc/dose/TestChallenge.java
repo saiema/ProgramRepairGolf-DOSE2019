@@ -148,6 +148,8 @@ public class TestChallenge extends Model {
      * @return list of test challanges resolved.
      */
     public static List<Map<String, Object>> viewResolvedTestChallange() {
+        List<Map<String, Object>> allCompilation =
+        CompilationChallenge.viewAllCompilationChallange();
         LazyList<Proposition> allResolved =
         Proposition.where("isSolution = ?", 1);
         LinkedList<Map<String, Object>> resolved =
@@ -157,12 +159,15 @@ public class TestChallenge extends Model {
                 Challenge c = Challenge.findFirst(
                     "id = ?",
                     challengeResolved.get("challenge_id"));
-                TestChallenge tc = TestChallenge.findFirst(
-                    "challenge_id = ?",
-                    challengeResolved.get("challenge_id"));
-                Map<String, Object> t = toTestChallege(c, tc);
-                if (!(resolved.contains(t))) {
-                    resolved.add(t);
+                
+                if (!allCompilation.contains(c.toJson())){
+                    TestChallenge tc = TestChallenge.findFirst(
+                        "challenge_id = ?",
+                        challengeResolved.get("challenge_id"));
+                    Map<String, Object> t = toTestChallege(c, tc);
+                    if (!(resolved.contains(t))) {
+                        resolved.add(t);
+                    }
                 }
             }
         }
