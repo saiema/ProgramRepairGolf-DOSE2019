@@ -30,7 +30,7 @@ render() {
         <label>
           <input type="text" placeholder="Description" id="description"  onChange={this.handleChange} />
         </label>
-          <button className= "button-submit">Publicar Comentario</button>
+          <button className= "button-submit">Send</button>
         </form>
     </div>
   );

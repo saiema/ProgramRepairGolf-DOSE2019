@@ -36,11 +36,11 @@ class CommentContainerChallenge extends Component {
 		) : (
       <div>
       <div>
-      <button className= "button-submit" onClick= {this.handleClick}>Comentar</button>
+      <button className= "button-submit" onClick= {this.handleClick}>Comment</button>
       </div>
     {press ? (
       <div>
-        <button className= "button-submit" onClick={this.reset}>cerrar</button>
+        <button className= "button-submit" onClick={this.reset}>Close</button>
         <AddComment  user_id={this.props.currentUser_id} challenge_id={this.props.challenge} addComment={this.props.addComment}/>
         </div>
       ):(

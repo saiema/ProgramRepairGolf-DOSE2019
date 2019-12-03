@@ -23,8 +23,6 @@ class Comments extends Component{
       const responses= this.props.responses;
       return comments.map(comment =>
           <div className="comment card" key={comment.id}>
-              <h1>Comentarios</h1>
-              
               <Comment comment={comment}/>
               
               <Link className= "button-submit" to={"/responses/"+comment.id}> Reply </Link>

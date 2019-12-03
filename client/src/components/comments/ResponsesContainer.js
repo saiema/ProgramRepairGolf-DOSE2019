@@ -34,7 +34,7 @@ class ResponsesContainer extends Component {
 				 responses={this.props.responses.data} id={this.props.match.params.id}
 			  />
        </div>
-       <button className= "button-submit" onClick={this.goBack}>go back</button>
+       <button className= "button-submit" onClick={this.goBack}>Go back</button>
       </div>
 		)
 	}
