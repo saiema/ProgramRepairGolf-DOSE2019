@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 
+/**
+ * It allows you to list all the test type challenges and select one to play.
+ */
 class TableTestChallenge extends Component {
   render() {
     return (
@@ -21,7 +24,6 @@ class TableTestChallenge extends Component {
                 <td>{challenge.description}</td>
                 <td>{challenge.point}</td>
                 <td>
-                  <button>View </button>
                   <Button
                     className="button-group"
                     onClick={this.props.onClickChangeState(

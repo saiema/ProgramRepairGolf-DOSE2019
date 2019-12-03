@@ -8,6 +8,9 @@ import TableCompilationChallenge from "./TableCompilationChallenge";
 import TableTestChallenge from "./TableTestChallenge";
 import PropositionContainer from "./PropositionContainer";
 
+/**
+ * It allows you to list all the compilation or test type challenges and select one to play.
+ */
 class PropositionPlay extends Component {
   state = {
     opc: "",
@@ -68,6 +71,7 @@ class PropositionPlay extends Component {
       <div className="block-button">
         {" "}
         <h1> Challenges </h1>
+        <p>Select a type of challenge</p>
         <div className="Block-buttonGroup">
           <ButtonGroup>
             <Button
