@@ -1,10 +1,9 @@
 import React from 'react';
 import './Style.css';
-import { Link } from 'react-router-dom';
 
-const TableTestChallenge = ({ listTestChallenge, showStatsHandler }) => {
+const ListCompilationChallengeModify = ({ listCompilationChallenge  }) => {
 
-  const testChallengeList = listTestChallenge.map(challenge => {
+  const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <div className="hacker card" key={challenge.id}>
         <div className="card-content">
@@ -16,9 +15,9 @@ const TableTestChallenge = ({ listTestChallenge, showStatsHandler }) => {
           <div>poit: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
-          <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
-          <button className="button-table" onClick={showStatsHandler(challenge.id)}>Stats </button>
-          <Link className="button-table" to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link>       
+          <button
+          className="button-table"
+          > MODIFY </button>
         </div>
       </div>
     )
@@ -26,10 +25,10 @@ const TableTestChallenge = ({ listTestChallenge, showStatsHandler }) => {
   return (
     <div className="post">
       <div className="hacker-list">
-        {testChallengeList}
+        {compilationChallengeList}
       </div>
     </div>
   );
 }
 
-export default TableTestChallenge;
+export default ListCompilationChallengeModify;

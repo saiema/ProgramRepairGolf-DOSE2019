@@ -2,8 +2,8 @@ import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
 import { connect } from 'react-redux'
 import {executeDeleteChallenge}  from '../../actions/challengeActions';
-import TableTestChallengeDelete from './TableTestChallengeDelete'
-import TableCompilationChallengeDelete from './TableCompilationChallengeDelete'
+import ListTestChallengeDelete from './ListTestChallengeDelete'
+import ListCompilationChallengeDelete from './ListCompilationChallengeDelete';
 
 
 class DeleteChallenge extends Component {
@@ -20,10 +20,10 @@ class DeleteChallenge extends Component {
     if (this.state.opc === "allCompilation") {
       return (
        <div className="container">
-            <TableCompilationChallengeDelete
+            <ListCompilationChallengeDelete
               listCompilationChallenge={this.props.allCompilationChallenge}
               executeDeleteChallenge={this.props.executeDeleteChallenge}
-              />
+            />
             
         </div>
       );
@@ -31,7 +31,7 @@ class DeleteChallenge extends Component {
     else if (this.state.opc==="allTest"){
       return (
         <div className="container">
-          <TableTestChallengeDelete
+          <ListTestChallengeDelete
             listTestChallenge={this.props.allTestChallenge}
             executeDeleteChallenge={this.props.executeDeleteChallenge}
           />

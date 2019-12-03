@@ -1,7 +1,7 @@
 import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
-import TableCompilationChallengeModify from'./TableCompilationChallengeModify'
-import TableTestChallengeModify from './TableTestChallengeModify'
+import ListCompilationChallengeModify from'./ListCompilationChallengeModify'
+import ListTestChallengeModify from './ListTestChallengeModify'
 
 class ModifyChallenge extends Component {
 
@@ -17,7 +17,7 @@ class ModifyChallenge extends Component {
     if (this.state.opc === "unsolvedCompilation"){
       return (
         <div className="container">
-          <TableCompilationChallengeModify
+          <ListCompilationChallengeModify
             listCompilationChallenge={this.props.unsolvedCompilationChallenge}
           />
         </div>
@@ -26,7 +26,7 @@ class ModifyChallenge extends Component {
     else if (this.state.opc==="unsolvedTest"){
         return (
             <div className="container">
-              <TableTestChallengeModify
+              <ListTestChallengeModify
                 listTestChallenge={this.props.unsolvedTestChallenge}
               />
           </div>
