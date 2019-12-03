@@ -1,18 +1,19 @@
 import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
 import { connect } from 'react-redux'
-import { 
+import {
   fetchAllCompilationChallenge,
   fetchResolvedCompilationChallenge,
   fetchUnsolvedCompilationChallenge
 } from '../../actions/compilationChallengeActions'
-import { 
+import {
   fetchAllTestChallenge,
   fetchResolvedTestChallenge,
   fetchUnsolvedTestChallenge
 } from '../../actions/testChallengeActions'
 import TableCompilationChallenge from './TableCompilationChallenge'
 import TableTestChallenge from './TableTestChallenge'
+import { withRouter } from 'react-router-dom'
 
 class ViewChallenge extends Component {
 
@@ -36,6 +37,11 @@ class ViewChallenge extends Component {
             <p>all compilation challenge</p>
             <TableCompilationChallenge
                 listCompilationChallenge={this.props.allCompilationChallenge}
+                showStatsHandler = {(id) => () => {
+                	this.props.history.push({
+                	  pathname: '/challenges/' + id + '/stats',
+                	})
+                }}
             />
         </div>
       );
@@ -66,6 +72,11 @@ class ViewChallenge extends Component {
           <p>all test challenge</p>
           <TableTestChallenge
             listTestChallenge={this.props.allTestChallenge}
+            showStatsHandler = {(id) => () => {
+                this.props.history.push({
+                  pathname: '/challenges/' + id + '/stats',
+                })
+            }}
           />
         </div>
       );
@@ -97,17 +108,17 @@ class ViewChallenge extends Component {
     }
   }
 
-  
+
   render () {
     return (
-        
+
       <div className="block-button"> <h1> View challenge </h1>
       <div className="Block-buttonGroup">
            <ButtonGroup>
                 <Button className="button-group" onClick={() => this.setState({opc:"allCompilation"})}>all compilation challenge</Button>
                 <Button className="button-group" onClick={() => this.setState({opc:"unsolvedCompilation"})}>unsolved compilation challenge</Button>
-                <Button className="button-group" onClick={() => this.setState({opc:"resolvedCompilation"})}>resolved compilation challenge</Button> 
-                <Button className="button-group" onClick={() => this.setState({opc:"allTest"})}>all test challenge</Button> 
+                <Button className="button-group" onClick={() => this.setState({opc:"resolvedCompilation"})}>resolved compilation challenge</Button>
+                <Button className="button-group" onClick={() => this.setState({opc:"allTest"})}>all test challenge</Button>
                 <Button className="button-group" onClick={() => this.setState({opc:"unsolvedTest"})}>unsolved test challenge</Button>
                 <Button className="button-group" onClick={() => this.setState({opc:"resolvedTest"})}>resolved test challenge</Button>
             </ButtonGroup>
@@ -154,4 +165,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewChallenge)
+export default connect(mapStateToProps, mapDispatchToProps)(
+    withRouter(ViewChallenge)
+)

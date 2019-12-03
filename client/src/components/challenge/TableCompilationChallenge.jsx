@@ -2,7 +2,7 @@ import React from 'react';
 import './Style.css';
 import { Link } from 'react-router-dom';
 
-const TableCompilationChallenge = ({ listCompilationChallenge }) => {
+const TableCompilationChallenge = ({ listCompilationChallenge, showStatsHandler }) => {
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
       <tr key = {challenge.id} >
@@ -11,6 +11,9 @@ const TableCompilationChallenge = ({ listCompilationChallenge }) => {
         <td>{challenge.description}</td>
         <td>{challenge.point}</td>
         <td> <button className="button-table"> VIEW SOURCE </button></td>
+
+        <td> <button onClick={showStatsHandler(challenge.id)}> STATS </button> </td>
+
         <td> <Link to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link></td>
       </tr>
     )

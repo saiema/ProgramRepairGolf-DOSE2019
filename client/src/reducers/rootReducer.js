@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import hackersReducer from './hackersReducer'
 import hackerReducer from './hackerReducer'
+import propositionReducer from './proposition/propositionReducer'
 import rankingReducer from './rankingReducer'
 import individualStatsReducer from './individualStatsReducer'
 import allCompilationChallengeReducer from './challenge/allCompilationChallengeReducer'
@@ -14,6 +15,8 @@ import commentsReducer from './comment/commentsReducer'
 import responsesReducer from './comment/responsesReducer'
 import userReducer from './reducersUser/userReducer'
 import usersReducer from './reducersUser/usersReducer'
+import challengeStatReducer from './challengeStatReducers/challengeStatReducer'
+
 
 // STATE
 //
@@ -47,6 +50,7 @@ const rootReducer = combineReducers({
 
     hackers: hackersReducer,
     hacker: hackerReducer,
+    propositions: propositionReducer,
     ranking: rankingReducer,
     individual_stats: individualStatsReducer,
     allCompilationChallenge: allCompilationChallengeReducer,
@@ -59,7 +63,8 @@ const rootReducer = combineReducers({
     comments: commentsReducer,
     responses: responsesReducer,
     users: usersReducer,
-    user: userReducer
+    user: userReducer,
+    challengeStat: challengeStatReducer
 })
 
 export default rootReducer
