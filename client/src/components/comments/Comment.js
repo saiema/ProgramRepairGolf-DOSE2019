@@ -12,7 +12,6 @@ class Comment extends Component{
       <h4>{comment.username} :</h4>
       <h5>title: { comment.title } </h5>
       <h5>description: { comment.description }</h5>
-
       </div>
   );
       }

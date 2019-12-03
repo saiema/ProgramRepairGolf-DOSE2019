@@ -33,7 +33,9 @@ class CommentContainerChallenge extends Component {
       <img src={logo} className="App-logo" alt="logo" />
 		) : (
       <div>
-      
+      <div>
+      <button className= "button-submit" onClick= {this.handleClick}>Comentar</button>
+      </div>
     {press ? (
       <div>
         <button className= "button-submit" onClick={this.reset}>cerrar</button>
@@ -46,9 +48,6 @@ class CommentContainerChallenge extends Component {
 			<Comments deleteComment={this.props.deleteComment} user_id={this.props.currentUser_id}
 				comments={this.props.comments}
 			/>
-      <div>
-      <button className= "button-submit" onClick= {this.handleClick}>Comentar</button>
-      </div>
       </div>
       </div>
 		)
