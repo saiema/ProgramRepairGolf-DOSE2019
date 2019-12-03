@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Responses from './Responses';
-import logo from '../../logo.svg';
+import ReactLoading from 'react-loading';
 import Comment from './Comment';
 import { fetchResponses, fetchAddResponse } from '../../actions/comment/responsesActions';
 import AddResponse from './AddResponse';
@@ -10,43 +10,31 @@ import { Link } from 'react-router-dom'
 
 class ResponsesContainer extends Component {
 
-    state={
-      press:false,
-      cant:this.props.responses.count,
-      delete:false,
-    }
-
 	componentDidMount() {
-    if(!this.state.press){
       this.props.fetchResponses(this.props.match.params.id);
-    }
 		}
 
-    handleClick = id => (e) => {
-      this.setState({press:true});
-    }
 
-
-    reset = (e) => {
-      this.setState({press:false});
+    goBack = (e) => {
+      this.props.history.goBack();
     }
 
 	render(){
-    const press= this.state.press;
-    const cant = this.props.responses.count;
 		const comment= this.props.comment;
 		return this.props.loading ? (
-      <img src={logo} className="App-logo" alt="logo" />
+      <div>
+      	<center><ReactLoading type="bars" color="#e83737" height={50} width={200}  /></center>
+			</div>
 		) : (
       <div>
        <div>
-         <Link to={"/challenges_comments/"+comment.challenge_id}>go back</Link>
        <Comment comment={this.props.comment} />
       <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
 			<Responses deleteResponse={this.props.deleteResponse} user_id={this.props.currentUser_id}
 				 responses={this.props.responses.data} id={this.props.match.params.id}
 			  />
        </div>
+       <button className= "button-submit" onClick={this.goBack}>go back</button>
       </div>
 		)
 	}
