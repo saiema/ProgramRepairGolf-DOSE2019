@@ -52,11 +52,10 @@ class AddChallenge extends Component {
         <div className="block-margin">
             <label htmlFor="test">test:</label>
             <p>The class name should be the one entered above plus the word Test</p>
-            <p>*Source methods must be static*</p>
             <p>For example if the class name is Hello:</p>
             <p>package src.test;</p>
             <p>import src.main.Hello;</p>
-            <p>import org.junit. *;</p>
+            <p>import org.junit.*;</p>
             <p>public class HelloTest {aux}</p>
             <p>}</p>
             <textarea className="input-text2" rows="100" cols="100" type="text" id="test" onChange={this.handleChange} />
