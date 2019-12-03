@@ -1,9 +1,15 @@
 import React from 'react';
 import './Style.css';
+import { withRouter } from 'react-router-dom';
 
-const ListCompilationChallengeModify = ({ listCompilationChallenge  }) => {
-
+const ListCompilationChallengeModify = ({ listCompilationChallenge }) => {
+  
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
+    
+    // const handleClickModify = () => {
+    //   this.props.history.push('/challenge/modify');
+    // }
+
     return (
       <div className="hacker card" key={challenge.id}>
         <div className="card-content">
@@ -16,7 +22,8 @@ const ListCompilationChallengeModify = ({ listCompilationChallenge  }) => {
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
           <button
-          className="button-table"
+            className="button-table"
+            // onClick = {handleClickModify()}
           > MODIFY </button>
         </div>
       </div>
@@ -31,4 +38,4 @@ const ListCompilationChallengeModify = ({ listCompilationChallenge  }) => {
   );
 }
 
-export default ListCompilationChallengeModify;
+export default withRouter(ListCompilationChallengeModify);
