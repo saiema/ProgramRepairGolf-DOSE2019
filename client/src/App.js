@@ -29,7 +29,7 @@ class App extends Component {
             <Route path='/hackers' component={HackersContainer} />
             <Route path='/propositions' component={PropositionPlay} />
             <Route path='/userstats' component={UserStats} />
-            <Route path="/challenge" component={Challenge} />
+            <Route path='/challenge' component={Challenge} />
             <Route path='/challenges_comments/:id' component={CommentContainerChallenge} />
             <Route path='/comments' component={CommentContainerUser} />
             <Route path='/responses/:id' component={ResponsesContainer} />

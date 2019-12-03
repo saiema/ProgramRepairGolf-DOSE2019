@@ -105,7 +105,7 @@ class AddChallenge extends Component {
             <button 
               className="button-submit" 
               onClick = {this.handleSubmit1}
-              > Submit 
+            > Submit
             </button>
           </div>
         </div>
