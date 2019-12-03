@@ -64,10 +64,16 @@
     border-radius: 2px;
     margin: 1px;
     font-size: 15px;
-    display: block !important;
 }
 .button-table:hover {
     cursor: pointer;
     background-color: #F44336;
     color: white;
 }
+.div {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    width: max-width;
+  }
