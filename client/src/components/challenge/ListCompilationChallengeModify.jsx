@@ -6,9 +6,9 @@ const ListCompilationChallengeModify = ({ listCompilationChallenge }) => {
   
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     
-    const handleClickModify = () => {
-      this.props.history.push('/challenge/modify');
-    }
+    // const handleClickModify = () => {
+    //   this.props.history.push('/challenge/modify');
+    // }
 
     return (
       <div className="hacker card" key={challenge.id}>
@@ -23,7 +23,7 @@ const ListCompilationChallengeModify = ({ listCompilationChallenge }) => {
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
           <button
             className="button-table"
-            onClick = {handleClickModify()}
+            // onClick = {handleClickModify()}
           > MODIFY </button>
         </div>
       </div>
