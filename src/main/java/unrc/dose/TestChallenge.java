@@ -159,7 +159,6 @@ public class TestChallenge extends Model {
                 Challenge c = Challenge.findFirst(
                     "id = ?",
                     challengeResolved.get("challenge_id"));
-                
                 if (!allCompilation.contains(c.toJson())){
                     TestChallenge tc = TestChallenge.findFirst(
                         "challenge_id = ?",
