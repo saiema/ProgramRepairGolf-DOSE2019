@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 import {
   FETCH_PROPOSITIONS_REQUEST,
   FETCH_PROPOSITIONS_SUCCESS,
@@ -54,4 +54,5 @@ export const fetchPropositionsGame = (idUsr, idChallenge) => {
         dispatch(fetchPropositionsFailure(error.message));
       });
   };
-};
+}
+
