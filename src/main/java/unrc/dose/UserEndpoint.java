@@ -83,7 +83,7 @@ public final class UserEndpoint implements Endpoint {
                 if (!User.userExistsByUsername((String)bodyParams.get("username"))) {
                     if(!User.userExistsByEmail((String)bodyParams.get("email_address"))) {
                       res.status(200);
-                      User.set((String)bodyParams.get("username"),(String)bodyParams.get("password"), (String)bodyParams.get("email_address"), true);
+                      User.set((String)bodyParams.get("username"),(String)bodyParams.get("password"), (String)bodyParams.get("email_address"), false);
                       return"";
                     } else {
                       res.status(401);
@@ -146,7 +146,7 @@ public final class UserEndpoint implements Endpoint {
         )
 
         .put(
-            path("/updatePassword")
+            path("/updatePassword/:newPassword")
                 .withDescription("Update a user's password")
                 .withPathParam()
                     .withName("email_address")
@@ -160,7 +160,7 @@ public final class UserEndpoint implements Endpoint {
             (req, res) -> {
                Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
 
-            	return(User.updatePassword((String)bodyParams.get("email_address"),(String)bodyParams.get("oldPassword"), (String)bodyParams.get("newPassword")));
+            	return(User.updatePassword((String)bodyParams.get("email_address"),(String)bodyParams.get("password"), req.params("newPassword")));
             }
         )
 
@@ -196,8 +196,7 @@ public final class UserEndpoint implements Endpoint {
                     .and()
                 .withResponseType(Boolean.class),
             (req, res) -> {
-                 Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
-
+                 Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);   
                 return(User.disableUser((String)bodyParams.get("username"), (String)bodyParams.get("password")));
 
             }

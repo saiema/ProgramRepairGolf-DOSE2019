@@ -168,13 +168,16 @@ public class User extends Model {
     public static Boolean updatePassword(final String email,
         final String oldPass, final String newPass) {
         User user = User.findFirst("email_address = ?", email);
+       
         if (user != null) {
             String name = user.getName();
-
             if (User.validateCredentials(name, oldPass)) {
                 byte[] passSaved = user.getPass();
                 Password passUser = Password.findFirst("username = ?", name);
                 byte[] salt = (byte[]) passUser.get("salt");
+                System.out.println(Password.isExpectedPassword(newPass.toCharArray(),
+                     salt, passSaved) || newPass.length() <= MIN_VALUE
+                    || newPass.length() > MAX_VALUE);
                 if (Password.isExpectedPassword(newPass.toCharArray(),
                      salt, passSaved) || newPass.length() <= MIN_VALUE
                     || newPass.length() > MAX_VALUE) {
@@ -246,14 +249,17 @@ public class User extends Model {
      * @param pass this param is used for confirm the operation
      * @return a boolean with this exit of remove or no remove the user
      */
-    public static boolean disableUser(final String name,
+     public static boolean disableUser(final String name,
         final String pass) {
         User user = User.findFirst("username = ? ", name);
+        
         if (user != null) {
             byte[] passSaved = user.getPass();
             Password passUser = Password.findFirst("username = ?", name);
             byte[] salt = (byte[]) passUser.get("salt");
             user.set("active_account", false);
+            user.saveIt();
+            System.out.println(user.get("active_account"));
             return ((Password.isExpectedPassword(pass.toCharArray(),
             salt, passSaved)));
         }
@@ -264,7 +270,7 @@ public class User extends Model {
      * this method is for User's credential validation,
      * given a particular user's credential,
      * this method will validate if they are valid.
-     * @param name this username is for validate data
+     * @parauser.saveIt();m name this username is for validate data
      * @param pass this param is used for finally operation
      * @return {@code true} iff the user's credential are valid and the
      * user was successfully logged in
@@ -309,6 +315,7 @@ public class User extends Model {
         }  
         return false;     
     }
+   
 
 }
 

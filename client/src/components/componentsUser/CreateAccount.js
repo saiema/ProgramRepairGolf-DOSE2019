@@ -28,17 +28,17 @@ export default class CreateAccount extends Component{
   render () {
     return (
       <div>
-      <h3>Crear Una Cuenta </h3>
+      <h3> Registrarte </h3>
       <br/>
             <form onSubmit={this.handleSubmit}>
-               <label htmlFor="username">Username:</label>
-                <input type="text" id="username" onChange={this.handleChange} />
-               <label htmlFor="password">Password:</label>
-                <input type="text" id="password" onChange={this.handleChange} />
-                <label htmlFor="email">Email:</label>
-                <input type="text" id="email" onChange={this.handleChange} />
+              <label htmlFor="username">Username:</label>
+              <input type="text" id="username" onChange={this.handleChange} />
+              <label htmlFor="password">Password:</label>
+              <input type="password" id="password" onChange={this.handleChange} />
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" onChange={this.handleChange} />
 
-            <button type="submit"> Crear Cuenta </button>
+            <button type="submit"> Registrarte</button>
             </form>
          </div>
 

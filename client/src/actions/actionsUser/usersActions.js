@@ -172,26 +172,80 @@ export const login = (user, pass) =>{
       })
     }
   }
-  
-  export const addAdmin = (name) =>{
-   return function(dispatch) {
-     dispatch(fetchUserRequest())
-      fetch('http://localhost:55555/user/activateAdmin', {
-       method: 'PUT',
-       headers:{
-        Authorization:"Basic" + localStorage.getItem("token")
-       },
-       body:JSON.stringify({'username': name})
+
+  export const addAdmin = (name) => {
+  return function(dispatch, getState) {
+      dispatch(fetchUserRequest())
+      let base64 = require('base-64');
+      const username = localStorage.getItem("username");
+      const password = localStorage.getItem("password");
+      const token= base64.encode(username+":"+password);
+       axios.put('http://localhost:55555/user/activateAdmin',{
+        username:name
+       },{
+        headers: {'Authorization' : 'Basic '+ token},
+      })
+        .then( res =>{
+          console.log(res.data);
+           dispatch(fetchUserSucess(res.data));
+         alert('Ahora '+name+' es Admin');
+        })
+        .catch(error => {
+          console.log(error)
+         dispatch(fetchUserFailure(error.message));
+         alert('Hubo un problema con hacer admin a : '+name+ ' o este usuario no existe');
+        })
+    }
+}
+
+  export const disableAcc = (user, pass) =>{
+  return function(dispatch) {
+    dispatch(fetchUserRequest())
+     let base64 = require('base-64');
+      const username = localStorage.getItem("username");
+      const password = localStorage.getItem("password");
+      const token= base64.encode(username+":"+password); 
+     axios.put('http://localhost:55555/user/disableAccount',{
+        username:user,
+        password:pass
+       },{
+        headers: {'Authorization' : 'Basic '+ token},
        })
        .then( res =>{
          dispatch(fetchUserSucess(res.data));
-         alert('Ahora '+name+' es admin');
+         alert('La cuenta '+user+' se deshabilitó correctamente');
 
        })
        .catch(error => {
          dispatch(fetchUserFailure(error.message));
-         alert('Hubo un problema con hacer admin a : '+name+ ' o este usuario no existe');
+         alert('No se pudo deshabilitar la cuenta: '+user);
        })
     }
   }
+
+  export const updatePass = (email, oldPass, newPass) =>{
+  return function(dispatch) {
+    dispatch(fetchUserRequest())
+     let base64 = require('base-64');
+      const username = localStorage.getItem("username");
+      const password = localStorage.getItem("password");
+      const token= base64.encode(username+":"+password); 
+     axios.put('http://localhost:55555/user/updatePassword/'+newPass,{
+        email_address:email,
+        password:oldPass
+       },{
+        headers: {'Authorization' : 'Basic '+ token},
+       })
+       .then( res =>{
+         dispatch(fetchUserSucess(res.data));
+         alert('contraseña modificada correctamente');
+
+       })
+       .catch(error => {
+         dispatch(fetchUserFailure(error.message));
+         alert('No se pudo modificar correctamente');
+       })
+    }
+  }
+
 

@@ -4,7 +4,7 @@ import CreateAccount from './CreateAccount';
 import Login from './Login';
 import "../../App.css";
 
-const Users = ({ users, newAccount, deleteUser, login}) => {
+const Users = ({ users, newAccount, login}) => {
     return (
       <div >
         <CreateAccount newAccount={newAccount}/>
