@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import base64 from 'base-64';
 import {
   FETCH_PROPOSITIONS_REQUEST,
   FETCH_PROPOSITIONS_SUCCESS,
@@ -28,11 +29,10 @@ const fetchPropositionsFailure = error => {
 export const fetchPropositionsGame = (idUsr, idChallenge) => {
   return async function(dispatch, getState) {
     dispatch(fetchPropositionsRequest());
-    let base64 = require("base-64");
     let username = getState().user.currentUser.username;
     axios
       .post(
-        "http://localhost:55555/users/" +
+        process.env.REACT_APP_API_HOST + "/users/" +
           idUsr +
           "/challenge/" +
           idChallenge +
@@ -50,7 +50,6 @@ export const fetchPropositionsGame = (idUsr, idChallenge) => {
         dispatch(fetchPropositionsSucess(res));
       })
       .catch(error => {
-        console.log(error);
         dispatch(fetchPropositionsFailure(error.message));
       });
   };

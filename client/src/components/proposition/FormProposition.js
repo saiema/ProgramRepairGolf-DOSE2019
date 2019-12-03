@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import base64 from 'base-64';
 import { TextField } from "@material-ui/core";
 import { Button } from "reactstrap";
 import { Redirect } from "react-router-dom";
@@ -25,10 +26,9 @@ class FormProposition extends Component {
     const idProp = this.props.propositions.id;
     const source = this.state.code;
 
-    let base64 = require("base-64");
     let username = this.props.currentUser.username;
     axios
-      .get("http://localhost:55555/proposition/" + idProp + "/compile", {
+      .get(process.env.REACT_APP_API_HOST + "/proposition/" + idProp + "/compile", {
         params: {
           source: source
         },
@@ -55,10 +55,9 @@ class FormProposition extends Component {
     const idProp = this.props.propositions.id;
     const source2 = this.state.code;
 
-    let base64 = require("base-64");
     let username = this.props.currentUser.username;
     axios
-      .get("http://localhost:55555/proposition/" + idProp + "/submit", {
+      .get(process.env.REACT_APP_API_HOST + "/proposition/" + idProp + "/submit", {
         params: {
           source: source2
         },
