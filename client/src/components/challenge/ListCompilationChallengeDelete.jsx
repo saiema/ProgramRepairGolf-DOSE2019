@@ -1,7 +1,7 @@
 import React from 'react';
 import './Style.css';
 
-const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDeleteChallenge}) => {
+const ListCompilationChallengeDelete = ({ listCompilationChallenge , executeDeleteChallenge}) => {
   
   const compilationChallengeList = listCompilationChallenge.map(challenge => {
     return (
@@ -16,8 +16,8 @@ const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDel
             <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
             <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
             <button
-            className="button-table"
-            onClick = {() => executeDeleteChallenge(challenge.id)}
+              className="button-table"
+              onClick = {() => executeDeleteChallenge(challenge.id)}
             > DELETE </button>
           </div>
         </div>
@@ -33,4 +33,4 @@ const TableCompilationChallengeDelete = ({ listCompilationChallenge , executeDel
 }
 
 
-export default TableCompilationChallengeDelete;
+export default ListCompilationChallengeDelete;

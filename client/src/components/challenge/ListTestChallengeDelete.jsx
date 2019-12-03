@@ -1,10 +1,9 @@
 import React from 'react';
 import './Style.css';
-import { Link } from 'react-router-dom';
 
-const TableCompilationChallenge = ({ listCompilationChallenge, showStatsHandler }) => {
+const ListTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge }) => {
 
-  const compilationChallengeList = listCompilationChallenge.map(challenge => {
+  const testChallengeList = listTestChallenge.map(challenge => {
     return (
       <div className="hacker card" key={challenge.id}>
         <div className="card-content">
@@ -16,8 +15,11 @@ const TableCompilationChallenge = ({ listCompilationChallenge, showStatsHandler 
           <div>poit: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
-          <button className="button-table" onClick={showStatsHandler(challenge.id)}> STATS </button> 
-          <Link className="button-table" to={'challenges_comments/'+challenge.id}> VIEW COMMENTS </Link>
+          <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
+          <button
+          className="button-table"
+          onClick = {() => executeDeleteChallenge(challenge.id)}
+          > DELETE </button>
         </div>
       </div>
     )
@@ -25,10 +27,10 @@ const TableCompilationChallenge = ({ listCompilationChallenge, showStatsHandler 
   return (
     <div className="post">
       <div className="hacker-list">
-        {compilationChallengeList}
+        {testChallengeList}
       </div>
     </div>
   );
 }
 
-export default TableCompilationChallenge;
+export default ListTestChallengeDelete;

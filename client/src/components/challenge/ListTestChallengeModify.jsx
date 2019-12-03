@@ -1,7 +1,7 @@
 import React from 'react';
 import './Style.css';
 
-const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge }) => {
+const ListTestChallengeModify = ({ listTestChallenge }) => {
 
   const testChallengeList = listTestChallenge.map(challenge => {
     return (
@@ -10,7 +10,7 @@ const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge })
           <span className="card-title">
             <p style={{ color: '#F44336',fontWeight: 'bold' }}> { challenge.title }</p>
           </span>
-          <div> id: <p style={{ color: '#F44336' }}>{challenge.id} </p> </div>
+          <div> id: <p style={{ color: '#F44336' }}> {challenge.id} </p> </div>
           <div>description: <p style={{ color: '#F44336' }}>{challenge.description} </p></div>
           <div>poit: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
@@ -18,14 +18,14 @@ const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge })
           <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
           <button
           className="button-table"
-          onClick = {() => executeDeleteChallenge(challenge.id)}
-          > DELETE </button>
+          
+          > MODIFY </button>
         </div>
       </div>
     )
   });
   return (
-    <div className="post">
+   <div className="post">
       <div className="hacker-list">
         {testChallengeList}
       </div>
@@ -33,4 +33,4 @@ const TableTestChallengeDelete = ({ listTestChallenge, executeDeleteChallenge })
   );
 }
 
-export default TableTestChallengeDelete;
+export default ListTestChallengeModify;

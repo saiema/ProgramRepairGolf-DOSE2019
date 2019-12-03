@@ -1,7 +1,7 @@
 import React , {Component} from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
-import TableCompilationChallenge from './TableCompilationChallenge'
-import TableTestChallenge from './TableTestChallenge'
+import ListCompilationChallenge from './ListCompilationChallenge'
+import ListTestChallenge from './ListTestChallenge'
 import { withRouter } from 'react-router-dom'
 
 class ViewChallenge extends Component {
@@ -19,7 +19,7 @@ class ViewChallenge extends Component {
       return (
         <div className="container">
 
-            <TableCompilationChallenge
+            <ListCompilationChallenge
                 listCompilationChallenge={this.props.allCompilationChallenge}
                 showStatsHandler = {(id) => () => {
                 	this.props.history.push({
@@ -34,7 +34,7 @@ class ViewChallenge extends Component {
       return (
         <div className="container">
 
-          <TableCompilationChallenge
+          <ListCompilationChallenge
             listCompilationChallenge={this.props.unsolvedCompilationChallenge}
             showStatsHandler = {(id) => () => {
               this.props.history.push({
@@ -48,7 +48,7 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="resolvedCompilation"){
       return (
         <div className="container">
-          <TableCompilationChallenge
+          <ListCompilationChallenge
             listCompilationChallenge={this.props.resolvedCompilationChallenge}
             showStatsHandler = {(id) => () => {
               this.props.history.push({
@@ -62,7 +62,7 @@ class ViewChallenge extends Component {
     else if (this.state.opc==="allTest"){
       return (
         <div className="container">
-          <TableTestChallenge
+          <ListTestChallenge
             listTestChallenge={this.props.allTestChallenge}
             showStatsHandler = {(id) => () => {
                 this.props.history.push({
@@ -77,7 +77,7 @@ class ViewChallenge extends Component {
         return (
           <div className="container">
 
-            <TableTestChallenge
+            <ListTestChallenge
               listTestChallenge={this.props.unsolvedTestChallenge}
               showStatsHandler = {(id) => () => {
                 this.props.history.push({
@@ -92,7 +92,7 @@ class ViewChallenge extends Component {
         return (
             <div className="container">
   
-              <TableTestChallenge
+              <ListTestChallenge
                 listTestChallenge={this.props.resolvedTestChallenge}
                 showStatsHandler = {(id) => () => {
                   this.props.history.push({
@@ -107,7 +107,7 @@ class ViewChallenge extends Component {
       return (
           <div className="container">
 
-            <TableCompilationChallenge
+            <ListCompilationChallenge
               listCompilationChallenge={this.props.challengesAssociatedToUser}
               showStatsHandler = {(id) => () => {
                 this.props.history.push({
