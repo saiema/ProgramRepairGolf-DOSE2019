@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 
+/**
+ * Allows you to list all the compilation type challenges select one to play.
+ */
 class TableCompilationChallenge extends Component {
   render() {
     return (
@@ -21,7 +24,6 @@ class TableCompilationChallenge extends Component {
                 <td>{challenge.description}</td>
                 <td>{challenge.point}</td>
                 <td>
-                  <button>View </button>
                   <Button
                     className="button-group"
                     onClick={this.props.onClickChangeState(
