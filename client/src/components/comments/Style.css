@@ -80,10 +80,11 @@
   width: 400px;
   padding: 20px 50px;
   margin: 40px 30px;
+  margin-left: 250px;
 }
 .commentSeccion {
   text-align:center;
-  
+
 }
 
 .button-submit:hover {
@@ -130,7 +131,7 @@
   margin-top: 5px;
   height: 20em;
   position: fixed;
-  top: 17em;
+  top: 13em;
 }
 
 
@@ -156,4 +157,8 @@
   border-radius: 2px;
   margin: 5px;
   font-size: 13px;
+}
+
+.mensaje{
+  margin-left: 250px;
 }
