@@ -13,7 +13,7 @@ const ListTestChallengeModify = ({ listTestChallenge }) => {
           </span>
           <div> id: <p style={{ color: '#F44336' }}> {challenge.id} </p> </div>
           <div>description: <p style={{ color: '#F44336' }}>{challenge.description} </p></div>
-          <div>poit: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
+          <div>point: <p style={{ color: '#F44336' }}>{challenge.point}</p></div>
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
           <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
@@ -21,7 +21,14 @@ const ListTestChallengeModify = ({ listTestChallenge }) => {
             className="button-table" 
             to={{
               pathname:"/modify",
-              query:{id: challenge.id, typeTest: true}
+              query:{id: challenge.id,
+                    title: challenge.title,
+                    description: challenge.description,
+                    point: challenge.point,
+                    class_name: challenge.class_name,
+                    source: challenge.source,
+                    test: challenge.test, 
+                    typeTest: true}
             }}> MODIFY </Link>
         </div>
       </div>

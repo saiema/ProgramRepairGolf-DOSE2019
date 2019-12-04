@@ -11,11 +11,12 @@ class Modify extends Component {
     super(props);
     this.state = {
 			id: this.props.location.query.id,
-			title: "",
-			class_name: "",
-			source: "",
-			point: 0,
-			test: "",
+      title: this.props.location.query.title,
+      description: this.props.location.query.description,
+			class_name: this.props.location.query.class_name,
+			source: this.props.location.query.source,
+			point: this.props.location.query.point,
+			test: this.props.location.query.test,
 			typeTest: this.props.location.query.typeTest
     };
   }
@@ -52,7 +53,7 @@ class Modify extends Component {
 					<p>import org.junit.*;</p>
 					<p>public class HelloTest {aux}</p>
 					<p>}</p>
-					<textarea className="input-text2" rows="100" cols="100" type="text" id="test" onChange={this.handleChange} />
+					<textarea className="input-text2" placeholder={this.state.test} rows="100" cols="100" type="text" id="test" onChange={this.handleChange} />
         </div>
       );
   }
@@ -63,15 +64,15 @@ class Modify extends Component {
       <div>
         <div className="block-margin">
           <label htmlFor="title">title:</label>
-          <input className="input-text" type="text" id="title" onChange={this.handleChange} />
+          <input className="input-text" placeholder={this.state.title} type="text" id="title" onChange={this.handleChange} />
         </div>
         <div className="block-margin">
           <label htmlFor="class_name">class name:</label>
-          <input className="input-text" type="text" id="class_name" onChange={this.handleChange} />
+          <input className="input-text" placeholder={this.state.class_name} type="text" id="class_name" onChange={this.handleChange} />
         </div>
         <div className="block-margin">
           <label htmlFor="description">description:</label>
-          <input className="input-text" type="text" id="description" onChange={this.handleChange} />
+          <input className="input-text" placeholder={this.state.description} type="text" id="description" onChange={this.handleChange} />
         </div>
         <div className="block-margin">
           <label htmlFor="source">source:</label>
@@ -80,11 +81,11 @@ class Modify extends Component {
           <p>package src.main;</p>
           <p>public class Hello {aux}</p>
           <p>}</p>
-          <textarea className="input-text2" rows="100" cols="100" type="text" id="source" onChange={this.handleChange} />
+          <textarea className="input-text2" placeholder={this.state.source} rows="100" cols="100" type="text" id="source" onChange={this.handleChange} />
         </div>
         <div className="block-margin">
           <label htmlFor="point">points:</label>
-          <input className="input-text" type="number" id="point" onChange={this.handleChange} />
+          <input className="input-text" placeholder={this.state.point} type="number" id="point" onChange={this.handleChange} />
         </div>
     </div>
     );
