@@ -130,11 +130,12 @@ export const fetchAddComment = (state) => {
         headers: {'Authorization' : 'Basic '+ token},
       })
         .then( res =>{
-
+          alert('Comment sent');
           console.log(res.data);
           dispatch(fetchAddCommentsSucess(res.data))
         })
         .catch(error => {
+          alert('Error');
           console.log(error)
           dispatch(fetchAddCommentFailure(error))
         })

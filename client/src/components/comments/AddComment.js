@@ -24,7 +24,7 @@ handleSubmit = (e) => {
 render() {
   return(
     <section className ="commentSeccion">
-    <div className="form"> 
+    <div className="addCom"> 
         <h2>Add Comment</h2>
         <form onSubmit={this.handleSubmit}>
         <label>

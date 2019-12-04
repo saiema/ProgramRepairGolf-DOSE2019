@@ -15,8 +15,8 @@ const Responses = ({ responses, id, user_id, deleteResponse }) => {
       return (
         <div className="commmentSeccion" key={key}>
           <div className="reply">
-            <p>Re: {res.username} </p>
-            <p>description: { res.description }</p>
+            <p className="title">Re: {res.username} </p>
+            <p className="description">{ res.description }</p>
             {user_id === res.user_id ?(
                 <div>
                   <button className= "button-submit" onClick={()=>deleteResponse(res.id)}> Delete </button>
