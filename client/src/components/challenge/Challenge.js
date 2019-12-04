@@ -81,7 +81,7 @@ class Challenge extends Component {
       return (
         <div >
            <div className="block-button"> 
-            <h1> Challenge </h1> 
+            <h1> Challenges </h1> 
           </div>
            <div className="block-button"> 
             <button className="button-submit" onClick={() => this.setState({opc:"add"})}>ADD CHALLENGE</button>
