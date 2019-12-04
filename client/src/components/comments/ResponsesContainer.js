@@ -26,15 +26,17 @@ class ResponsesContainer extends Component {
       	<center><ReactLoading type="bars" color="#e83737" height={50} width={200}  /></center>
 			</div>
 		) : (
-      <div>
        <div>
+         <div className= "comment">
        <Comment comment={this.props.comment} />
+       </div>
       <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id} user_id={this.props.currentUser_id}/>
 			<Responses deleteResponse={this.props.deleteResponse} user_id={this.props.currentUser_id}
 				 responses={this.props.responses.data} id={this.props.match.params.id}
 			  />
-       </div>
+       
        <button className= "button-submit" onClick={this.goBack}>Go back</button>
+
       </div>
 		)
 	}

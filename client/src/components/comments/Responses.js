@@ -13,8 +13,8 @@ const Responses = ({ responses, id, user_id, deleteResponse }) => {
     const responsesList = Object.keys(result).map((key, index) => {
       const res = result[key];
       return (
-        <div className="responses card" key={key}>
-          <div className="card-content">
+        <div className="commmentSeccion" key={key}>
+          <div className="reply">
             <p>Re: {res.username} </p>
             <p>description: { res.description }</p>
             {user_id === res.user_id ?(
