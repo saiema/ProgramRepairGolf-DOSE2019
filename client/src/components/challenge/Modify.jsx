@@ -1,5 +1,10 @@
 import React,{Component} from 'react';
 import './Style.css';
+import {
+  modifyCompilationChallenge,
+  modifyTestChallenge
+}  from '../../actions/challengeActions';
+import { connect } from 'react-redux';
 
 class Modify extends Component {
 	constructor(props) {
@@ -26,13 +31,13 @@ class Modify extends Component {
   }
 
   handleSubmit1 = (e) => {
-    // e.preventDefault();
-    // props.addCompilationChallenge(state);
+    e.preventDefault();
+    this.props.modifyCompilationChallenge(this.state);
   }
   
   handleSubmit2 = (e) => {
-    // e.preventDefault();
-    // props.addTestChallenge(state);
+    e.preventDefault();
+    this.props.modifyTestChallenge(this.state);
   }
 
   formTest = () => {
@@ -94,7 +99,7 @@ class Modify extends Component {
             <button 
               className="button-submit" 
               onClick = {this.handleSubmit1}
-            > Submit 
+            > Modified
             </button>
           </div>
         </div>
@@ -109,7 +114,7 @@ class Modify extends Component {
             <button 
               className="button-submit" 
               onClick = {this.handleSubmit2}
-            > Submit 
+            > Modified
             </button>
           </div>
         </div>
@@ -136,4 +141,21 @@ class Modify extends Component {
 	}
 }
 
-export default Modify;
+const mapStateToProps = (state) => {
+  return {
+    validationChallenge: state.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    modifyCompilationChallenge: (state) => {
+      dispatch(modifyCompilationChallenge(state))
+    },
+    modifyTestChallenge: (state) => {
+      dispatch(modifyTestChallenge(state))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modify);
