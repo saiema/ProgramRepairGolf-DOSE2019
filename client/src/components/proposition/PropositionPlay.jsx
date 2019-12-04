@@ -22,11 +22,12 @@ class PropositionPlay extends Component {
     this.props.fetchAllTestChallenge();
   }
 
-  onClickChangeStateHandler = (idChall, description) => () => {
+  onClickChangeStateHandler = (idChall, description, isTest) => () => {
     this.setState({
       opc: "proposition",
       challengeId: idChall,
-      description: description
+      description: description,
+      isTest: isTest
     });
   };
 
@@ -60,6 +61,7 @@ class PropositionPlay extends Component {
             userId={this.props.user.id}
             challengeId={this.state.challengeId}
             description={this.state.description}
+            isTest={this.state.isTest}
           />
         </div>
       );

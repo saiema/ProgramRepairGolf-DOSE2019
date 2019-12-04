@@ -21,6 +21,7 @@ class PropositionContainer extends Component {
         propositions={this.props.propositions}
         description={this.props.description}
         currentUser={this.props.currentUser}
+        isTest={this.props.isTest}
       />
     );
   }
