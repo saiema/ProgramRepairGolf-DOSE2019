@@ -20,12 +20,6 @@ class UsersContainer extends Component {
 				deleteUser={this.props.deleteUser}
         login={this.props.login}
 			/>
-      
-      <Account
-        addAdmin={this.props.addAdmin}
-        disableAcc={this.props.disableAcc}
-        updatePass={this.props.updatePass}
-      />
      
     </div>
 		)
