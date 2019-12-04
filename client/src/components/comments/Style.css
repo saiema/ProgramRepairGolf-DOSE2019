@@ -4,30 +4,31 @@
 .right{
     text-align: right;
 }
-.floated {
+.title {
     float:left;
-    margin-right:5px;
+    margin: 0 auto;
+    word-break: break-all;
+    word-wrap: break-word;
   }
-.floated {
+
+  .description {
+    clear:left;
     float:left;
-    margin-right:5px;
- }
+    margin:auto;
+    height: auto;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
 .box{
-    justify-content: center;
+  float: right;
     flex-direction: row;
+    position: relative;
+    display: table;
 }
-.buttonA {
-   background-color: red; /* Green */
-   color: white;
-   padding: 15px 32px;
-   text-align: center;
-   display: inline-block;
-   font-size: 16px;
-   border: 1px solid #000000;
- }
  .ButtonB{
     padding: 10px 70px;
-    background-color: #C62828;
+    background-color:#F44336;;
     color: white;
     border: 1px solid #000000;
     background-color: 250ms;
@@ -37,27 +38,31 @@
  }
  .goback{
     float:left;
-    padding: 10px 70px;
+    padding: 10px 5px;
     background-color: rgb(255, 255, 255);
     color: white;
     background-color: 250ms;
     border-radius: 2px;
     margin: 10px;
     font-size: 15px;
+    position: fixed;
+    top: 4em;
  }
  .ButtonB:hover{
     cursor: pointer;
     background-color: white;
-    color: #C62828;
+    color:#F44336;;
 }
  .comment{
     background-color: white;
-    width: 700px;
-    border: 3px solid #c62828;
-    padding: 20px;
+    width: 600px;
+    border: 3px solid #F44336;;
+    padding: 10px;
     margin: 20px;
+    margin-left: 250px;
     position: relative;
     display: inline-block;
+    height: auto;
  }
  .form{
     width: 700px;
@@ -67,22 +72,24 @@
     display: inline-block;
  }
  .reply{
-    background-color: white;
-    width: 700;
-    border: 3px solid #c62828;
-    padding: 20px;
-    margin: 20px;
-    position: relative;
-    display: inline-block;
- }
+  background-color: white;
+  border: 1px solid#F44336;;
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: 400px;
+  padding: 20px 50px;
+  margin: 40px 30px;
+}
 .commentSeccion {
-	text-align:center;
+  text-align:center;
+  
 }
 
 .button-submit:hover {
     cursor: pointer;
     background-color: white;
-    color: #C62828;
+    color: #F44336;
 }
 .block-button {
     text-align: center;
@@ -113,3 +120,40 @@
     margin: 8px;
 }
 
+.addRes{
+  width:400px;
+  float: left;
+  border-radius: 10px;
+  font-family:raleway;
+  border: 3px solid #F44336;
+  padding: 30px 60px 25px;
+  margin-top: 5px;
+  height: 20em;
+  position: fixed;
+  top: 17em;
+}
+
+
+.addCom{
+  width:400px;
+  float: left;
+  border-radius: 10px;
+  font-family:raleway;
+  border: 3px solid #F44336;
+  padding: 30px 60px 25px;
+  margin-top: 5px;
+  height: auto;
+  position: fixed;
+  top: 5em;
+}
+
+.button-comment {
+  padding: 10px 20px;
+  background-color: #F44336;
+  color: white;
+  border: 1px solid #000000;
+  background-color: 250ms;
+  border-radius: 2px;
+  margin: 5px;
+  font-size: 13px;
+}

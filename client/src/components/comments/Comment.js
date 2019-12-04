@@ -9,9 +9,9 @@ class Comment extends Component{
 
   return(
    <div>
-      <h4>{comment.username}: { comment.title }</h4>
-      <h5>{ comment.description }</h5>
-      </div>
+      <h5 className="title">{comment.username}: { comment.title }</h5>
+      <h6 className="description">{ comment.description }</h6>
+    </div>
   );
       }
 }
