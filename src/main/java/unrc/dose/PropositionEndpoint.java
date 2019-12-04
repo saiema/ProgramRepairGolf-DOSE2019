@@ -141,9 +141,10 @@ public class PropositionEndpoint implements Endpoint {
                     Challenge chall = Challenge.findById(
                             propositionService.getChallengeId());
                     String className = chall.getClassName();
+                    int idChall = chall.getInteger("id");
                     return new Gson().toJson(
                             propositionService.submitProposition(
-                                idProp, currentCode, className));
+                                idProp, idChall, currentCode, className));
                 }
                 );
     }

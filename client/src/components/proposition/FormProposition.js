@@ -54,6 +54,7 @@ class FormProposition extends Component {
   onClickSolution = event => {
     const idProp = this.props.propositions.id;
     const source2 = this.state.code;
+    const isTest = this.props.isTest;
 
     let username = this.props.currentUser.username;
     axios
@@ -74,7 +75,11 @@ class FormProposition extends Component {
           });
           alert("Solution save");
         } else {
-          alert("The solution not compile");
+          if(isTest){
+            alert("The solution not compile or not passed the test");
+          }else{
+            alert("The solution not compile");
+          }
         }
       })
       .catch(error => {

@@ -443,10 +443,19 @@ public class Proposition extends Model {
      */
     public boolean submitProposition(
             final int idProp,
+            final int idChallenge,
             final String proposedCode,
             final String proposedClassName) {
         if (!(this.compileProposition(proposedCode, proposedClassName))) {
             return false;
+        }
+        List<TestChallenge> listTestChallege = TestChallenge.where("challenge_id = ?", idChallenge);      
+        if (!(listTestChallege.isEmpty())) {
+            TestChallenge challenge = listTestChallege.get(0);
+            if (!(validateTestChallenge(challenge, proposedCode, proposedClassName))) {
+                return false;
+            }
+            this.set("cantTestPassed", 1);
         }
         Integer newDistance = getDistanceProposition(this);
         this.set("distance", newDistance);
@@ -454,6 +463,26 @@ public class Proposition extends Model {
         this.saveIt();
         ChallengeStat.updateAverageScore(idProp);
         return true;
+    }
+
+    /**
+     * This method is used for run test for challenges of type test.
+     * @param testChallenge represent the challenge of type test
+     * @param proposedCode represent the code proposed for one user
+     * @param classNameProposed represent the class name of file
+     * @return true if pass the tests if not return false
+     */
+    public static boolean validateTestChallenge(
+        final TestChallenge testChallenge,
+        final String proposedCode,
+        final String classNameProposed) {
+        String test = testChallenge.getTest();
+        String classNameTest = classNameProposed + "Test";
+        Challenge.generateFileJava(classNameProposed, proposedCode);
+        Challenge.generateFileJavaTest(classNameTest, test);
+        return Challenge.runCompilation(classNameProposed)
+               && TestChallenge.runCompilationTestJava(classNameTest)
+               && TestChallenge.runTestJava(classNameTest);
     }
 
     /**

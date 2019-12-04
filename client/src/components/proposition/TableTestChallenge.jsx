@@ -28,7 +28,8 @@ class TableTestChallenge extends Component {
                     className="button-group"
                     onClick={this.props.onClickChangeState(
                       challenge.id,
-                      challenge.description
+                      challenge.description,
+                      true
                     )}
                   >
                     Play
