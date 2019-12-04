@@ -79,22 +79,24 @@ class Challenge extends Component {
     }
     else {
       return (
-        <div >
+        <div className="contenedor">
+          <div className="contenido">
            <div className="block-button"> 
-            <h1> Challenge </h1> 
+            <h1> Challenges </h1> 
           </div>
            <div className="block-button"> 
-            <button className="button-submit" onClick={() => this.setState({opc:"add"})}>ADD CHALLENGE</button>
+            <button className="button-menu" onClick={() => this.setState({opc:"add"})}>ADD CHALLENGE</button>
           </div>
           <div className="block-button"> 
-            <button className="button-submit" onClick={() => this.setState({opc:"modify"})}>MODIFY CHALLENGE</button>
+            <button className="button-menu" onClick={() => this.setState({opc:"modify"})}>MODIFY CHALLENGE</button>
           </div>
           <div className="block-button"> 
-            <button className="button-submit" onClick={() => this.setState({opc:"delete"})}>DELETE CHALLENGE</button>
+            <button className="button-menu" onClick={() => this.setState({opc:"delete"})}>DELETE CHALLENGE</button>
           </div>
           <div className="block-button"> 
-            <button className="button-submit" onClick={() => this.setState({opc:"view"})}>VIEW CHALLENGE</button>
+            <button className="button-menu" onClick={() => this.setState({opc:"view"})}>VIEW CHALLENGE</button>
           </div>
+        </div>
         </div>
       )
     }

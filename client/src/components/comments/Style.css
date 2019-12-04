@@ -1,0 +1,164 @@
+.left{
+    float: left;
+}
+.right{
+    text-align: right;
+}
+.title {
+    float:left;
+    margin: 0 auto;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  .description {
+    clear:left;
+    float:left;
+    margin:auto;
+    height: auto;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+.box{
+  float: right;
+    flex-direction: row;
+    position: relative;
+    display: table;
+}
+ .ButtonB{
+    padding: 10px 70px;
+    background-color:#F44336;;
+    color: white;
+    border: 1px solid #000000;
+    background-color: 250ms;
+    border-radius: 2px;
+    margin: 10px;
+    font-size: 15px;
+ }
+ .goback{
+    float:left;
+    padding: 10px 5px;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    background-color: 250ms;
+    border-radius: 2px;
+    margin: 10px;
+    font-size: 15px;
+    position: fixed;
+    top: 4em;
+ }
+ .ButtonB:hover{
+    cursor: pointer;
+    background-color: white;
+    color:#F44336;;
+}
+ .comment{
+    background-color: white;
+    width: 600px;
+    border: 3px solid #F44336;;
+    padding: 10px;
+    margin: 20px;
+    margin-left: 250px;
+    position: relative;
+    display: inline-block;
+    height: auto;
+ }
+ .form{
+    width: 700px;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+ }
+ .reply{
+  background-color: white;
+  border: 1px solid#F44336;;
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: 400px;
+  padding: 20px 50px;
+  margin: 40px 30px;
+  margin-left: 250px;
+}
+.commentSeccion {
+  text-align:center;
+
+}
+
+.button-submit:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #F44336;
+}
+.block-button {
+    text-align: center;
+    margin: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+.input-text2 {
+    background-color:white;
+    border-radius: 2px;
+    border: 1px solid black;
+    color: black;
+    font-size: 15px;
+    height: 20em;
+    width: max-width;
+}
+.input-text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.block-margin{
+    margin: 15px;
+}
+.Block-buttonGroup{
+    text-align: center;
+    margin: 8px;
+}
+
+.addRes{
+  width:400px;
+  float: left;
+  border-radius: 10px;
+  font-family:raleway;
+  border: 3px solid #F44336;
+  padding: 30px 60px 25px;
+  margin-top: 5px;
+  height: 20em;
+  position: fixed;
+  top: 13em;
+}
+
+
+.addCom{
+  width:400px;
+  float: left;
+  border-radius: 10px;
+  font-family:raleway;
+  border: 3px solid #F44336;
+  padding: 30px 60px 25px;
+  margin-top: 5px;
+  height: auto;
+  position: fixed;
+  top: 5em;
+}
+
+.button-comment {
+  padding: 10px 20px;
+  background-color: #F44336;
+  color: white;
+  border: 1px solid #000000;
+  background-color: 250ms;
+  border-radius: 2px;
+  margin: 5px;
+  font-size: 13px;
+}
+
+.mensaje{
+  margin-left: 250px;
+}

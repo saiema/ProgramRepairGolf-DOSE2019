@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./Style.css"
 
 class Comment extends Component{
 
@@ -8,11 +8,10 @@ class Comment extends Component{
   const comment = this.props.comment;
 
   return(
-   <div className="card-content">
-      <h4>{comment.username} :</h4>
-      <h5>title: { comment.title } </h5>
-      <h5>description: { comment.description }</h5>
-      </div>
+   <div>
+      <h5 className="title">{comment.username}: { comment.title }</h5>
+      <h6 className="description">{ comment.description }</h6>
+    </div>
   );
       }
 }
