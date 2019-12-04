@@ -15,6 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import ResetPass from './components/componentsUser/EmailContainer';
 import PropositionPlay from './components/proposition/PropositionPlay';
 import ChallengeStat from './components/challengeStatComponents/ChallengeStat'
+import Modify from './components/challenge/Modify'
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path='/userstats' component={UserStats} />
             <Route path='/challenge' component={Challenge} />
             <Route path='/challenges_comments/:id' component={CommentContainerChallenge} />
+            <Route path='/modify' component={Modify} />
             <Route path='/comments' component={CommentContainerUser} />
             <Route path='/responses/:id' component={ResponsesContainer} />
             <Route exact path='/resetPassword' component={ResetPass}/>

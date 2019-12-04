@@ -1,17 +1,22 @@
 import React,{Component} from 'react';
 import './Style.css';
+import {
+  modifyCompilationChallenge,
+  modifyTestChallenge
+}  from '../../actions/challengeActions';
+import { connect } from 'react-redux';
 
 class Modify extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-			id: "",
+			id: this.props.location.query.id,
 			title: "",
 			class_name: "",
 			source: "",
-			point: "",
+			point: 0,
 			test: "",
-			typeTest: false
+			typeTest: this.props.location.query.typeTest
     };
   }
 
@@ -21,25 +26,18 @@ class Modify extends Component {
     });
   }
 
-  // handleChange1 = ( idChallenge, type ) => {
-  //   this.setState({
-	// 		id:idChallenge,
-  //     typeTest: type
-  //   });
-  // }
-
   handleSubmit = (e) => {
     e.preventDefault();
   }
 
   handleSubmit1 = (e) => {
-    // e.preventDefault();
-    // props.addCompilationChallenge(state);
+    e.preventDefault();
+    this.props.modifyCompilationChallenge(this.state);
   }
   
   handleSubmit2 = (e) => {
-    // e.preventDefault();
-    // props.addTestChallenge(state);
+    e.preventDefault();
+    this.props.modifyTestChallenge(this.state);
   }
 
   formTest = () => {
@@ -93,7 +91,7 @@ class Modify extends Component {
   }
 
   show = () => {
-		if (this.state.typeTest === true){
+		if (this.state.typeTest === false){
       return (
         <div>
           {this.formCompilation()}
@@ -101,7 +99,7 @@ class Modify extends Component {
             <button 
               className="button-submit" 
               onClick = {this.handleSubmit1}
-            > Submit 
+            > Modified
             </button>
           </div>
         </div>
@@ -116,7 +114,7 @@ class Modify extends Component {
             <button 
               className="button-submit" 
               onClick = {this.handleSubmit2}
-            > Submit 
+            > Modified
             </button>
           </div>
         </div>
@@ -125,10 +123,8 @@ class Modify extends Component {
 	}
 	
 	render () {
-		const id = this.props.idChallenge
-		const type =this.props.type
 		return (
-			<div className="container">
+      <div className="container">
 				<form onSubmit={this.handleSubmit} >
 					<div className="block-button"> <h1> Modify the challenge </h1> </div>
 					<p>CLARIFICATION:</p>
@@ -138,7 +134,6 @@ class Modify extends Component {
 					<p>
 						_The validation for the test challenges is that the source code must compile and also must pass the tests, otherwise the challenge cannot be loaded.
 					</p>
-					{/* {this.handleChange1(id, type)} */}
 					{this.show()}
 				</form>
 			</div>
@@ -146,4 +141,21 @@ class Modify extends Component {
 	}
 }
 
-export default Modify;
+const mapStateToProps = (state) => {
+  return {
+    validationChallenge: state.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    modifyCompilationChallenge: (state) => {
+      dispatch(modifyCompilationChallenge(state))
+    },
+    modifyTestChallenge: (state) => {
+      dispatch(modifyTestChallenge(state))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modify);
