@@ -21,7 +21,14 @@ const ListCompilationChallengeModify = ({ listCompilationChallenge }) => {
             className="button-table" 
             to={{
               pathname:"/modify",
-              query:{id: challenge.id, typeTest: false}
+              query:{id: challenge.id,
+                    title: challenge.title,
+                    description: challenge.description,
+                    point: challenge.point,
+                    class_name: challenge.class_name,
+                    source: challenge.source,
+                    test: "", 
+                    typeTest: false}
             }}> MODIFY </Link>
         </div>
       </div>

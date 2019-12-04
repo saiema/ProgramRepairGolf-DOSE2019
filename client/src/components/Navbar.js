@@ -8,10 +8,9 @@ const Navbar = (props) => {
     <div className="container" align="left">
       <Link className="brand-logo" to="/">Program Repair Game</Link>
       <ul className="right">
-
         <li><NavLink to='/propositions'>Propositions</NavLink></li>
         <li><NavLink to='/userstats'>Statistics</NavLink></li>
-        <li><NavLink to='/challenge'>Challenge</NavLink></li>
+        <li><NavLink to='/challenge'>Challenges</NavLink></li>
         <li><NavLink to='/comments'> Comments </NavLink></li>
         <li><NavLink style={{background:'white',color:'red'}} onClick={ () => f.signout() } to={{pathname:'/'}}
               activeStyle={{background:'#f63c3c',color:'#f63c3c'}}
