@@ -1,4 +1,5 @@
 import axios from 'axios';
+import base64 from 'base-64';
 import {
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
@@ -67,7 +68,6 @@ const fetchDeleteFailure = error => {
 export const fetchDeleteComment = (id) =>{
   return function(dispatch) {
     dispatch(fetchDeleteCommentRequest())
-    let base64 = require('base-64');
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
     const token= base64.encode(username+":"+password);
@@ -95,7 +95,6 @@ export const fetchDeleteComment = (id) =>{
 export const fetchCommentsUsers = (id) => {
   return function(dispatch, getState) {
       dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
       const username = localStorage.getItem("username");
       const password = localStorage.getItem("password");
       const token= base64.encode(username+":"+password);
@@ -120,7 +119,6 @@ export const fetchCommentsUsers = (id) => {
 export const fetchAddComment = (state) => {
   return function(dispatch, getState) {
       dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
       const username = localStorage.getItem("username");
       const password = localStorage.getItem("password");
       const token= base64.encode(username+":"+password);
@@ -146,7 +144,6 @@ export const fetchAddComment = (state) => {
 export const fetchCommentsChallenge = (id) => {
   return function(dispatch, getState) {
       dispatch(fetchCommentsRequest())
-      let base64 = require('base-64');
       const username = localStorage.getItem("username");
       const password = localStorage.getItem("password");
       const token= base64.encode(username+":"+password);

@@ -1,0 +1,115 @@
+.left{
+    float: left;
+}
+.right{
+    text-align: right;
+}
+.floated {
+    float:left;
+    margin-right:5px;
+  }
+.floated {
+    float:left;
+    margin-right:5px;
+ }
+.box{
+    justify-content: center;
+    flex-direction: row;
+}
+.buttonA {
+   background-color: red; /* Green */
+   color: white;
+   padding: 15px 32px;
+   text-align: center;
+   display: inline-block;
+   font-size: 16px;
+   border: 1px solid #000000;
+ }
+ .ButtonB{
+    padding: 10px 70px;
+    background-color: #C62828;
+    color: white;
+    border: 1px solid #000000;
+    background-color: 250ms;
+    border-radius: 2px;
+    margin: 10px;
+    font-size: 15px;
+ }
+ .goback{
+    float:left;
+    padding: 10px 70px;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    background-color: 250ms;
+    border-radius: 2px;
+    margin: 10px;
+    font-size: 15px;
+ }
+ .ButtonB:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #C62828;
+}
+ .comment{
+    background-color: white;
+    width: 700px;
+    border: 3px solid #c62828;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+ }
+ .form{
+    width: 700px;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+ }
+ .reply{
+    background-color: white;
+    width: 700;
+    border: 3px solid #c62828;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+ }
+.commentSeccion {
+	text-align:center;
+}
+
+.button-submit:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #C62828;
+}
+.block-button {
+    text-align: center;
+    margin: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+.input-text2 {
+    background-color:white;
+    border-radius: 2px;
+    border: 1px solid black;
+    color: black;
+    font-size: 15px;
+    height: 20em;
+    width: max-width;
+}
+.input-text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.block-margin{
+    margin: 15px;
+}
+.Block-buttonGroup{
+    text-align: center;
+    margin: 8px;
+}
+

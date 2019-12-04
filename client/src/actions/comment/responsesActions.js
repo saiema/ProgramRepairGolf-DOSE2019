@@ -1,4 +1,5 @@
 import axios from 'axios';
+import base64 from 'base-64';
 import {
   FETCH_RESPONSES_REQUEST,
   FETCH_RESPONSES_SUCCESS,
@@ -66,7 +67,6 @@ const fetchDeleteFailure = error => {
 export const fetchResponses = (id) => {
   return function(dispatch, getState) {
       dispatch(fetchResponsesRequest())
-      let base64 = require('base-64');
       const username = localStorage.getItem("username");
       const password = localStorage.getItem("password");
       const token= base64.encode(username+":"+password);
@@ -91,7 +91,6 @@ export const fetchResponses = (id) => {
 export const fetchAddResponse = (state) => {
   return function(dispatch, getState) {
       dispatch(fetchResponsesRequest())
-      let base64 = require('base-64');
       const username = localStorage.getItem("username");
       const password = localStorage.getItem("password");
       const token= base64.encode(username+":"+password);
@@ -118,7 +117,6 @@ export const fetchAddResponse = (state) => {
 export const fetchDeleteResponse = (id) =>{
   return function(dispatch) {
     dispatch(fetchDeleteResponseRequest())
-    let base64 = require('base-64');
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
     const token= base64.encode(username+":"+password);
