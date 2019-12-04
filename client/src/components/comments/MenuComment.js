@@ -39,7 +39,7 @@ class MenuComment extends Component{
        <label name="User's comments">User's comments:
         <input type="text" placeholder="Id" id="user_id" onChange={this.handleChange} />
        </label>
-       <button>Ver</button>
+       <button>See Comment</button>
       </form>
       </div>
       ): (

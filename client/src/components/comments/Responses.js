@@ -13,10 +13,10 @@ const Responses = ({ responses, id, user_id, deleteResponse }) => {
     const responsesList = Object.keys(result).map((key, index) => {
       const res = result[key];
       return (
-        <div className="responses card" key={key}>
-          <div className="card-content">
-            <p>Re: {res.username} </p>
-            <p>description: { res.description }</p>
+        <div className="commmentSeccion" key={key}>
+          <div className="reply">
+            <p className="title">Re: {res.username} </p>
+            <p className="description">{ res.description }</p>
             {user_id === res.user_id ?(
                 <div>
                   <button className= "button-submit" onClick={()=>deleteResponse(res.id)}> Delete </button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Style.css';
+import { Link } from 'react-router-dom';
 
 const ListTestChallengeModify = ({ listTestChallenge }) => {
 
@@ -16,10 +17,12 @@ const ListTestChallengeModify = ({ listTestChallenge }) => {
           <div>class name: <p style={{ color: '#F44336' }}>{challenge.class_name}</p></div>
           <div>source: <p style={{ color: '#F44336' }}>{challenge.source}</p></div>
           <div>test: <p style={{ color: '#F44336' }}>{challenge.test}</p></div>
-          <button
-          className="button-table"
-          
-          > MODIFY </button>
+          <Link 
+            className="button-table" 
+            to={{
+              pathname:"/modify",
+              query:{id: challenge.id, typeTest: true}
+            }}> MODIFY </Link>
         </div>
       </div>
     )
