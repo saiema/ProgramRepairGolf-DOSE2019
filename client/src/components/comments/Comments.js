@@ -26,9 +26,9 @@ class Comments extends Component{
       return (
         <div>
           {comments.length === 0 ? (
-            <div> 
+            <h4> 
               There are not comments to show
-            </div>
+            </h4>
           ):(
             <div>
             {comments.map(comment => (
