@@ -179,8 +179,11 @@ public class CompilationChallenge extends Model {
         c.setDescription(description);
         c.setSource(source);
         c.setPoint(point);
-        c.saveIt();
-        return validateCompilationChallenge(c);
+        boolean validation = validateCompilationChallenge(c);
+        if (validation) {
+            c.saveIt();
+        }
+        return validation;
     }
 
 }

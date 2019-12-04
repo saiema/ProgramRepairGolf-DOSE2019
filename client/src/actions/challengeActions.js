@@ -28,20 +28,6 @@ export const cretateTestChallenge = (challenge) => {
     }
 }
 
-export const modifyCompilationChallenge = (challenge) => {
-    return {
-      type: MODIFY_COMPILATION_CHALLENGE,
-      challenge
-    }
-}
-
-export const modifyTestChallenge = (challenge) => {
-    return {
-      type: MODIFY_TEST_CHALLENGE,
-      challenge
-    }
-}
-
 export const deleteChallenge = (id) => {
   return {
     type: DELETE_CHALLENGE,
@@ -158,50 +144,70 @@ export const executeDeleteChallenge = (id) => {
     }
 }
 
-//export const modifyCompilationChallenge = (state) =>{
-//     return function(dispatch) {
-//         dispatch(fetchDataRequest())
-//         axios.put('http://localhost:55555/compilationChallenge/modify', {
-//             id: state.id,
-//             title: state.title,
-//             className: state.class_name,
-//             description: state.description,
-//             source: state.source,
-//             point: state.point
-//         })
-//         .then( res => {
-//         console.log("res.data-MODIFY_COMPILATION");
-//         console.log(res.data);
-//             dispatch(fetchDataSucess(res.data))
-//         })
-//         .catch( error => {
-//             dispatch(fetchDataFailure(error.message))
-//         })
-//     }
-// }
+export const modifyCompilationChallenge = (state) =>{
+     return function(dispatch, getState) {
+        dispatch(fetchDataRequest())
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+        axios.put('http://localhost:55555/compilationChallenge/modify', null, {
+            params:{
+                id: state.id,
+                title: state.title,
+                className: state.class_name,
+                description: state.description,
+                source: state.source,
+                point: state.point
+            },
+            headers: {
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
+            }
+        })
+         .then( res => {
+            dispatch(fetchDataSucess(res.data))
+            if (res.data === true) {
+                alert("Challenge modified correctly!");
+            } else {
+                alert("Could not modified challenge, validation failure!");
+            }
+         })
+         .catch( error => {
+            dispatch(fetchDataFailure(error.message))
+         })
+     }
+}
 
-// export const modifyTestChallenge = (state) =>{
-//     return function(dispatch) {
-//         dispatch(fetchDataRequest())
-//         axios.put('http://localhost:55555/testChallenge/modify', {
-//             id: state.id,
-//             title: state.title,
-//             className: state.class_name,
-//             description: state.description,
-//             source: state.source,
-//             point: state.point,
-//             test: state.test
-//         })
-//         .then( res => {
-//         console.log("res.data-MODIFY_TEST");
-//         console.log(res.data);
-//             dispatch(fetchDataSucess(res.data))
-//         })
-//         .catch( error => {
-//             dispatch(fetchDataFailure(error.message))
-//         })
-//     }
-// }
+ export const modifyTestChallenge = (state) =>{
+     return function(dispatch, getState) {
+        dispatch(fetchDataRequest())
+        let base64 = require('base-64');
+        let username = getState().user.currentUser.username;
+         axios.put('http://localhost:55555/testChallenge/modify', null, {
+            params:{
+                id: state.id,
+                title: state.title,
+                className: state.class_name,
+                description: state.description,
+                source: state.source,
+                point: state.point,
+                test: state.test
+            },
+            headers: {
+                Authorization: "Basic" + base64.encode(username + ":" +localStorage.getItem("password"))
+            }
+        })
+         .then( res => {
+             dispatch(fetchDataSucess(res.data))
+             if (res.data === true) {
+                alert("Challenge modified correctly!");
+            } else {
+                alert("Could not modified challenge, validation failure!");
+            }
+         })
+         .catch( error => {
+             dispatch(fetchDataFailure(error.message))
+         })
+     }
+}
 
 const fetchChallengesAssociatedToUserRequest = () => {
     return {
