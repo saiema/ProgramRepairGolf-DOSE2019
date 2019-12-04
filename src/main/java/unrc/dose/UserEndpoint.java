@@ -83,7 +83,7 @@ public final class UserEndpoint implements Endpoint {
                 if (!User.userExistsByUsername((String)bodyParams.get("username"))) {
                     if(!User.userExistsByEmail((String)bodyParams.get("email_address"))) {
                       res.status(200);
-                      User.set((String)bodyParams.get("username"),(String)bodyParams.get("password"), (String)bodyParams.get("email_address"), false);
+                      User.set((String)bodyParams.get("username"),(String)bodyParams.get("password"), (String)bodyParams.get("email_address"), true);
                       return"";
                     } else {
                       res.status(401);
