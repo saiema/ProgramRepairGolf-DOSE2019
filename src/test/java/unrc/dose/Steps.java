@@ -93,28 +93,7 @@ public class Steps extends StepUtils {
     // Check that the same user save in DB is the same that we got from http req
     assertEquals(response.body, users.toJson(true, "username", "password"));
   }
-
-
-  @Given("^user wants to look his score$")
-  public void user_wants_to_look_his_score() throws Exception {
-    u = User.set("Hackerman", "T3H4ck303lC0r4z0n", "hackingnsa@gmail.com", false);
-    u.saveIt();
-  }
-
-  @When("^user press show score$")
-  public void user_press_show_score() throws Exception {
-    Map<String, Integer> parameters = new HashMap<>();
-    parameters.put("id", u.getId());
-    UserStat us = UserStat.findFirst("user_id", u.getId());
-    points = us.getCurrentPoints();
-  }
-
-  @Then("^the system show the score on a message$")
-  public void the_system_show_the_score_on_a_messag() throws Exception {
-      UserStat us = UserStat.findFirst("user_id", u.getId());
-      assertEquals((int)us.getInteger(UserStat.CURRENTPOINTS),points);
-  }
-      
+ 
   @Given("^he wants to select the type of level education for play$")
   public void he_wants_to_select_the_type_of_level_education_for_play() throws Exception {
     // Write code here that turns the phrase above into concrete actions
