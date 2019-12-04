@@ -146,6 +146,6 @@ public class PropositionEndpoint implements Endpoint {
                             propositionService.submitProposition(
                                 idProp, idChall, currentCode, className));
                 }
-                );
+        );
     }
 }
