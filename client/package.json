@@ -17,7 +17,8 @@
     "reactstrap": "^8.1.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "use-react-modal": "0.0.9"
   },
   "scripts": {
     "start": "react-scripts start",

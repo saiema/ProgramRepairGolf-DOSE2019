@@ -443,20 +443,11 @@ public class Proposition extends Model {
      */
     public boolean submitProposition(
             final int idProp,
-    		//final int challengeId,
             final String proposedCode,
             final String proposedClassName) {
         if (!(this.compileProposition(proposedCode, proposedClassName))) {
             return false;
         }
-        /*List<TestChallenge> listChallengeTest = TestChallenge.where("challenge_id = ?", challengeId);
-        if (!(listChallengeTest.isEmpty())) {
-        	boolean resultTest = submitPropositionTest(listChallengeTest.get(0), proposedCode, proposedClassName);
-        	if (!(resultTest)) {
-        		return false;
-        	}
-        	this.set("cantTestPassed", 1);
-        }*/
         Integer newDistance = getDistanceProposition(this);
         this.set("distance", newDistance);
         this.set("isSolution", true);
