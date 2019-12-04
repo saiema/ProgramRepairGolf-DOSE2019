@@ -79,8 +79,14 @@ public class CompilationChallenge extends Model {
             ownerSolutionId);
         CompilationChallenge t = new CompilationChallenge();
         t.setChallengeId(c.getInteger("id"));
-        t.saveIt();
-        return (CompilationChallenge.validateCompilationChallenge(c));
+        boolean validation =
+        CompilationChallenge.validateCompilationChallenge(c);
+        if (validation) {
+            t.saveIt();
+        } else {
+            c.deleteCascade();
+        }
+        return validation;
     }
 
     /**
@@ -173,8 +179,11 @@ public class CompilationChallenge extends Model {
         c.setDescription(description);
         c.setSource(source);
         c.setPoint(point);
-        c.saveIt();
-        return validateCompilationChallenge(c);
+        boolean validation = validateCompilationChallenge(c);
+        if (validation) {
+            c.saveIt();
+        }
+        return validation;
     }
 
 }

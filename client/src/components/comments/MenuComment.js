@@ -39,13 +39,7 @@ class MenuComment extends Component{
        <label name="User's comments">User's comments:
         <input type="text" placeholder="Id" id="user_id" onChange={this.handleChange} />
        </label>
-       <button>Ver</button>
-      </form>
-      <form onSubmit={this.handleSubmitChallenge}>
-       <label name="Challenge's comments">Challenge's comments:
-        <input type="text" placeholder="Id" id="challenge_id" onChange={this.handleChange} />
-       </label>
-       <button>Ver</button>
+       <button>See Comment</button>
       </form>
       </div>
       ): (
@@ -54,7 +48,7 @@ class MenuComment extends Component{
         {this.state.user ? (
           <CommentContainerUser user={this.state.user_id}/>
         ):(
-          <CommentContainerChallenge challenge={this.state.challenge_id}/>
+          <div></div>
         )}
         </div>
     )

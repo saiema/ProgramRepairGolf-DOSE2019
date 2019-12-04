@@ -125,7 +125,7 @@ public class PropositionEndpoint implements Endpoint {
                                     currentCode, className));
                 }
                 )
-        .put(
+        .get(
                 path("/proposition/:id/submit")
                 .withDescription(
                         "Will return true if the"
@@ -143,7 +143,7 @@ public class PropositionEndpoint implements Endpoint {
                     String className = chall.getClassName();
                     return new Gson().toJson(
                             propositionService.submitProposition(
-                                    currentCode, className));
+                                idProp, currentCode, className));
                 }
                 );
     }

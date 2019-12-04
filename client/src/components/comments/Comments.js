@@ -1,54 +1,64 @@
 import React, { Component } from 'react';
+import Comment from './Comment';
+import { Link } from 'react-router-dom';
 import AddResponse from './AddResponse';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {fetchAddResponse} from '../../actions/comment/responsesActions';
-
+import {Button, ButtonGroup} from 'reactstrap';
+import "./Style.css";
 class Comments extends Component{
-    state={
-      comment_id: null,
-      press:false
-    }
+  state={
+    comment_id: null,
+  }
 
-    handleClick = id => (e) => {
-      this.setState({press:true, comment_id: id});
-    }
+
+  handleDeleteClick = id => (e)=>{
+    this.props.deleteComment(id);
+  }
+
 
     commentList(){
-      const press= this.state.press;
       const id = this.state.comment_id;
       const comments= this.props.comments;
-      console.log(id);
-      console.log(press);
-      return comments.map(comment =>
-          <div className="comment card" key={comment.id}>
-            <div className="card-content">
-              <p>title: { comment.title } </p>
-              <p>description: { comment.description }</p>
-              { comment.responses ?(
-                <div>
-              <Link to={'/responses/'+ comment.id} comment_id={comment.id}> Show responses </Link>
-               </div>
-               ):(
-               <div>
-               </div>
-              )}
-              {id === comment.id & press ?(
-                <div>
-                <AddResponse addResponse={this.props.addResponse} comment_id={comment.id} challenge_id={comment.challenge_id}/>
+
+      const currentuser_id = this.props.user_id;
+      const responses= this.props.responses;
+      return (
+        <div>
+          {comments.length === 0 ? (
+            <h4 className="mensaje">
+                There are not comments to show
+            </h4>
+          ):(
+            <div>
+            {comments.map(comment => (
+              <section className= "commentSeccion">
+                <div className="comment" key={comment.id}>
+                    <Comment comment={comment}/>
+                    <div className="box">
+                    <Link className= "button-comment" to={"/responses/"+comment.id}> REPLY </Link>
+                    {currentuser_id === comment.user_id ?(
+                        <button className= "button-comment" onClick={this.handleDeleteClick(comment.id)}> DELETE </button>
+                    ):(
+                      <div>
+                      </div>
+                    )}
+
+                   { comment.responses ?(
+                        <Link className= "button-comment" to={'/responses/'+ comment.id}> SHOW RESPONSES </Link>
+                    ):(
+                      <div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              ):(
-                <div>
-                  <button onClick={this.handleClick(comment.id)}> Reply</button>
-                </div>
-              )}
+              </section>
 
-
-            </div>
-
-          </div>
-
-        )
+              ))}
+              </div>
+          )}
+        </div>
+      );
 
     }
 
@@ -64,21 +74,19 @@ class Comments extends Component{
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    responses: state.responses,
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
-  console.log();
   return {
     addResponse: (res) => {
       dispatch(fetchAddResponse(res))
     },
+
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    comments: state.comments.data,
-    loading: state.comments.loading,
-  }
-}
-
-export default  connect(mapStateToProps, mapDispatchToProps)(Comments)
+export default connect(mapStateToProps, mapDispatchToProps)(Comments)

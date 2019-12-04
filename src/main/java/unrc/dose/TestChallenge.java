@@ -82,6 +82,27 @@ public class TestChallenge extends Model {
                && TestChallenge.runTestJava(classNameTest);
     }
 
+        /**
+     * This method is responsible for validating the test challenge. for modify
+     * @param c  challenge to validate
+     * @param t test challenge to validate
+     * @return True in case the validation passes (the source compiles and
+     * the tests run), otherwise, false.
+     */
+    public static boolean validateTestChallengeForModify(
+        final Challenge c,
+        final TestChallenge t) {
+        String className = c.getClassName();
+        String source = c.getSource();
+        String test = t.getTest();
+        String classNameTest = className + "Test";
+        Challenge.generateFileJava(className, source);
+        Challenge.generateFileJavaTest(classNameTest, test);
+        return Challenge.runCompilation(className)
+               && TestChallenge.runCompilationTestJava(classNameTest)
+               && TestChallenge.runTestJava(classNameTest);
+    }
+
     /**
      * This method allows you to create a test challenge and validate it.
      * @param userId user id that created it.
@@ -111,11 +132,15 @@ public class TestChallenge extends Model {
             source,
             point,
             ownerSolutionId);
-            TestChallenge t = new TestChallenge();
-            t.setChallengeId(c.getInteger("id"));
-            t.setTest(test);
-            t.saveIt();
-        return (TestChallenge.validateTestChallenge(t));
+        TestChallenge t = new TestChallenge();
+        t.setChallengeId(c.getInteger("id"));
+        t.setTest(test);
+        t.saveIt();
+        boolean validation = TestChallenge.validateTestChallenge(t);
+        if (!validation) {
+            c.deleteCascade();
+        }
+        return validation;
     }
 
     /**
@@ -144,6 +169,8 @@ public class TestChallenge extends Model {
      * @return list of test challanges resolved.
      */
     public static List<Map<String, Object>> viewResolvedTestChallange() {
+        List<Map<String, Object>> allCompilation =
+        CompilationChallenge.viewAllCompilationChallange();
         LazyList<Proposition> allResolved =
         Proposition.where("isSolution = ?", 1);
         LinkedList<Map<String, Object>> resolved =
@@ -153,12 +180,14 @@ public class TestChallenge extends Model {
                 Challenge c = Challenge.findFirst(
                     "id = ?",
                     challengeResolved.get("challenge_id"));
-                TestChallenge tc = TestChallenge.findFirst(
-                    "challenge_id = ?",
-                    challengeResolved.get("challenge_id"));
-                Map<String, Object> t = toTestChallege(c, tc);
-                if (!(resolved.contains(t))) {
-                    resolved.add(t);
+                if (!allCompilation.contains(c.toJson())) {
+                    TestChallenge tc = TestChallenge.findFirst(
+                        "challenge_id = ?",
+                        challengeResolved.get("challenge_id"));
+                    Map<String, Object> t = toTestChallege(c, tc);
+                    if (!(resolved.contains(t))) {
+                        resolved.add(t);
+                    }
                 }
             }
         }
@@ -213,12 +242,15 @@ public class TestChallenge extends Model {
         c.setDescription(description);
         c.setSource(source);
         c.setPoint(point);
-        c.saveIt();
         TestChallenge t = TestChallenge.findFirst("challenge_id = ?",
         challengeId);
         t.setTest(test);
-        t.saveIt();
-        return validateTestChallenge(t);
+        boolean validation = validateTestChallengeForModify(c, t);
+        if (validation) {
+            c.saveIt();
+            t.saveIt();
+        }
+        return validation;
     }
 
      /**

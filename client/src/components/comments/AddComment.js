@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-
+import "./Style.css"
+import {FormGroup, Label, Input} from "reactstrap"
 class AddComment extends Component {
 
 state = {
   title: null,
   description: null,
-  //CurrentUser
-  user_id: "74",
+  user_id: this.props.user_id.toString(),
   challenge_id:this.props.challenge_id.toString(),
 }
 
@@ -22,9 +22,10 @@ handleSubmit = (e) => {
 }
 
 render() {
-  console.log(this.state);
   return(
-    <div>
+    <section className ="commentSeccion">
+    <div className="addCom"> 
+        <h2>Add Comment</h2>
         <form onSubmit={this.handleSubmit}>
         <label>
           <input type="text" placeholder="Title" id="title" onChange={this.handleChange} />
@@ -32,9 +33,10 @@ render() {
         <label>
           <input type="text" placeholder="Description" id="description"  onChange={this.handleChange} />
         </label>
-          <button>Comentar</button>
+          <button className= "button-submit">Send</button>
         </form>
     </div>
+    </section>
   );
 }
 
