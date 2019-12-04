@@ -15,7 +15,7 @@ class Comments extends Component{
   handleDeleteClick = id => (e)=>{
     this.props.deleteComment(id);
   }
-  
+
 
     commentList(){
       const id = this.state.comment_id;
@@ -26,8 +26,8 @@ class Comments extends Component{
       return (
         <div>
           {comments.length === 0 ? (
-            <h4> 
-              There are not comments to show
+            <h4 className="mensaje">
+                There are not comments to show
             </h4>
           ):(
             <div>
@@ -36,26 +36,24 @@ class Comments extends Component{
                 <div className="comment" key={comment.id}>
                     <Comment comment={comment}/>
                     <div className="box">
-                    <Link className= "ButtonB" to={"/responses/"+comment.id}> REPLY </Link>      
+                    <Link className= "button-comment" to={"/responses/"+comment.id}> REPLY </Link>
                     {currentuser_id === comment.user_id ?(
-                        <button className= "ButtonB" onClick={this.handleDeleteClick(comment.id)}> DELETE </button>
+                        <button className= "button-comment" onClick={this.handleDeleteClick(comment.id)}> DELETE </button>
                     ):(
                       <div>
                       </div>
                     )}
-                    </div>
+
                    { comment.responses ?(
-                      <div>
-                        <p> </p>
-                        <Link className= "ButtonB" to={{pathname:'/responses/'+ comment.id, state:{c:comment}}}> SHOW RESPONSES </Link>
-                      </div>
+                        <Link className= "button-comment" to={'/responses/'+ comment.id}> SHOW RESPONSES </Link>
                     ):(
                       <div>
                       </div>
                     )}
+                  </div>
                 </div>
               </section>
-      
+
               ))}
               </div>
           )}
