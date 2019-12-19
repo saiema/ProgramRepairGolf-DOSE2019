@@ -54,9 +54,10 @@ public final class UserProfileEndpoint implements Endpoint {
                     	if (!User.exists(Integer.parseInt(req.params("id")))) {
            					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
           					}
+                    	
                         return UserProfileService.userprofile(
-                        Integer.parseInt(req.params("id")),req.params("displayName"),req.params("twitterId"));
-              	 	
+                        Integer.parseInt(req.params("id")),req.queryParams("displayName"),req.queryParams("twitterId"));
+                    	
                  }
                 )
              .put(
@@ -74,11 +75,11 @@ public final class UserProfileEndpoint implements Endpoint {
           					if (!User.exists(Integer.parseInt(req.params("id")))) {
            					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
           					}
-          					 UserProfile up = (UserProfile) UserProfile.find("user_id = ?", req.params("id")).get(0);
-                             up.setDisplayName (req.params("displayName"));
-                             up.setTwitterId (req.params("twitterId"));
-                             up.saveIt();
-                             return up;
+          					UserProfile up = (UserProfile) UserProfile.find("user_id = ?", req.params("id")).get(0);
+          				    up.setDisplayName (req.queryParams("displayName"));
+                            up.setTwitterId (req.queryParams("twitterId"));
+                            up.saveIt();
+                            return up.toJson(true, "user_id", "displayName","twitterId");
                             }
                 )
                 .get(
@@ -98,8 +99,8 @@ public final class UserProfileEndpoint implements Endpoint {
                         	}
                    
                         	UserProfile up = (UserProfile) UserProfile.find("user_id = ?", req.params("id")).get(0);
-                        	return up;
-                        }
+                        	return up.toJson(true, "user_id", "displayName", "twitter_id");
+                        	}
                      );
                            
     }

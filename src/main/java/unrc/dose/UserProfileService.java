@@ -10,9 +10,8 @@ public final class UserProfileService {
   *Invokes the method which creates a user profile and transforms to json.
   **/
   public static String userprofile(Integer userId, String displayName, String twitterId) {
-      UserProfile userprofile = new UserProfile (userId,displayName,twitterId);
-	  Gson g = new Gson();
-      return g.toJson(userprofile);
+      
+      return UserProfile.createUserProfile(userId, displayName, twitterId).toJson(true);
 
   }
 }

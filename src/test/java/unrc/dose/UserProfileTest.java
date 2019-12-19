@@ -31,11 +31,10 @@ public class UserProfileTest {
 	 */
 	@Test
 	public void testSetGetCorrect() {
-		UserProfile userProfile = new UserProfile(newUser.getId(),"Enzo","@Enzo");
-		userProfile.setDisplayName("Enzo");
-		userProfile.setTwitterId("@Enzo");
-		assertEquals("Enzo", userProfile.getDisplayName());
-		assertEquals("@Enzo",userProfile.getTwitterId());
+		
+		UserProfile up = UserProfile.createUserProfile(newUser.getId(),"Enzo","@Enzo");
+		assertEquals(true,up.getDisplayName());
+		assertEquals(true,up.getTwitterId());
 			
 	}
 	/**
@@ -44,8 +43,7 @@ public class UserProfileTest {
 	@Test
 	public void testDisplayNameIncorrect() {
 		try {
-		     UserProfile userProfile = new UserProfile(newUser.getId(),"Enzo22","@Enzo");
-			 userProfile.setDisplayName("Enzo22");
+		     UserProfile.createUserProfile(newUser.getId(),"Enzo22","@Enzo");
 			 fail("expected IllegalArgumentException");
 			  } catch(IllegalArgumentException e) {}
 		}
@@ -55,8 +53,7 @@ public class UserProfileTest {
 	@Test
 	public void testTwitterIdIncorrect() {
 		try {
-			 UserProfile userProfile = new UserProfile(newUser.getId(),"Enzo","MLEnzo");
-		     userProfile.setTwitterId ("MLEnzo");
+			 UserProfile.createUserProfile(newUser.getId(),"Enzo","MLEnzo");
 			 fail("expected IllegalArgumentException");
 			  } catch(IllegalArgumentException e) {}
 	}
@@ -66,7 +63,7 @@ public class UserProfileTest {
 	@Test
 	public void testUserIdIsNull() {
 		try {
-			UserProfile userProfile = new UserProfile(null,"Enzo","MLEnzo");
+			UserProfile.createUserProfile(null,"Enzo","MLEnzo");
 			fail("expected IllegalArgumentException");
 			  } catch(IllegalArgumentException e) {}
 		}

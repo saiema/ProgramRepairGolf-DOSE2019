@@ -31,7 +31,7 @@ public class UserProfile extends Model {
     /**
     * Name displayed on profile
     */
-    private static String DISPLAY_NAME = "display_name";
+    private static String DISPLAY_NAME = "displayName";
     /**
     * Link to twitter account
     */
@@ -39,16 +39,20 @@ public class UserProfile extends Model {
     /**
      * Class constructor
      */
-    public UserProfile (Integer userId, String displayName, String twitterId) {
+    
+    public static UserProfile createUserProfile (Integer userId, String displayName, String twitterId) {
     	if (userId == null) {
 			throw new IllegalArgumentException ("The user id cannot be null");
 		}
     	if (!User.exists(userId)) {
 			throw new IllegalArgumentException ("The user does not exits");
 		}
-    	setInteger(USER_ID,userId);
-    	setDisplayName(displayName);
-    	setTwitterId(twitterId);
+    	UserProfile up = new UserProfile();
+    	up.setInteger(USER_ID,userId);
+    	up.setDisplayName(displayName);
+    	up.setTwitterId(twitterId);
+    	up.saveIt();
+    	return up; 
     	}
     /**
      * @return Id of user
@@ -60,7 +64,7 @@ public class UserProfile extends Model {
      * @return Display Name of user
      */
     public String getDisplayName() {
-    	return getString(DISPLAY_NAME);
+    	return this.getString(DISPLAY_NAME);
     }
     /**
      * @return Link to twitter account
@@ -74,37 +78,41 @@ public class UserProfile extends Model {
     public void setDisplayName(final String displayName){
     	if (displayName == null) {
 			throw new IllegalArgumentException("The user's display name cannot be null");
+		} 
+    	if (!displayName.isEmpty()&& (!displayName.matches("[a-zA-Z ]{2,254}"))){
+			throw new IllegalArgumentException ("The user's display name cannot be numbers");
 		}
-    	if (!displayName.matches("([a-zA-Z])+ ([a-zA-Z])*")) {
-			throw new IllegalArgumentException ("The user's display name cannot be numers");
-		}
-    	if ((displayName =="") || (displayName.matches("([a-zA-Z])+ ([a-zA-Z])*"))) {
-    	set (DISPLAY_NAME,displayName);
-    	}
+    	 set (DISPLAY_NAME,displayName);
+    	
     }
     /**
      * method to modify link to twitter account
+     */
+    /**
+     * @param twitterId
      */
     public void setTwitterId(final String twitterId) {
     	if (twitterId == null) {
 			throw new IllegalArgumentException("The link twitter cannot be null");
 		}	
-    	if (!twitterId.matches("@([a-zA-Z])+")) {
+    	if (!twitterId.isEmpty() && (!twitterId.matches("@([a-zA-Z])+"))) {
 			throw new IllegalArgumentException ("The link twitter cannot be numbers");
 		}
-    	if ((twitterId =="") || (twitterId.matches("@([a-zA-Z])+"))) {
     	set(TWITTER_ID,twitterId);
-    	}
     	
     }
     /**
      * method
-     */
+     
     
-    public static void modifyUserProfile(UserProfile up,final Integer userId,final String displayName,final String twitterId){
+    public static void modifyUserProfile(final Integer userId,final String displayName,final String twitterId){
         if (!User.exists(userId)) {
 			throw new IllegalArgumentException ("The user does not exits");
 			}
+        
+		up.setDisplayName (displayName);
+        up.setTwitterId (twitterId);
+        up.saveIt();
     	if ((User.exists(userId))&& (up.getDisplayName()!=displayName)&&(up.getTwitterId()!=twitterId)){ 
     	up.setDisplayName(displayName);   
     	up.setTwitterId(twitterId);
@@ -120,6 +128,7 @@ public class UserProfile extends Model {
         up.saveIt();
         }
         }
+	
     
     /**
     public Optional<UserProfile> getUserProfile(Integer userId,String displayName,String twitterId){
