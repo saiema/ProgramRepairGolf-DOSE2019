@@ -3,8 +3,6 @@ package unrc.dose;
 import static com.beerboy.ss.descriptor.EndpointDescriptor.endpointPath;
 import static com.beerboy.ss.descriptor.MethodDescriptor.path;
 
-import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,34 +70,20 @@ public final class UserProfileEndpoint implements Endpoint {
                         .withResponseType(String.class),
                      
                     (req, res) -> {
-          					if (!User.exists(Integer.parseInt(req.params("id")))) {
-           					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
-          					}
-          					UserProfile up = (UserProfile) UserProfile.find("user_id = ?", req.params("id")).get(0);
-          				    up.setDisplayName (req.queryParams("displayName"));
-                            up.setTwitterId (req.queryParams("twitterId"));
-                            up.saveIt();
-                            return up.toJson(true, "user_id", "displayName","twitterId");
+                    	    return UserProfileService.searchUp(Integer.parseInt(req.params("id")), 
+                    	    		req.queryParams("displayName"),req.queryParams("twitterId"));
+          					
                             }
                 )
                 .get(
                        path("/:id/profile")
                             .withDescription("Will return the user profile of user's id")
-                             .withPathParam()
-                                .withName("displayName")
-                                .withDescription("user profile display name").and()
-                            .withPathParam()
-                            	.withName("twitterId")
-                            	.withDescription("user profile twitter id").and()
+                             
                             .withResponseType(String.class),
                         (req, res) -> {
                         	
-                        	if (!User.exists(Integer.parseInt(req.params("id")))) {
-                        	throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
-                        	}
-                   
-                        	UserProfile up = (UserProfile) UserProfile.find("user_id = ?", req.params("id")).get(0);
-                        	return up.toJson(true, "user_id", "displayName", "twitter_id");
+                        	return UserProfileService.searchById(Integer.parseInt(req.params("id")));
+                        	
                         	}
                      );
                            

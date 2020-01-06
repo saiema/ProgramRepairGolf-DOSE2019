@@ -33,8 +33,8 @@ public class UserProfileTest {
 	public void testSetGetCorrect() {
 		
 		UserProfile up = UserProfile.createUserProfile(newUser.getId(),"Enzo","@Enzo");
-		assertEquals(true,up.getDisplayName());
-		assertEquals(true,up.getTwitterId());
+		assertEquals("Enzo",up.getDisplayName());
+		assertEquals("@Enzo",up.getTwitterId());
 			
 	}
 	/**

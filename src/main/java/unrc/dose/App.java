@@ -45,7 +45,7 @@ public class App
 										urlReset = "";
 									}
 								}
-					if (request.requestMethod() != "OPTIONS" && !request.uri().contains("profile")){
+					if (request.requestMethod() != "OPTIONS"){
 								if((urlCreate == null) ||(!(urlCreate.equals(CREATE_ACCOUNT_ROUTE)))){
 
 									if(urlReset.equals(RESET_ROUTE) != true){

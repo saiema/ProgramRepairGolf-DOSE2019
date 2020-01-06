@@ -1,6 +1,8 @@
 package unrc.dose;
 
 
+import java.util.List;
+
 import org.javalite.activejdbc.Model;
 
 /**  
@@ -101,60 +103,18 @@ public class UserProfile extends Model {
     	set(TWITTER_ID,twitterId);
     	
     }
-    /**
-     * method
-     
+    public static String toJson(List<UserProfile> list){
+        String aux="[";
+        for(int i=0;i<list.size();i++){
+          aux=aux+list.get(i).toJson(true);
+          if(i<list.size()-1){
+            aux=aux+",";
+          }
+        }
+        aux=aux+"]";
+        return aux;
+      }
     
-    public static void modifyUserProfile(final Integer userId,final String displayName,final String twitterId){
-        if (!User.exists(userId)) {
-			throw new IllegalArgumentException ("The user does not exits");
-			}
-        
-		up.setDisplayName (displayName);
-        up.setTwitterId (twitterId);
-        up.saveIt();
-    	if ((User.exists(userId))&& (up.getDisplayName()!=displayName)&&(up.getTwitterId()!=twitterId)){ 
-    	up.setDisplayName(displayName);   
-    	up.setTwitterId(twitterId);
-    	up.saveIt();
-        }
-        if ((User.exists(userId))&& (up.getDisplayName()==displayName)&&(up.getTwitterId()!=twitterId)) {
-        up.setTwitterId(twitterId);
-        up.saveIt();
-        	
-        }
-        if ((User.exists(userId))&& (up.getDisplayName()!=displayName)&&(up.getTwitterId()==twitterId)) {
-        up.setDisplayName(displayName); 
-        up.saveIt();
-        }
-        }
-	
     
-    /**
-    public Optional<UserProfile> getUserProfile(Integer userId,String displayName,String twitterId){
-    	if (!User.exists(userId)) {
-    		Optional.empty();
-    		}
-    		else {
-    			UserProfile userprofile = new UserProfile(userId,displayName,twitterId); 
-    			Optional<UserProfile> optUserProfile = Optional.of(userprofile);
-    		}
-    }
-    	
-    	
+  	}
     
-   public void findByUserId(Integer userId) {
-    	if (!User.exists(userId)) {
-    		throw new IllegalArgumentException ("the user is not exist");
-    		}
-        if (User.exists(userId){
-        	Userprofile.get
-    	
-    		
-    	}
-    		
-    	}
-    	
-    	
-    }*/
-}
