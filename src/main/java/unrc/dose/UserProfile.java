@@ -1,7 +1,7 @@
 package unrc.dose;
 
 
-import java.util.List;
+
 
 import org.javalite.activejdbc.Model;
 
@@ -103,17 +103,7 @@ public class UserProfile extends Model {
     	set(TWITTER_ID,twitterId);
     	
     }
-    public static String toJson(List<UserProfile> list){
-        String aux="[";
-        for(int i=0;i<list.size();i++){
-          aux=aux+list.get(i).toJson(true);
-          if(i<list.size()-1){
-            aux=aux+",";
-          }
-        }
-        aux=aux+"]";
-        return aux;
-      }
+   
     
     
   	}

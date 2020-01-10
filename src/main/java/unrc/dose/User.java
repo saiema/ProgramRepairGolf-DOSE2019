@@ -98,7 +98,7 @@ public class User extends Model {
         
 
         UserStat.createUserStat(user.getId());
-        UserProfile.createUserProfile(user.getId(),"",""); 
+       
         
         return user;
     }

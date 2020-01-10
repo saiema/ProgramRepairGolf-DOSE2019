@@ -70,7 +70,7 @@ public final class UserProfileEndpoint implements Endpoint {
                         .withResponseType(String.class),
                      
                     (req, res) -> {
-                    	    return UserProfileService.searchUp(Integer.parseInt(req.params("id")), 
+                    	    return UserProfileService.updateUp(Integer.parseInt(req.params("id")), 
                     	    		req.queryParams("displayName"),req.queryParams("twitterId"));
           					
                             }

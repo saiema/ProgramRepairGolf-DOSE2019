@@ -24,14 +24,11 @@ public final class UserProfileService {
       	
 }
   
- public static String searchUp (int userId, String displayName,String twitterId) {
+ public static String updateUp (int userId, String displayName,String twitterId) {
 	 if (!User.exists(userId)){
 			throw new UserNotFoundException(String.valueOf(userId));
 			}
 	     UserProfile up = UserProfile.findFirst("user_id = ?", userId);
-	     if (up.getDisplayName().isEmpty() || up.getTwitterId().isEmpty()) {
-	    	 return ("cannot change the user profile because it is empty, try to create a new profile");
-	     }
 	     up.setDisplayName (displayName);
          up.setTwitterId (twitterId);
          up.saveIt();
