@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class UserProfileTest {
 	
-	User newUser = User.set("Enzo" , "Ferrari" , "F40@gmail.com" , false);
+	
 	
 	@BeforeClass
 	
@@ -33,7 +33,7 @@ public class UserProfileTest {
 	 */
 	@Test
 	public void testSetGetCorrect() {
-		
+		User newUser = User.set("Enzo" , "Ferrari" , "F40@gmail.com" , false);
 		UserProfile up = UserProfile.createUserProfile(newUser.getId(),"Enzo","@Enzo");
 		assertEquals("Enzo",up.getDisplayName());
 		assertEquals("@Enzo",up.getTwitterId());
@@ -45,8 +45,8 @@ public class UserProfileTest {
 	@Test
 	public void testDisplayNameIncorrect() {
 		try {
-			
-		     UserProfile.createUserProfile(newUser.getId(),"Enzo22","@Enzo");
+			User newUser = User.set("Mari" , "Laura" , "Marilau0@gmail.com" , false);
+		     UserProfile.createUserProfile(newUser.getId(),"Mari20","@Mari");
 			 fail("expected IllegalArgumentException");
 			  } catch(IllegalArgumentException e) {}
 		}
@@ -56,7 +56,7 @@ public class UserProfileTest {
 	@Test
 	public void testTwitterIdIncorrect() {
 		try {
-			
+			User newUser = User.set("Clau" , "Velez" , "ClauVe@gmail.com" , false);
 			 UserProfile.createUserProfile(newUser.getId(),"Enzo","MLEnzo");
 			 fail("expected IllegalArgumentException");
 			  } catch(IllegalArgumentException e) {}
