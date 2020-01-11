@@ -103,6 +103,13 @@ public class UserProfile extends Model {
     	set(TWITTER_ID,twitterId);
     	
     }
+    public static Boolean profileExists (int userId) {
+   	 if (!UserProfile.exists(userId)){
+   			throw new UserNotFoundException(String.valueOf(userId));
+   			}
+   	 return true;
+   	 
+    }
    
     
     

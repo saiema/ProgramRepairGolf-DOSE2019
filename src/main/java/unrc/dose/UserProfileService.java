@@ -20,22 +20,23 @@ public final class UserProfileService {
           throw new UserNotFoundException(String.valueOf(userId));
           }
       	UserProfile up = UserProfile.findFirst("user_id = ?", userId); 
-        return up.toJson(true, "user_id", "displayName", "twitter_id");  
-      	
-}
+      	return up.toJson(true, "user_id", "displayName","twitter_id");       	
+  }
   
  public static String updateUp (int userId, String displayName,String twitterId) {
-	 if (!User.exists(userId)){
+  if (!User.exists(userId)){
 			throw new UserNotFoundException(String.valueOf(userId));
 			}
-	     UserProfile up = UserProfile.findFirst("user_id = ?", userId);
-	     up.setDisplayName (displayName);
-         up.setTwitterId (twitterId);
-         up.saveIt();
-         return up.toJson(true, "user_id", "displayName","twitter_id");
-         
-         
+  if (!UserProfile.profileExists(userId)) {
+		throw new UserNotFoundException(String.valueOf(userId));
+	}
+	UserProfile up = UserProfile.findFirst("user_id = ?", userId); 
+	up.setDisplayName("displayName");
+	up.setTwitterId("twitterId");
+	up.saveIt();
+	return up.toJson(true, "user_id", "displayName", "twitter_id");   
         
  }
+ 
   
 }
