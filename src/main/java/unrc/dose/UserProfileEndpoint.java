@@ -53,8 +53,9 @@ public final class UserProfileEndpoint implements Endpoint {
            					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
           					}
                     	
-                        return UserProfileService.userprofile(
-                        Integer.parseInt(req.params("id")),req.queryParams("displayName"),req.queryParams("twitterId"));
+                        return UserProfileService.createProfile(
+                        Integer.parseInt(req.params("id")),req.queryParams("displayName"),
+                        req.queryParams("twitterId"));
                     	
                  }
                 )
@@ -71,7 +72,7 @@ public final class UserProfileEndpoint implements Endpoint {
                      
                     (req, res) -> {
                     	
-                    	    return UserProfileService.updateUp(Integer.parseInt(req.params("id")), 
+                    	    return UserProfileService.updateProfile(Integer.parseInt(req.params("id")), 
                     	   		req.queryParams("displayName"),req.queryParams("twitterId"));
           					
                             }
@@ -83,7 +84,7 @@ public final class UserProfileEndpoint implements Endpoint {
                             .withResponseType(String.class),
                         (req, res) -> {
                         	
-                        	return UserProfileService.searchById(Integer.parseInt(req.params("id")));
+                        	return UserProfileService.getProfile(Integer.parseInt(req.params("id")));
                         	
                         	}
                      );

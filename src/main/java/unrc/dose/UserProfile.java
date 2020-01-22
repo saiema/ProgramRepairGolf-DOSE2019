@@ -89,8 +89,7 @@ public class UserProfile extends Model {
     }
     /**
      * method to modify link to twitter account
-     */
-    /**
+     *
      * @param twitterId
      */
     public void setTwitterId(final String twitterId) {
@@ -103,15 +102,24 @@ public class UserProfile extends Model {
     	set(TWITTER_ID,twitterId);
     	
     }
-    public static Boolean profileExists (int userId) {
-   	 if (!UserProfile.exists(userId)){
-   			throw new UserNotFoundException(String.valueOf(userId));
-   			}
-   	 return true;
-   	 
-    }
-   
     
+    /**
+     * method return the user profile with user id passed as parameter
+     * @param userId
+     * @return
+     */
     
+    public static UserProfile findProfile (int userId) {
+    	  
+    	  if (!User.exists(userId)){
+              throw new UserNotFoundException(String.valueOf(userId));
+              }
+    	  UserProfile up = UserProfile.findById(userId);
+    	  if (up == null) {
+    	    return null;
+    	  }
+    	  return up;
+    	}
+     
   	}
     
