@@ -78,10 +78,10 @@ public class UserProfile extends Model {
      * method to modify Display Name
      */
     public void setDisplayName(final String displayName){
-    	if (displayName == null) {
-			throw new IllegalArgumentException("The user's display name cannot be null");
+    	if (displayName == null||displayName.isEmpty()) {
+			throw new IllegalArgumentException("The user's display name cannot be null or empty");
 		} 
-    	if (!displayName.isEmpty()&& (!displayName.matches("[a-zA-Z ]{2,254}"))){
+    	if (!displayName.matches("[a-zA-Z ]{2,254}")){
 			throw new IllegalArgumentException ("The user's display name cannot be numbers");
 		}
     	 set (DISPLAY_NAME,displayName);
@@ -93,10 +93,10 @@ public class UserProfile extends Model {
      * @param twitterId
      */
     public void setTwitterId(final String twitterId) {
-    	if (twitterId == null) {
-			throw new IllegalArgumentException("The link twitter cannot be null");
+    	if (twitterId == null||twitterId.isEmpty()){
+			throw new IllegalArgumentException("The link twitter cannot be null or empty");
 		}	
-    	if (!twitterId.isEmpty() && (!twitterId.matches("@([a-zA-Z])+"))) {
+    	if (!twitterId.matches("@([a-zA-Z])+")) {
 			throw new IllegalArgumentException ("The link twitter cannot be numbers");
 		}
     	set(TWITTER_ID,twitterId);
@@ -115,8 +115,8 @@ public class UserProfile extends Model {
               throw new UserNotFoundException(String.valueOf(userId));
               }
     	  UserProfile up = UserProfile.findById(userId);
-    	  if (up == null) {
-    	    return null;
+    	  if (!up.exists()){
+    		  throw new IllegalArgumentException ("The user profile does not exists");
     	  }
     	  return up;
     	}
