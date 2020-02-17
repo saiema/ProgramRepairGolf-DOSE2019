@@ -114,7 +114,7 @@ public class UserProfile extends Model {
     	  if (!User.exists(userId)){
               throw new UserNotFoundException(String.valueOf(userId));
               }
-    	  UserProfile up = UserProfile.findById(userId);
+    	  UserProfile up= UserProfile.findFirst("user_id = ?", userId);
     	  if (!up.exists()){
     		  throw new IllegalArgumentException ("The user profile does not exists");
     	  }
