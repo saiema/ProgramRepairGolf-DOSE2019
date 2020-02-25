@@ -81,7 +81,7 @@ public class UserProfile extends Model {
     	if (displayName == null||displayName.isEmpty()) {
 			throw new IllegalArgumentException("The user's display name cannot be null or empty");
 		} 
-    	if (!displayName.matches("[a-zA-Z ]{2,254}")){
+    	if (!displayName.matches("[a-zA-Z ] {2,254}")){
 			throw new IllegalArgumentException ("The user's display name cannot be numbers");
 		}
     	 set (DISPLAY_NAME,displayName);

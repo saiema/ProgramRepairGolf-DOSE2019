@@ -52,6 +52,10 @@ public final class UserProfileEndpoint implements Endpoint {
                     	if (!User.exists(Integer.parseInt(req.params("id")))) {
            					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
           					}
+                    	UserProfile up = UserProfile.findFirst("user_id = ?", Integer.parseInt(req.params("id")));
+                    	if(up != null){
+                    		  throw new IllegalArgumentException ("The user profile already exists");
+                    	  }
                     	
                         return UserProfileService.createProfile(
                         Integer.parseInt(req.params("id")),req.queryParams("displayName"),
@@ -71,7 +75,13 @@ public final class UserProfileEndpoint implements Endpoint {
                         .withResponseType(String.class),
                      
                     (req, res) -> {
-                    	
+                    	if (!User.exists(Integer.parseInt(req.params("id")))) {
+           					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
+          					}
+                    	UserProfile up = UserProfile.findFirst("user_id = ?", Integer.parseInt(req.params("id")));
+                    	if(up == null){
+                    		  throw new IllegalArgumentException ("The user profile does not exists");
+                    	  }
                     	    return UserProfileService.updateProfile(Integer.parseInt(req.params("id")), 
                     	   		req.queryParams("displayName"),req.queryParams("twitterId"));
           					
@@ -83,7 +93,13 @@ public final class UserProfileEndpoint implements Endpoint {
                              
                             .withResponseType(String.class),
                         (req, res) -> {
-                        	
+                        	if (!User.exists(Integer.parseInt(req.params("id")))) {
+               					throw new UserNotFoundException(String.valueOf(Integer.parseInt(req.params("id"))));
+              					}
+                          UserProfile up = UserProfile.findFirst("user_id = ?", Integer.parseInt(req.params("id")));
+                      	  if(up == null){
+                      		  throw new IllegalArgumentException ("The user profile does not exists");
+                      	  }
                         	return UserProfileService.getProfile(Integer.parseInt(req.params("id")));
                         	
                         	}
