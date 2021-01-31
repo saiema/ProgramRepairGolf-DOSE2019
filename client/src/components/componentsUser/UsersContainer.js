@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import { fetchUsers, newAccount, login}  from '../../actions/actionsUser/usersActions';
+import Account from './Account';
+import logo from '../../logo.svg';
+import { fetchUsers, newAccount, login, addAdmin, disableAcc,updatePass}  from '../../actions/actionsUser/usersActions';
 
 
 class UsersContainer extends Component {
 
 	render() {
-		return (
+		return this.props.loading ? (
+      <img src={logo} className="App-logo" alt="logo" />
+		) : (
+    <div>
+      
 			<Users
 				users={this.props.users}
 				newAccount={this.props.newAccount}
 				deleteUser={this.props.deleteUser}
         login={this.props.login}
 			/>
-		);
+     
+    </div>
+		)
 	}
 }
 
@@ -38,7 +46,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     login: (user, pass) => {
       dispatch(login(user, pass))
+    },
+    addAdmin: (user) => {
+      dispatch(addAdmin(user))
+    },
+    disableAcc: (name,pass) =>{
+      dispatch(disableAcc(name,pass))
+    },
+      updatePass: (email,oldPass,newPass) =>{
+      dispatch(updatePass(email,oldPass,newPass))
     }
+
+
   }
 }
 

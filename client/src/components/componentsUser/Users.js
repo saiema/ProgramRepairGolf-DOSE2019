@@ -4,15 +4,11 @@ import CreateAccount from './CreateAccount';
 import Login from './Login';
 import "../../App.css";
 
-const Users = ({ users, newAccount, deleteUser, login}) => {
+const Users = ({ users, newAccount, login}) => {
     return (
-      <div>
-        <div className="left">
-          <CreateAccount newAccount={newAccount}/>
-        </div>
-        <div className="right">
-          <Login login={login}/>
-        </div>
+      <div >
+        <CreateAccount newAccount={newAccount}/>
+        <Login login={login}/>
       </div>
     );
   }

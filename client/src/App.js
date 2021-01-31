@@ -7,7 +7,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Navbar from './components/Navbar'
 import Challenge from './components/challenge/Challenge'
-
+import AccountContainer from './components/componentsUser/AccountContainer'
 import CommentContainerChallenge from './components/comments/CommentContainerChallenge';
 import CommentContainerUser from './components/comments/CommentContainerUser';
 import ResponsesContainer from './components/comments/ResponsesContainer';
@@ -27,6 +27,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home}/>
             <Route path='/about' component={About} />
+            <Route path='/componentsUser' component={AccountContainer} />
             <Route path='/hackers' component={HackersContainer} />
             <Route path='/propositions' component={PropositionPlay} />
             <Route path='/userstats' component={UserStats} />

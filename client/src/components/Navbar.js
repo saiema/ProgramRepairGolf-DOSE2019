@@ -12,6 +12,7 @@ const Navbar = (props) => {
         <li><NavLink to='/userstats'>Statistics</NavLink></li>
         <li><NavLink to='/challenge'>Challenges</NavLink></li>
         <li><NavLink to='/comments'> Comments </NavLink></li>
+        <li><NavLink to='/componentsUser'>Account</NavLink></li>
         <li><NavLink style={{background:'white',color:'red'}} onClick={ () => f.signout() } to={{pathname:'/'}}
               activeStyle={{background:'#f63c3c',color:'#f63c3c'}}
               isActive={(match, location) => {if (!match) {

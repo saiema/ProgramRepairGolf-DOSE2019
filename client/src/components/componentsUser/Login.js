@@ -55,7 +55,7 @@ export default class Login extends Component{
         <div >
         {this.renderRedirect()}
           <div>
-            <h3>Login</h3>
+            <h3>Iniciar sesión</h3>
             <form onSubmit={this.handleSubmit}>
             <br/>
               <div>
@@ -68,7 +68,7 @@ export default class Login extends Component{
                 <input placeholder="Contraseña" type="password" id="password" onChange={this.handleChange}/>
               </label>
               </div>
-              <button onClick={ingresa} >Iniciar sesión</button>
+              <button onClick={ingresa} >Entrar</button>
             </form>
           </div>
           <Link to="/resetPassword">Forgot password?</Link>

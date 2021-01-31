@@ -146,7 +146,7 @@ public final class UserEndpoint implements Endpoint {
         )
 
         .put(
-            path("/updatePassword")
+            path("/updatePassword/:newPassword")
                 .withDescription("Update a user's password")
                 .withPathParam()
                     .withName("email_address")
@@ -160,7 +160,7 @@ public final class UserEndpoint implements Endpoint {
             (req, res) -> {
                Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
 
-            	return(User.updatePassword((String)bodyParams.get("email_address"),(String)bodyParams.get("oldPassword"), (String)bodyParams.get("newPassword")));
+            	return(User.updatePassword((String)bodyParams.get("email_address"),(String)bodyParams.get("password"), req.params("newPassword")));
             }
         )
 
@@ -196,10 +196,34 @@ public final class UserEndpoint implements Endpoint {
                     .and()
                 .withResponseType(Boolean.class),
             (req, res) -> {
-                 Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
-
+                 Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);   
                 return(User.disableUser((String)bodyParams.get("username"), (String)bodyParams.get("password")));
 
+            }
+        )
+
+
+
+         .put(
+            path("/activateAdmin")
+                .withDescription("Activate account admin")
+                .withPathParam()
+                    .withName("username")
+                    .withDescription("This is the user to activate admin")
+                    .and()
+                .withResponseType(String.class),
+            (req, res) -> {
+            Map<String,Object> bodyParams = new Gson().fromJson(req.body(),Map.class);
+                System.out.println(User.activaAdmin((String)bodyParams.get("username")));
+               System.out.println("****************************************************************************************");
+
+                if( User.activaAdmin((String)bodyParams.get("username"))) {
+                      res.status(200);
+                    } else {
+                      res.status(401);
+                    }
+                    return "";
+                
             }
         );
     }
