@@ -84,6 +84,7 @@ public class User extends Model {
         final String email, final Boolean admin) {
         User user = new User();
         Password p = new Password();
+        
 
         byte[] salt = Password.getNextSalt();
 
@@ -94,9 +95,11 @@ public class User extends Model {
         user.load(user, name, passw, email, admin);
         user.saveIt();
         p.saveIt();
+        
 
         UserStat.createUserStat(user.getId());
-
+        
+        
         return user;
     }
     /**

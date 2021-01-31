@@ -45,7 +45,7 @@ public class App
 										urlReset = "";
 									}
 								}
-								if (request.requestMethod() != "OPTIONS"){
+					if (request.requestMethod() != "OPTIONS"){
 								if((urlCreate == null) ||(!(urlCreate.equals(CREATE_ACCOUNT_ROUTE)))){
 
 									if(urlReset.equals(RESET_ROUTE) != true){
@@ -74,6 +74,7 @@ public class App
                   new CompilationChallengeEndPoint(),
                   new TestChallengeEndPoint(),
                   new PropositionEndpoint(),
+                  new UserProfileEndpoint(),
 									new CommentEndpoint(),
 				          new ChallengeStatEndpoint()))
           .generateDoc();
